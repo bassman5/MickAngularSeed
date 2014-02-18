@@ -4,7 +4,9 @@ angular.module('dataDictApp', [
     'ui.router',
     'ngCookies',
     'ngResource',
-    'ngSanitize'
+    'ngSanitize',
+    'restangular',
+    'angular-growl'
   ])
   .config(function ($stateProvider, $urlRouterProvider) {
     //

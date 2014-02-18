@@ -33,7 +33,11 @@
     "grunt-karma": "~0.6.2",
     "protractor": "~0.18.1",
     "karma-coverage": "~0.1.5",
-    "karma-growl": "~0.1.0"
+    "karma-growl": "~0.1.0",
+    "karma": "~0.10.9",
+    "mocha": "~1.17.1",
+    "karma-mocha": "~0.1.1",
+    "karma-sinon-chai": "~0.1.4"
   },
   "engines": {
     "node": ">=0.8.0"

@@ -2,6 +2,10 @@
 
 In intellij command line tool run
 grunt serve
+or
+grunt karma:watch:start watch
+for just the tests
+
 client coverage reports are run automatcally, view with
 open client/coverage/Chrome\ 31.0\ \(Mac\)/index.html
 also does compass
