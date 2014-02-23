@@ -3,7 +3,7 @@
 angular.module('dataDictApp')
   .factory('Api', ['Config', 'Restangular', 'Notification', function (Config, Restangular, Notification) {
     return Restangular.withConfig(function (RestangularConfigurer) {
-      RestangularConfigurer.setBaseUrl('/api/v1');
+      RestangularConfigurer.setBaseUrl(Config.API_BASE_URL);
       RestangularConfigurer.setRestangularFields({
         id: '_id',
         route: 'restangularRoute',
