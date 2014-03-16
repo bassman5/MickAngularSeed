@@ -1,9 +1,5 @@
 'use strict';
 
-/*global element */
-/*global by */
-/*global browser */
-
 function Page(url, el) {
   this.el = el;
   this.url = url;

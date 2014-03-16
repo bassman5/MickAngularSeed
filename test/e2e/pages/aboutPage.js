@@ -1,8 +1,5 @@
 'use strict';
 
-/*global element */
-/*global by */
-
 var AboutPage = require('./page');
 //  this.nameInput = element(by.model('yourName'));
 //  this.greeting = element(by.binding('yourName'));

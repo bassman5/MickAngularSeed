@@ -1,8 +1,5 @@
 'use strict';
 
-/*global element */
-/*global by */
-
 var ContactPage = require('./page');
 //  this.nameInput = element(by.model('yourName'));
 //  this.greeting = element(by.binding('yourName'));
