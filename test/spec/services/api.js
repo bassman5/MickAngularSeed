@@ -1,5 +1,12 @@
 'use strict';
 
+/*global describe */
+/*global it */
+/*global beforeEach */
+/*global afterEach */
+/*global inject */
+/*global expect */
+
 /* global sinon: false */
 /* jshint -W030 */
 
@@ -24,8 +31,6 @@ describe('Service: Api', function () {
       Restangular = $injector.get('Restangular');
     });
   });
-
-
 
   afterEach(function() {
     $httpBackend.verifyNoOutstandingExpectation();

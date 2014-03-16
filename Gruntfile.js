@@ -39,7 +39,7 @@ module.exports = function (grunt) {
         tasks: ['karma:watch:run'] //NOTE the :run flag
       },
       jsTest: {
-        files: ['test/spec/{,*/}*.js'],
+        files: ['test/**/{,*/}*.js'],
         tasks: ['newer:jshint:test']
       },
       compass: {
@@ -103,13 +103,14 @@ module.exports = function (grunt) {
       },
       all: [
         'Gruntfile.js',
-        '<%= yeoman.app %>/scripts/{,*/}*.js'
+        '<%= yeoman.app %>/scripts/{,*/}*.js',
+        'test/**/{,*/}*.js'
       ],
       test: {
         options: {
           jshintrc: 'test/.jshintrc'
         },
-        src: ['test/spec/{,*/}*.js']
+        src: ['test/**/{,*/}*.js']
       }
     },
 

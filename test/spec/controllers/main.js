@@ -1,5 +1,11 @@
 'use strict';
 
+/*global describe */
+/*global it */
+/*global beforeEach */
+/*global inject */
+/*global expect */
+
 describe('Controller: MainCtrl', function () {
 
   // load the controller's module

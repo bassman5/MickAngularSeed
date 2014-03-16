@@ -1,5 +1,11 @@
 'use strict';
 
+/*global describe */
+/*global it */
+/*global beforeEach */
+/*global inject */
+/*global expect */
+
 describe('Service: Config', function () {
 
   // load the service's module

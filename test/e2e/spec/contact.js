@@ -1,3 +1,5 @@
+'use strict';
+
 var expect = require('./../helper.js').expect;
 
 describe('contact page', function() {
@@ -6,12 +8,12 @@ describe('contact page', function() {
 
   it('should load the page', function() {
     contactPage.get();
-    expect(contactPage.isLoaded()).to.eventually.be.true
+    expect(contactPage.isLoaded()).to.eventually.be.true;
   });
 
   it('should navigate to the about page when clicking', function() {
-    contactPage.about.click();
-    expect(aboutPage.isLoaded()).to.eventually.be.true
+    contactPage.about().click();
+    expect(aboutPage.isLoaded()).to.eventually.be.true;
   });
 
 });

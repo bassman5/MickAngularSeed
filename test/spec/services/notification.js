@@ -1,5 +1,10 @@
 'use strict';
 
+/*global describe */
+/*global it */
+/*global beforeEach */
+/*global inject */
+/*global expect */
 /* global sinon: false */
 /* jshint -W030 */
 
