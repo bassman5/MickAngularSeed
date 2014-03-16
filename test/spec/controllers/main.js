@@ -6,8 +6,12 @@ describe('Controller: MainCtrl', function () {
   beforeEach(module('dataDictApp'));
 
   var MainCtrl,
-    scope;
+    scope,
+    stateProvider;
 
+  beforeEach(inject(function($injector) {
+    stateProvider = $injector.get('$state');
+  }));
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {

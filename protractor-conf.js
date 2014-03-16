@@ -20,15 +20,22 @@ exports.config = {
 
   // Spec patterns are relative to the current working directly when
   // protractor is called.
-  specs: ['test/e2e/**/*Spec.js'],
+  specs: ['test/e2e/spec/**/*.js'],
 
   // The server under test
   baseUrl: 'http://localhost:9000/',
 
+  framework:'mocha',
 
-  // Options to be passed to Jasmine-node.
-  jasmineNodeOpts: {
-    showColors: true,
-    defaultTimeoutInterval: 30000
+  mochaOpts: {
+    ui: "bdd",
+    reporter: "spec",
+    require: 'chai',
+    slow: 3000
   }
+  // Options to be passed to Jasmine-node.
+//  jasmineNodeOpts: {
+//    showColors: true,
+//    defaultTimeoutInterval: 30000
+//  }
 };
