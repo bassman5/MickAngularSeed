@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('dataDictApp')
+angular.module('anApp')
   .factory('Api', ['Config', 'Restangular', 'Notification', function (Config, Restangular, Notification) {
     return Restangular.withConfig(function (RestangularConfigurer) {
       RestangularConfigurer.setBaseUrl(Config.API_BASE_URL);

@@ -21,10 +21,15 @@ module.exports = function(config) {
       'app/bower_components/restangular/src/restangular.js',
       'app/bower_components/angular-growl/build/angular-growl.js',
 
-      'app/js/*.js',
+      'app/*.js',
       'app/js/**/*.js',
+      'app/main/**/*.js',
+      'app/about/**/*.js',
+      'app/contact/**/*.js',
+      'app/settings/**/*.js',
+      'app/components/**/*.js',
       'test/mock/**/*.js',
-      'test/spec/**/*.js'
+      'test/spec/**/*_test.js'
     ],
 
     // list of files / patterns to exclude

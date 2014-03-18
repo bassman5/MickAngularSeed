@@ -12,7 +12,7 @@ describe('Service: Notification', function () {
 
   var Notification, growlApi;
   beforeEach(function() {
-    module('dataDictApp');
+    module('anApp');
     growlApi = { addErrorMessage: sinon.stub(),
       addSuccessMessage: sinon.stub()
     };

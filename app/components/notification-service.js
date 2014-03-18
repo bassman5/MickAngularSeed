@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('dataDictApp')
+angular.module('anApp')
   .config(['growlProvider', function(growlProvider) {
     growlProvider.globalTimeToLive(5000);
   }])

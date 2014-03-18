@@ -9,7 +9,7 @@
 describe('Controller: ContactCtrl', function () {
 
   // load the controller's module
-  beforeEach(module('dataDictApp'));
+  beforeEach(module('anApp'));
 
   var ContactCtrl,
     scope;

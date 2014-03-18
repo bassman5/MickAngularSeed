@@ -9,7 +9,7 @@
 describe('Service: Config', function () {
 
   // load the service's module
-  beforeEach(module('dataDictApp'));
+  beforeEach(module('anApp'));
 
   // instantiate service
   var Config;

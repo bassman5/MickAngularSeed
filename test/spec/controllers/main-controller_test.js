@@ -9,7 +9,7 @@
 describe('Controller: MainCtrl', function () {
 
   // load the controller's module
-  beforeEach(module('dataDictApp'));
+  beforeEach(module('anApp'));
 
   var MainCtrl,
     scope,

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('dataDictApp')
+angular.module('anApp')
   .service('Config', function Config() {
     // AngularJS will instantiate a singleton by calling "new" on this function
     return {

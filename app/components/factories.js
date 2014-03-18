@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('dataDictApp')
+angular.module('anApp')
   .factory('_', function() {
     return window._;
   });

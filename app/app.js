@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('dataDictApp', [
+angular.module('anApp', [
     'ui.router',
     'ngCookies',
     'ngResource',
@@ -16,23 +16,23 @@ angular.module('dataDictApp', [
     $stateProvider
       .state('main', {
         url: '/',
-        templateUrl: 'views/main.html',
+        templateUrl: 'main/main.html',
         controller: 'MainCtrl'
       })
       .state('about', {
         url: '/about',
-        templateUrl: 'views/about.html',
+        templateUrl: 'about/about.html',
         controller: 'AboutCtrl'
       })
       .state('contact', {
         url: '/contact',
-        templateUrl: 'views/contact.html',
+        templateUrl: 'contact/contact.html',
         controller: 'ContactCtrl'
       })
       // For any unmatched url, redirect to /state1
       .state('settings', {
         url: '/settings',
-        templateUrl: 'views/settings.html',
+        templateUrl: 'settings/settings.html',
         controller: 'SettingsCtrl'
       });
   });

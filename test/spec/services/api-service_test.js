@@ -15,7 +15,7 @@ describe('Service: Api', function () {
   var $httpBackend, Api, Users, notificationApi, Restangular;
 
   beforeEach(function() {
-    module('dataDictApp');
+    module('anApp');
     notificationApi = { success: sinon.stub(),
       error: sinon.stub()
     };

@@ -19,18 +19,18 @@
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
-  <body ng-app="dataDictApp">
+  <body ng-app="anApp">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
     <!-- Add your site or application content here -->
 
-    <ng-include src="'views/navbar.html'"></ng-include>
+    <ng-include src="'main/navbar.html'"></ng-include>
     <div class="main-content container">
         <div ui-view></div>
     </div>
-    <ng-include src="'views/footer.html'"></ng-include>
+    <ng-include src="'main/footer.html'"></ng-include>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -65,15 +65,15 @@
     <!-- endbuild -->
 
     <!-- build:js({.tmp,app}) js/scripts.js -->
-    <script src="js/app.js"></script>
-    <script src="js/controllers/main.js"></script>
-    <script src="js/controllers/about.js"></script>
-    <script src="js/controllers/contact.js"></script>
-    <script src="js/controllers/settings.js"></script>
-    <script src="js/services/config.js"></script>
-    <script src="js/services/notification.js"></script>
-    <script src="js/services/factories.js"></script>
-    <script src="js/services/api.js"></script>
+    <script src="app.js"></script>
+    <script src="main/main-controller.js"></script>
+    <script src="about/about-controller.js"></script>
+    <script src="contact/contact-controller.js"></script>
+    <script src="settings/settings-controller.js"></script>
+    <script src="components/config-service.js"></script>
+    <script src="components/notification-service.js"></script>
+    <script src="components/factories.js"></script>
+    <script src="components/api-service.js"></script>
     <!-- endbuild -->
 </body>
 </html>
