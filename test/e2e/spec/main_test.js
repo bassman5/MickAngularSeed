@@ -1,10 +1,10 @@
 'use strict';
 
-var expect = require('./../helper.js').expect;
+var expect = require('./../test_helper.js').expect;
 
 describe('home page', function() {
-  var homePage = require('../pages/homePage'),
-    aboutPage = require('../pages/aboutPage');
+  var homePage = require('../pages/home-page'),
+    aboutPage = require('../pages/about-page');
 
   it('should load the page', function()
   {

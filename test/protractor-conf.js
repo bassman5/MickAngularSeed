@@ -2,7 +2,7 @@
 exports.config = {
   // Do not start a Selenium Standalone sever - only run this using chrome.
   chromeOnly: true,
-  chromeDriver: 'node_modules/protractor/selenium/chromedriver',
+  chromeDriver: '../node_modules/protractor/selenium/chromedriver',
 
 //  The second method for running Protractor tests is to connect to a separately running Selenium server.
 //  When our tests start to grow more complex, we’ll likely want to run our tests using a separate Selenium server.
@@ -20,7 +20,7 @@ exports.config = {
 
   // Spec patterns are relative to the current working directly when
   // protractor is called.
-  specs: ['test/e2e/spec/**/*.js'],
+  specs: ['e2e/spec/**/*.js'],
 
   // The server under test
   baseUrl: 'http://localhost:9000/',
