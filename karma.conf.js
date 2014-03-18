@@ -21,8 +21,8 @@ module.exports = function(config) {
       'app/bower_components/restangular/src/restangular.js',
       'app/bower_components/angular-growl/build/angular-growl.js',
 
-      'app/scripts/*.js',
-      'app/scripts/**/*.js',
+      'app/js/*.js',
+      'app/js/**/*.js',
       'test/mock/**/*.js',
       'test/spec/**/*.js'
     ],
