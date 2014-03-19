@@ -15,7 +15,9 @@
 I have tried to follow the guides from Google at
 [http://blog.angularjs.org/2014/02/an-angularjs-style-guide-and-best.html]
 However, I could not get test files co-located with source files because:
+
 1. JShint config is different for test files, they need the mocha / test globals defined
+
 2. The Grunt dist package was made more complicated as you don't want test files in the distribution
 
 I have also not used multiple modules, just one module for all code.
