@@ -22,10 +22,10 @@ module.exports = function(config) {
       'app/bower_components/angular-growl/build/angular-growl.js',
 
       'app/*.js',
-      'app/main/**/*.js',
-      'app/about/**/*.js',
-      'app/contact/**/*.js',
-      'app/settings/**/*.js',
+      'app/modules/**/*.js',
+//      'modules/about/**/*.js',
+//      'modules/contact/**/*.js',
+//      'modules/settings/**/*.js',
       'app/components/**/*.js',
 //      'test/mock/**/*.js',
       'test/spec/**/*_test.js'

@@ -16,23 +16,23 @@ angular.module('anApp', [
     $stateProvider
       .state('main', {
         url: '/',
-        templateUrl: 'main/main.html',
+        templateUrl: 'modules/main/main.html',
         controller: 'MainCtrl'
       })
       .state('about', {
         url: '/about',
-        templateUrl: 'about/about.html',
+        templateUrl: 'modules/about/about.html',
         controller: 'AboutCtrl'
       })
       .state('contact', {
         url: '/contact',
-        templateUrl: 'contact/contact.html',
+        templateUrl: 'modules/contact/contact.html',
         controller: 'ContactCtrl'
       })
       // For any unmatched url, redirect to /state1
       .state('settings', {
         url: '/settings',
-        templateUrl: 'settings/settings.html',
+        templateUrl: 'modules/settings/settings.html',
         controller: 'SettingsCtrl'
       });
   });

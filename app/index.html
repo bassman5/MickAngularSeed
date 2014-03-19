@@ -10,11 +10,6 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <!-- build:css styles/vendor.css -->
-    <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/sass-bootstrap/dist/css/bootstrap.css" />
-    <!-- endbower -->
-    <!-- endbuild -->
     <!-- build:css({.tmp,app}) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
@@ -26,11 +21,11 @@
 
     <!-- Add your site or application content here -->
 
-    <ng-include src="'main/navbar.html'"></ng-include>
+    <ng-include src="'modules/main/navbar.html'"></ng-include>
     <div class="main-content container">
         <div ui-view></div>
     </div>
-    <ng-include src="'main/footer.html'"></ng-include>
+    <ng-include src="'modules/main/footer.html'"></ng-include>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -66,10 +61,10 @@
 
     <!-- build:js({.tmp,app}) js/scripts.js -->
     <script src="app.js"></script>
-    <script src="main/main-controller.js"></script>
-    <script src="about/about-controller.js"></script>
-    <script src="contact/contact-controller.js"></script>
-    <script src="settings/settings-controller.js"></script>
+    <script src="modules/main/main-controller.js"></script>
+    <script src="modules/about/about-controller.js"></script>
+    <script src="modules/contact/contact-controller.js"></script>
+    <script src="modules/settings/settings-controller.js"></script>
     <script src="components/config-service.js"></script>
     <script src="components/notification-service.js"></script>
     <script src="components/factories.js"></script>
