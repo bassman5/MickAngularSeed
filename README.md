@@ -14,11 +14,11 @@
 ### Best Practices
 I have tried to follow the guides from Google at
 [http://blog.angularjs.org/2014/02/an-angularjs-style-guide-and-best.html]
-However, I could not get test files co-located with source files because:
+'''Updated 27/Mar/14'''
+Now test and scss files co-located with source files
 
-1. JShint config is different for test files, they need the mocha / test globals defined
-
-2. The Grunt dist package was made more complicated as you don't want test files in the distribution
+JShint config is different for test files
+grunt build (or serve:dist) will now package minified files (and uncss to minify css), images and fonts with cache busting ids
 
 I have also not used multiple modules, just one module for all code.
 As I don't expect this to be a massive app, minified code I believe is enough. Also module lazy loading is coming in Angular 2.0, will re-look at it then.
