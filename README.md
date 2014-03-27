@@ -12,9 +12,9 @@
 
 
 ### Best Practices
-I have tried to follow the guides from Google at
-[http://blog.angularjs.org/2014/02/an-angularjs-style-guide-and-best.html]
-'''Updated 27/Mar/14'''
+I have tried to follow the guides from Google at [AngularJS Style Guide] (http://blog.angularjs.org/2014/02/an-angularjs-style-guide-and-best.html)
+
+**Updated 27/Mar/14**
 Now test and scss files co-located with source files
 
 JShint config is different for test files
