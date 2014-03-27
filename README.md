@@ -25,8 +25,8 @@ I have installed locally in the project rather than globally so after initial in
 * Yeoman.io scaffolding with html5boilerplate
 
 #### Still to do
-* Remove bower_components from the dist (but we do need sass-bootstrap/fonts)
-* Add uncss grunt plugin to remove unused sccs selectors
+* DONE - Remove bower_components from the dist (but we do need sass-bootstrap/fonts) - you need to copy sass-bootstrap/fonts to /styles/fonts
+* IN PROGRESS - Add uncss grunt plugin to remove unused sccs selectors
 * Add more examples of ui-router, something more app like for the main page
 * Add authentication, an auth service
 * Fix the yeoman scaffolding to generate the correct structure and test files
@@ -34,11 +34,12 @@ I have installed locally in the project rather than globally so after initial in
 #### Best Practices
 I have tried to follow the guides from Google at
 [http://blog.angularjs.org/2014/02/an-angularjs-style-guide-and-best.html]
-However, I could not get test files co-located with source files because:
 
-1. JShint config is different for test files, they need the mocha / test globals defined
+**Updated 27/Mar/14**
+Now test and scss files co-located with source files
 
-2. The Grunt dist package was made more complicated as you don't want test files in the distribution
+JShint config is different for test files
+grunt build (or serve:dist) will now package minified files (and uncss to minify css), images and fonts with cache busting ids
 
 I have also not used multiple modules, just one module for all code.
 As I don't expect this to be a massive app, minified code I believe is enough. Also module lazy loading is coming in Angular 2.0, will re-look at it then.
@@ -79,7 +80,7 @@ Will generate css (this is done automatically in watch)
 
 #### For e2e test (protractor / webdriver )
 
-Start server
+Start server (NOT NEEDED just run protractor)
 ```
 ./node_modules/protractor/bin/webdriver-manager start
 ```
@@ -90,11 +91,11 @@ run tests with
 ```
 
 
+
 #### Intellij Idea 13+ or Webstorm 7+
 You can use the node.js plugin (seperate install) with '/usr/local/bin/grunt' as the JavaScript file and 'serve' as the Application Parameter
 Also there is a great karma plugin (seperate install) Karam Node package is $(PROJECT_DIR)node-modules/karma and the Configuration file is test/karma-conf.js
 To debug tests in WebStorm or Idea add a run configuration of Karma with the test/karma-conf.js file and you can run (with coverage)
 or set breakpoints and debug in ide.
-
 
 

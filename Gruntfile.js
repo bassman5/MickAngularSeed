@@ -28,7 +28,7 @@ module.exports = function (grunt) {
     // Watches files for changes and runs tasks based on the changed files
     watch: {
       js: {
-        files: ['<%= yeoman.app %>/components/**/*.js', '<%= yeoman.app %>/modules/**/*.js'],
+        files: ['<%= yeoman.app %>/**/*.js'],
         tasks: ['newer:jshint:all'],
         options: {
           livereload: true
@@ -43,7 +43,7 @@ module.exports = function (grunt) {
         tasks: ['newer:jshint:test']
       },
       compass: {
-        files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
+        files: ['<%= yeoman.app %>/**/*.{scss,sass}'],
         tasks: ['compass:server', 'autoprefixer']
       },
       gruntfile: {
@@ -74,7 +74,8 @@ module.exports = function (grunt) {
           open: true,
           base: [
             '.tmp',
-            '<%= yeoman.app %>'
+            '<%= yeoman.app %>',
+            '.'
           ]
         }
       },
@@ -103,14 +104,14 @@ module.exports = function (grunt) {
       },
       all: [
         'Gruntfile.js',
-        '<%= yeoman.app %>/components/**/*.js',
-        '<%= yeoman.app %>/modules/**/*.js'
+        '<%= yeoman.app %>/**/*.js',
+        '!<%= yeoman.app %>/**/*_test.js'
       ],
       test: {
         options: {
           jshintrc: 'test/.jshintrc'
         },
-        src: ['test/e2e/**/{,*/}*.js', 'test/spec/**/{,*/}*.js']
+        src: ['test/e2e/**/{,*/}*.js', '<%= yeoman.app %>/**/*_test.js']
       }
     },
 
@@ -164,7 +165,7 @@ module.exports = function (grunt) {
         imagesDir: '<%= yeoman.app %>/images',
         javascriptsDir: '<%= yeoman.app %>/js',
         fontsDir: '<%= yeoman.app %>/styles/fonts',
-        importPath: '<%= yeoman.app %>/bower_components',
+        importPath: 'bower_components',
         httpImagesPath: '/images',
         httpGeneratedImagesPath: '/images/generated',
         httpFontsPath: '/styles/fonts',
@@ -204,16 +205,23 @@ module.exports = function (grunt) {
     useminPrepare: {
       html: '<%= yeoman.app %>/index.html',
       options: {
+//        root: '<%= yeoman.app %>',
+        root: '.',
         dest: '<%= yeoman.dist %>'
       }
+
     },
 
     // Performs rewrites based on rev and the useminPrepare configuration
     usemin: {
-      html: ['<%= yeoman.dist %>/{,*/}*.html', '<%= yeoman.dist %>/modules/**/*.html'],
+      html: ['<%= yeoman.dist %>/{,*/}*.html', '<%= yeoman.dist %>/**/*.html'],
       css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
       options: {
-        assetsDirs: ['<%= yeoman.dist %>']
+        assetsDirs: ['<%= yeoman.dist %>', '<%= yeoman.dist %>/styles/fonts/', '<%= yeoman.dist %>/images/'],
+        patterns: {
+          css: [[/url\(\s*['"]?([^"'\)]+)["']?\s*\)/img, 'Replacing reference to urls']] // FIXME While usemin won't have full support for revved files we have to put all references manually here
+        }
+
       }
     },
 
@@ -249,7 +257,7 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           cwd: '<%= yeoman.dist %>',
-          src: ['*.html', 'modules/**/*.html'],
+          src: ['*.html', '<%= yeoman.app %>/**/*.html'],
           dest: '<%= yeoman.dist %>'
         }]
       }
@@ -265,6 +273,18 @@ module.exports = function (grunt) {
           src: '*.js',
           dest: '.tmp/concat/js'
         }]
+      }
+    },
+
+    // Remove unused CSS across multiple files and ignore specific selectors
+    uncss: {
+      dist: {
+        files: {
+          '.tmp/concat/styles/app.css': ['<%= yeoman.app %>/index.html','<%= yeoman.app %>/**/*.html']
+        }
+      },
+      options: {
+        ignore: ['#added_at_runtime', '.created_by_jQuery']
       }
     },
 
@@ -287,12 +307,12 @@ module.exports = function (grunt) {
             '*.{ico,png,txt}',
             '.htaccess',
             '*.html',
-            'modules/{,*/}*.html',
-            'bower_components/**/*',
+            '**/*.html',
             'images/{,*/}*.{webp}',
-            'fonts/*'
+            'styles/fonts/*'
           ]
-        }, {
+        },
+        {
           expand: true,
           cwd: '.tmp/images',
           dest: '<%= yeoman.dist %>/images',
@@ -400,6 +420,7 @@ module.exports = function (grunt) {
     'autoprefixer',
     'concat',
     'ngmin',
+//    'uncss',
     'copy:dist',
     'cdnify',
     'cssmin',

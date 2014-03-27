@@ -10,8 +10,8 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <!-- build:css({.tmp,app}) styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css">
+    <!-- build:css({.tmp,app}) styles/app.css -->
+    <link rel="stylesheet" href="styles/app.css">
     <!-- endbuild -->
   </head>
   <body ng-app="anApp">
@@ -21,11 +21,11 @@
 
     <!-- Add your site or application content here -->
 
-    <ng-include src="'modules/main/navbar.html'"></ng-include>
+    <ng-include src="'main/navbar.html'"></ng-include>
     <div class="main-content container">
         <div ui-view></div>
     </div>
-    <ng-include src="'modules/main/footer.html'"></ng-include>
+    <ng-include src="'main/footer.html'"></ng-include>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -59,16 +59,16 @@
     <!-- endbower -->
     <!-- endbuild -->
 
-    <!-- build:js({.tmp,app}) js/scripts.js -->
+    <!-- build:js({.tmp,app}) js/app.js -->
     <script src="app.js"></script>
-    <script src="modules/main/main-controller.js"></script>
-    <script src="modules/about/about-controller.js"></script>
-    <script src="modules/contact/contact-controller.js"></script>
-    <script src="modules/settings/settings-controller.js"></script>
-    <script src="components/config-service.js"></script>
-    <script src="components/notification-service.js"></script>
-    <script src="components/factories.js"></script>
-    <script src="components/api-service.js"></script>
+    <script src="main/main-controller.js"></script>
+    <script src="about/about-controller.js"></script>
+    <script src="contact/contact-controller.js"></script>
+    <script src="settings/settings-controller.js"></script>
+    <script src="components/config-service/config-service.js"></script>
+    <script src="components/notification-service/notification-service.js"></script>
+    <script src="components/factories/factories.js"></script>
+    <script src="components/api-service/api-service.js"></script>
     <!-- endbuild -->
 </body>
 </html>

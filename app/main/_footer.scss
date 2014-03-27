@@ -1,6 +1,6 @@
 // # Footer
 // #########
-@import 'variables.scss';
+@import '../styles/_base.scss';
 
 footer {
   line-height: 6px;
@@ -23,7 +23,6 @@ footer {
     li {
       display: inline;
       list-style-type: disc;
-      padding-right: 0;
       padding-right: 1em;
       a {
         color: $footer-color;
