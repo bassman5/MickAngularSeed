@@ -4,5 +4,6 @@ dist
 .sass-cache
 .idea
 app/bower_components
+bower_components
 dist
 coverage
