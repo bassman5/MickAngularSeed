@@ -25,7 +25,7 @@ I have installed locally in the project rather than globally so after initial in
 * Yeoman.io scaffolding with html5boilerplate
 
 #### Still to do
-* DONE - Remove bower_components from the dist (but we do need sass-bootstrap/fonts)
+* DONE - Remove bower_components from the dist (but we do need sass-bootstrap/fonts) - you need to copy sass-bootstrap/fonts to /styles/fonts
 * IN PROGRESS - Add uncss grunt plugin to remove unused sccs selectors
 * Add more examples of ui-router, something more app like for the main page
 * Add authentication, an auth service
