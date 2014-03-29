@@ -280,11 +280,12 @@ module.exports = function (grunt) {
     uncss: {
       dist: {
         files: {
-          '.tmp/concat/styles/app.css': ['<%= yeoman.app %>/index.html','<%= yeoman.app %>/**/*.html']
+          '.tmp/styles/app.css': ['<%= yeoman.app %>/index.html','<%= yeoman.app %>/**/*.html']
         }
       },
       options: {
-        ignore: ['#added_at_runtime', '.created_by_jQuery']
+        csspath: '../.tmp/',
+        ignore: ['#added_at_runtime', /\.open/]
       }
     },
 
@@ -417,10 +418,10 @@ module.exports = function (grunt) {
     'bower-install',
     'useminPrepare',
     'concurrent:dist',
+    'uncss',
     'autoprefixer',
     'concat',
     'ngmin',
-//    'uncss',
     'copy:dist',
     'cdnify',
     'cssmin',
