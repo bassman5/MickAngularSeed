@@ -7,3 +7,4 @@ app/bower_components
 bower_components
 dist
 coverage
+.aws-credentials.json

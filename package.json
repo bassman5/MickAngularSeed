@@ -40,7 +40,8 @@
     "karma-sinon-chai": "~0.1.4",
     "chai-as-promised": "~4.1.1",
     "chai": "~1.9.0",
-    "grunt-uncss": "~0.2.0"
+    "grunt-uncss": "~0.2.0",
+    "grunt-aws": "~0.3.0"
   },
   "engines": {
     "node": ">=0.8.0"

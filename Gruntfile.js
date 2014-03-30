@@ -343,7 +343,27 @@ module.exports = function (grunt) {
       ]
     },
 
-    // By default, your `index.html`'s <!-- Usemin block --> will take care of
+
+    aws: grunt.file.readJSON(".aws-credentials.json"),
+
+    s3: {
+      options: {
+        accessKeyId: "<%= aws.accessKeyId %>",
+        secretAccessKey: "<%= aws.secretAccessKey %>",
+        bucket: "angularseed",
+        createBucket: true,
+        enableWeb: true,
+        headers: {
+          Expires: new Date('2050') //Sat, 01 Jan 2050 00:00:00 GMT
+        }
+      },
+      build: {
+        cwd: "dist",
+        src: "**"
+      }
+    },
+
+  // By default, your `index.html`'s <!-- Usemin block --> will take care of
     // minification. These next options are pre-configured if you do not wish
     // to use the Usemin blocks.
     // cssmin: {

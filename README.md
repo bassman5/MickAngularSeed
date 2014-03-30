@@ -26,7 +26,7 @@ I have installed locally in the project rather than globally so after initial in
 
 #### Still to do
 * DONE - Remove bower_components from the dist (but we do need sass-bootstrap/fonts) - you need to copy sass-bootstrap/fonts to /styles/fonts
-* IN PROGRESS - Add uncss grunt plugin to remove unused sccs selectors
+* DONE - Add uncss grunt plugin to remove unused sccs selectors
 * Add more examples of ui-router, something more app like for the main page
 * Add authentication, an auth service
 * Fix the yeoman scaffolding to generate the correct structure and test files
@@ -97,5 +97,32 @@ You can use the node.js plugin (seperate install) with '/usr/local/bin/grunt' as
 Also there is a great karma plugin (seperate install) Karam Node package is $(PROJECT_DIR)node-modules/karma and the Configuration file is test/karma-conf.js
 To debug tests in WebStorm or Idea add a run configuration of Karma with the test/karma-conf.js file and you can run (with coverage)
 or set breakpoints and debug in ide.
+
+#### Deployment to s3
+
+See https://github.com/jpillora/grunt-aws for options
+```
+grunt build s3
+```
+
+Will push the dist fold to an s3 bucket defined in the options section
+```
+        bucket: "angularseed",
+```
+
+If you then add to a Cloudfront distribution you get 98/100 from ySlow and Pagespeed looks good too!
+
+This task expects a file called .aws-credentials.json in you project root but be careful not to add to source control, this file has been added to .gitignore
+
+ * Create a `aws-credentials.json` file like:
+
+     ``` json
+     {
+       "accessKeyId": "...",
+       "secretAccessKey": "..."
+     }
+     ```
+
+
 
 
