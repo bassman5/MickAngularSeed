@@ -74,7 +74,7 @@ for just the unit tests
 
 ```
 grunt compass
-````
+```
 Will generate css (this is done automatically in watch)
 
 
