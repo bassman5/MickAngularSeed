@@ -114,7 +114,7 @@ If you then add to a Cloudfront distribution you get 98/100 from ySlow and Pages
 
 This task expects a file called .aws-credentials.json in you project root but be careful not to add to source control, this file has been added to .gitignore
 
- * Create a `aws-credentials.json` file like:
+ * Create a `.aws-credentials.json` file like:
 
      ``` json
      {
