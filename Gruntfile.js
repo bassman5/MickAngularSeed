@@ -93,7 +93,7 @@ module.exports = function (grunt) {
       },
       dist: {
         options: {
-          base: '<%= yeoman.distTmp %>'
+          base: '<%= yeoman.dist %>'
         }
       }
     },
@@ -208,36 +208,6 @@ module.exports = function (grunt) {
     },
 
 
-//  Use rev not filerev does not rev the css file with rev'ed images or fonts
-    // Renames files for browser caching purposes
-//    filerev: {
-//      options: {
-//        encoding: 'utf8',
-//        algorithm: 'md5',
-//        length: 8
-//      },
-//
-//      dist: {
-//        files: [
-//          {
-//            src:  '<%= yeoman.distTmp %>/js/{,*/}*.js',
-//            dest: '<%= yeoman.dist %>/js'
-//          },
-//          {
-//            src:  '<%= yeoman.distTmp %>/images/*.{png,jpg,jpeg,gif,webp,svg}',
-//            dest: '<%= yeoman.dist %>/images'
-//          },
-//          {
-//            src:  '<%= yeoman.distTmp %>/styles/fonts/*',
-//            dest: '<%= yeoman.dist %>/styles/fonts'
-//          },
-//          {
-//            src:  '<%= yeoman.distTmp %>/styles/*.css',
-//            dest: '<%= yeoman.dist %>/styles'
-//          }
-//        ]
-//      }
-//    },
 
     // Reads HTML for usemin blocks to enable smart builds that automatically
     // concat, minify and revision files. Creates configurations in memory so
