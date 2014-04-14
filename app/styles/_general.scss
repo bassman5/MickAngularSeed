@@ -13,6 +13,10 @@ body {
   padding-bottom: 20px;
 }
 
+/* Make sure links have a pointer */
+.nav a, .pagination, .carousel a { cursor: pointer; }
+
+
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
 .marketing,

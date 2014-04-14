@@ -41,7 +41,10 @@
     "chai-as-promised": "~4.1.1",
     "chai": "~1.9.0",
     "grunt-uncss": "~0.2.0",
-    "grunt-aws": "~0.3.0"
+    "grunt-aws": "~0.3.0",
+    "grunt-angular-templates": "~0.5.3",
+    "grunt-shell": "~0.6.4",
+    "grunt-filerev": "~0.2.1"
   },
   "engines": {
     "node": ">=0.8.0"
