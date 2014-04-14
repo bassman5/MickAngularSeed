@@ -341,7 +341,7 @@ module.exports = function (grunt) {
           expand: true,
           cwd: '<%= yeoman.tmp %>/js/templates',
           src: '*.js',
-          dest: '.'
+          dest: '<%= yeoman.tmp %>/js/templates'
         }]
 
       }
