@@ -472,6 +472,11 @@ module.exports = function (grunt) {
         configFile: 'test/karma-conf.js',
         singleRun: false,
         background: true
+      },
+      headless: {
+        configFile: 'test/karma-conf.js',
+        browsers: ['PhantomJS'],
+        singleRun: true
       }
     }
   });
@@ -501,9 +506,10 @@ module.exports = function (grunt) {
   grunt.registerTask('test', [
     'clean:server',
     'concurrent:test',
+    'newer:jshint:all',
     'autoprefixer',
     'connect:test',
-    'karma:unit'
+    'karma:headless'
   ]);
 
   grunt.registerTask('build', [
