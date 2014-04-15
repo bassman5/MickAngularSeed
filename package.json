@@ -42,7 +42,8 @@
     "chai": "~1.9.0",
     "grunt-uncss": "~0.2.0",
     "grunt-aws": "~0.3.0",
-    "grunt-angular-templates": "~0.5.3"
+    "grunt-angular-templates": "~0.5.3",
+    "bower": ""
   },
   "engines": {
     "node": ">=0.8.0"
