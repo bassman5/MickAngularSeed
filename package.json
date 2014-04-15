@@ -1,6 +1,12 @@
 {
-  "name": "datadict",
+  "name": "angular-seed",
+  "author": "Mick <mick@dudley.uk.com>",
+  "description": "An AngularJS seed project",
   "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bassman5/MickAngularSeed.git"
+  },
   "dependencies": {},
   "devDependencies": {
     "grunt": "~0.4.1",
@@ -45,9 +51,11 @@
     "grunt-angular-templates": "~0.5.3",
     "bower": ""
   },
+  "license": "MIT",
   "engines": {
-    "node": ">=0.8.0"
-  },
+    "node": ">=0.10"
+  }
+
   "scripts": {
     "test": "grunt test",
     "postinstall": "node_modules/.bin/bower install"
