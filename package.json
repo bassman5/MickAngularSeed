@@ -54,8 +54,7 @@
   "license": "MIT",
   "engines": {
     "node": ">=0.10"
-  }
-
+  },
   "scripts": {
     "test": "grunt test",
     "postinstall": "node_modules/.bin/bower install"
