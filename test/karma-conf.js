@@ -20,12 +20,14 @@ module.exports = function(config) {
       'bower_components/angular-ui-router/release/angular-ui-router.js',
       'bower_components/restangular/src/restangular.js',
       'bower_components/angular-growl/build/angular-growl.js',
+      'bower_components/angulartics/src/angulartics.js',
+      'bower_components/angulartics/src/angulartics-ga.js',
 
       'app/*.js',
 //      'modules/about/**/*.js',
 //      'modules/contact/**/*.js',
 //      'modules/settings/**/*.js',
-      'app/**/*.js',
+      'app/**/*.js'
 //      'test/mock/**/*.js',
 //      'test/spec/**/*_test.js'
     ],

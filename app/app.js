@@ -6,7 +6,9 @@ angular.module('anApp', [
     'ngResource',
     'ngSanitize',
     'restangular',
-    'angular-growl'
+    'angular-growl',
+    'angulartics',
+    'angulartics.google.analytics'
   ])
   .config(function ($stateProvider, $urlRouterProvider) {
     //
