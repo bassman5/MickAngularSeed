@@ -29,8 +29,8 @@ I have installed locally in the project rather than globally so after initial in
 #### Still to do
 * DONE - Remove bower_components from the dist (but we do need sass-bootstrap/fonts) - you need to copy sass-bootstrap/fonts to /styles/fonts
 * DONE - Add uncss grunt plugin to remove unused sccs selectors
+* DONE - Add authentication, an auth service
 * Add more examples of ui-router, something more app like for the main page
-* Add authentication, an auth service
 * Fix the yeoman scaffolding to generate the correct structure and test files
 
 #### Best Practices
