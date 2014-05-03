@@ -2,15 +2,20 @@
 
 angular.module('anApp', [
     'ui.router',
+    'ui.bootstrap',
     'ngCookies',
     'ngResource',
     'ngSanitize',
     'restangular',
     'angular-growl',
+    'http-auth-interceptor',
     'angulartics',
     'angulartics.google.analytics'
+
   ])
-  .config(function ($stateProvider, $urlRouterProvider) {
+  .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function ($stateProvider, $urlRouterProvider, $locationProvider) {
+    $locationProvider.html5Mode(true);
+
     //
     $urlRouterProvider.otherwise('/');
     //
@@ -26,6 +31,16 @@ angular.module('anApp', [
         templateUrl: 'about/about.html',
         controller: 'AboutCtrl'
       })
+      .state('login', {
+        url: '/login',
+        templateUrl: 'main/login/login.html',
+        controller: 'LoginCtrl'
+      })
+      .state('logout', {
+        url: '/logout',
+        templateUrl: 'main/login/logout.html',
+        controller: 'LogoutCtrl'
+      })
       .state('contact', {
         url: '/contact',
         templateUrl: 'contact/contact.html',
@@ -37,5 +52,5 @@ angular.module('anApp', [
         templateUrl: 'settings/settings.html',
         controller: 'SettingsCtrl'
       });
-  });
+  }]);
 

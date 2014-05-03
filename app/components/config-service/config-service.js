@@ -7,12 +7,6 @@ angular.module('anApp')
       APP_VERSION: 0.1,
       API_BASE_URL: '/api/v1/',
 
-      AUTH_URL: '/-/auth',
-      AUTH_ERROR_REDIRECT_URL: '/login',
-      AUTH_LOGIN_REDIRECT_URL: '/login',
-      AUTH_LOGOUT_REDIRECT: '/',
-      AUTH_REGISTER_REDIRECT_URL: '/register',
-      AUTH_SUCCESS_REDIRECT_URL: '/',
 
       // possible values: 'disable' || 'assert' || 'error' || 'warn' || 'info' || 'debug'
       LOG_LEVEL: 'debug',
@@ -21,4 +15,34 @@ angular.module('anApp')
       ROW_HEIGHT: 30,
       HEADER_HEIGHT: 34
     };
+  })
+
+  .constant('AUTH', {
+    URL: {
+      LOGIN: '/login',
+      LOGOUT: '/logout',
+      REGISTER: '/register',
+      USER_PROFILE: '/api/v1/user-profile.json'
+    },
+    // Events for authentication
+    EVENTS: {
+      loginSuccess:     'event:auth-loginConfirmed',
+      loginFailed:      'event:auth-login-failed',
+      logoutSuccess:    'event:auth-logout-complete',
+      sessionTimeout:   'auth-session-timeout',
+      notAuthenticated: 'event:auth-loginRequired',
+      notAuthorized:    'auth-not-authorized',
+      userProfileLoaded: 'event:user-profile-loaded'
+    },
+    // Token names
+    TOKEN: {
+      DATA_NAME:   'authorizationToken', // The field in the data response from the server that contains our auth token
+      HEADER_NAME: 'Authorization'   // The name of the header we must always pass for authenticated pages
+    },
+    ROLES: {
+      ALL:   '*',
+      ADMIN: 'admin',
+      USER:  'user',
+      GUEST: 'guest'
+    }
   });

@@ -36,6 +36,10 @@
         ga('create', 'UA-50270328-1', 'db6vfecdpf2hj.cloudfront.net');
     </script>
 
+    <script type="text/javascript">
+        window.index = true;
+    </script>
+
     <!-- build:js js/shim.js -->
     <!--[if lt IE 9]>
     <script src="bower_components/es5-shim/es5-shim.js"></script>
@@ -52,9 +56,13 @@
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/angular-mocks/angular-mocks.js"></script>
     <script src="bower_components/lodash/dist/lodash.compat.js"></script>
     <script src="bower_components/restangular/dist/restangular.js"></script>
     <script src="bower_components/angular-growl/build/angular-growl.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/angular-http-auth/src/http-auth-interceptor.js"></script>
     <script src="bower_components/angulartics/src/angulartics.js"></script>
     <script src="bower_components/angulartics/src/angulartics-ga.js"></script>
     <!-- endbuild -->
@@ -62,13 +70,23 @@
     <!-- build:js({.tmp,app}) js/app.js -->
     <script src="app.js"></script>
     <script src="main/main-controller.js"></script>
+    <script src="main/login/login-controller.js"></script>
+    <script src="main/login/logout-controller.js"></script>
+    <script src="main/nav-controller.js"></script>
     <script src="about/about-controller.js"></script>
     <script src="contact/contact-controller.js"></script>
     <script src="settings/settings-controller.js"></script>
+    <script src="e2e-mocks/e2e-mocks.js"></script>
     <script src="components/config-service/config-service.js"></script>
     <script src="components/notification-service/notification-service.js"></script>
     <script src="components/factories/factories.js"></script>
     <script src="components/api-service/api-service.js"></script>
+    <script src="components/api-service/api-users-service.js"></script>
+    <script src="components/api-service/api-user-profile-service.js"></script>
+    <script src="components/authentication/authenication-service.js"></script>
+    <script src="components/user-profile/user-profile-service.js"></script>
     <!-- endbuild -->
-</body>
+
+
+  </body>
 </html>

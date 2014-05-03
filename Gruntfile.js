@@ -14,6 +14,8 @@ module.exports = function (grunt) {
 
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
+  var modRewrite = require('connect-modrewrite');
+
 
   // Define the configuration for all the tasks
   grunt.initConfig({
@@ -41,7 +43,7 @@ module.exports = function (grunt) {
         tasks: ['karma:watch:run'] //NOTE the :run flag
       },
       jsTest: {
-        files: ['<%= yeoman.app %>/**/*_test.js'],
+        files: ['<%= yeoman.app %>/**/*_test.js', 'test/**/*.js'],
         tasks: ['newer:jshint:test']
       },
       compass: {
@@ -78,7 +80,17 @@ module.exports = function (grunt) {
             '.tmp',
             '<%= yeoman.app %>',
             '.'
-          ]
+          ],
+          // MODIFIED: Add this middleware configuration
+          middleware: function(connect, options) {
+            var middlewares = [];
+
+            middlewares.push(modRewrite(['^[^\\.]*$ /index.html [L]'])); //Matches everything that does not contain a '.' (period)
+            options.base.forEach(function(base) {
+              middlewares.push(connect.static(base));
+            });
+            return middlewares;
+          }
         }
       },
       test: {
@@ -278,7 +290,7 @@ module.exports = function (grunt) {
     ngtemplates:    {
       app:          {
         cwd:      '<%= yeoman.distTmp %>',
-        src:        '*/**.html',
+        src:        '**/**.html',
         dest:       '<%= yeoman.tmp %>/js/templates/app-templates.js',
         options:    {
           module:   'anApp',
@@ -338,7 +350,7 @@ module.exports = function (grunt) {
       },
       options: {
         csspath: '../<%= yeoman.tmp %>/',
-        ignore: ['#added_at_runtime', /\.open/]
+        ignore: ['#added_at_runtime', /\.open/, /\.ng-invalid/, /disabled/]
       }
     },
 
@@ -406,7 +418,6 @@ module.exports = function (grunt) {
         'svgmin'
       ]
     },
-
 
     aws: grunt.file.readJSON('.aws-credentials.json'), // Read the file
 
@@ -497,6 +508,7 @@ module.exports = function (grunt) {
       'watch'
     ]);
   });
+
 
   grunt.registerTask('server', function () {
     grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');

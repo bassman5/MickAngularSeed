@@ -18,21 +18,11 @@ angular.module('anApp')
       RestangularConfigurer.setDefaultHttpFields({cache: false});
 
       RestangularConfigurer.setRequestInterceptor(function(elem, operation /*, what */) {
-        if (operation === 'put') {
+        if (operation === 'put' || operation === 'patch') {
           elem._id = undefined;
           return elem;
         }
         return elem;
       });
     });
-  }])
-
-
-  .factory('Users', ['Api', function (ApiResource) {
-    return ApiResource.withConfig(function(RestangularConfigurer) {
-      RestangularConfigurer.extendModel('users', function(model) {
-        model.say = function(msg) { return msg; };
-        return model;
-      });
-    }).all('users');
   }]);

@@ -17,23 +17,21 @@ module.exports = function(config) {
       'bower_components/angular-resource/angular-resource.js',
       'bower_components/angular-cookies/angular-cookies.js',
       'bower_components/angular-sanitize/angular-sanitize.js',
+      'bower_components/angular-bootstrap/ui-bootstrap.js',
       'bower_components/angular-ui-router/release/angular-ui-router.js',
       'bower_components/restangular/src/restangular.js',
       'bower_components/angular-growl/build/angular-growl.js',
+      'bower_components/angular-http-auth/src/http-auth-interceptor.js',
       'bower_components/angulartics/src/angulartics.js',
       'bower_components/angulartics/src/angulartics-ga.js',
 
+
       'app/*.js',
-//      'modules/about/**/*.js',
-//      'modules/contact/**/*.js',
-//      'modules/settings/**/*.js',
-      'app/**/*.js'
-//      'test/mock/**/*.js',
-//      'test/spec/**/*_test.js'
+      'app/**/*.js',
     ],
 
     // list of files / patterns to exclude
-    exclude: [],
+    exclude: ['app/e2e-mocks/e2e-mocks.js', 'app/components/form-autofill-fix/form-autofill-fix.js'],
 
     // web server port
     port: 8181,
@@ -54,7 +52,7 @@ module.exports = function(config) {
     // - Safari (only Mac)
     // - PhantomJS
     // - IE (only Windows)
-    browsers: ['Chrome', 'PhantomJS'],
+    browsers: ['Chrome'],
 
     preprocessors: {
       'app/**/!(*_test).js': 'coverage'

@@ -40,6 +40,11 @@ I have tried to follow the guides from Google at
 **Updated 27/Mar/14**
 Now test and scss files co-located with source files
 
+**Updated 3/May/14**
+Added google analytics
+Added login page with tests
+
+
 JShint config is different for test files
 grunt build (or serve:dist) will now package minified files (and uncss to minify css), images and fonts with cache busting ids
 

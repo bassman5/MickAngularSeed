@@ -1,10 +1,8 @@
 'use strict';
 
 angular.module('anApp')
-  .controller('SettingsCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+  .controller('SettingsCtrl', [ '$scope', 'UserProfileService', function ($scope, UserProfileService) {
+    UserProfileService.getCurrentUser().then(function(user) {
+      $scope.user = user;
+    });
+  }]);
