@@ -419,12 +419,14 @@ module.exports = function (grunt) {
       ]
     },
 
-    aws: grunt.file.readJSON('.aws-credentials.json'), // Read the file
+    aws: function() {
+      return grunt.file.readJSON('.aws-credentials.json');  // Read the file
+    },
 
     s3: {
       options: {
-        accessKeyId: '<%= aws.accessKeyId %>',
-        secretAccessKey: '<%= aws.secretAccessKey %>',
+        accessKeyId: '<%= aws().accessKeyId %>',
+        secretAccessKey: '<%= aws().secretAccessKey %>',
         bucket: 'angularseed',
         createBucket: true,
         enableWeb: true,
