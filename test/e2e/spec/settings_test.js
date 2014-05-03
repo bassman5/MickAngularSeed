@@ -1,21 +1,29 @@
 'use strict';
 
 var expect = require('./../test_helper.js').expect;
+var loginHelper = require('./../helpers/login-helper.js');
+var settingsPage = require('../pages/settings-page');
 
 describe('settings page', function() {
-  var navbarPage = require('../pages/navbar-page'),
-    homePage = require('../pages/home-page'),
-    settingsPage = require('../pages/settings-page');
 
   it('should load the page', function() {
-    homePage.get();
-    expect(homePage.isLoaded()).to.eventually.be.true;
+    loginHelper.homePage.get();
+    expect(loginHelper.homePage.isLoaded()).to.eventually.be.true;
   });
 
   it('should navigate to the settings page from nav dropdown', function() {
-    navbarPage.dropDownMemu().click();
-    navbarPage.settings().click();
+    loginHelper.ensureLoggedIn('fred@jones.com', 'aPassword');
+    loginHelper.navbarPage.dropDownMemu().click();
+    loginHelper.navbarPage.settings().click();
     expect(settingsPage.isLoaded()).to.eventually.be.true;
   });
 
+  it('should navigate to the settings page from nav dropdown2', function() {
+    loginHelper.goHome();
+    expect(loginHelper.homePage.isLoaded()).to.eventually.be.true;
+    loginHelper.ensureLoggedIn('fred@jones.com', 'aPassword');
+    loginHelper.navbarPage.dropDownMemu().click();
+    loginHelper.navbarPage.settings().click();
+    expect(settingsPage.isLoaded(), 'Settings pages is loaded').to.eventually.be.true;
+  });
 });

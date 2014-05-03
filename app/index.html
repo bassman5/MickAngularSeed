@@ -27,18 +27,17 @@
     </div>
     <ng-include src="'main/footer.html'"></ng-include>
 
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-50270328-1', 'db6vfecdpf2hj.cloudfront.net');
+    </script>
+
     <script type="text/javascript">
-
-        var _gaq = _gaq || [];
-        _gaq.push(['_setAccount', 'UA-XXXXX-X']);
-        _gaq.push(['_trackPageview']);
-
-        (function() {
-            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-        })();
+        window.index = true;
     </script>
 
     <!-- build:js js/shim.js -->
@@ -49,7 +48,6 @@
     <!-- endbuild -->
 
     <!-- build:js js/vendor.js -->
-    <!-- bower:js -->
     <script src="bower_components/jquery/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/sass-bootstrap/dist/js/bootstrap.js"></script>
@@ -58,22 +56,37 @@
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/angular-mocks/angular-mocks.js"></script>
     <script src="bower_components/lodash/dist/lodash.compat.js"></script>
     <script src="bower_components/restangular/dist/restangular.js"></script>
     <script src="bower_components/angular-growl/build/angular-growl.js"></script>
-    <!-- endbower -->
+    <script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/angular-http-auth/src/http-auth-interceptor.js"></script>
+    <script src="bower_components/angulartics/src/angulartics.js"></script>
+    <script src="bower_components/angulartics/src/angulartics-ga.js"></script>
     <!-- endbuild -->
 
     <!-- build:js({.tmp,app}) js/app.js -->
     <script src="app.js"></script>
     <script src="main/main-controller.js"></script>
+    <script src="main/login/login-controller.js"></script>
+    <script src="main/login/logout-controller.js"></script>
+    <script src="main/nav-controller.js"></script>
     <script src="about/about-controller.js"></script>
     <script src="contact/contact-controller.js"></script>
     <script src="settings/settings-controller.js"></script>
+    <script src="e2e-mocks/e2e-mocks.js"></script>
     <script src="components/config-service/config-service.js"></script>
     <script src="components/notification-service/notification-service.js"></script>
     <script src="components/factories/factories.js"></script>
     <script src="components/api-service/api-service.js"></script>
+    <script src="components/api-service/api-users-service.js"></script>
+    <script src="components/api-service/api-user-profile-service.js"></script>
+    <script src="components/authentication/authenication-service.js"></script>
+    <script src="components/user-profile/user-profile-service.js"></script>
     <!-- endbuild -->
-</body>
+
+
+  </body>
 </html>

@@ -17,6 +17,12 @@ body {
 .nav a, .pagination, .carousel a { cursor: pointer; }
 
 
+/* Forms */
+.ng-invalid.ng-dirty {
+  border-color: red;
+  outline-color: red;
+}
+
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
 .marketing,

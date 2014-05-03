@@ -5,6 +5,7 @@
 /*global beforeEach */
 /*global inject */
 /*global expect */
+/*global sinon */
 
 describe('Controller: SettingsCtrl', function () {
 
@@ -12,17 +13,35 @@ describe('Controller: SettingsCtrl', function () {
   beforeEach(module('anApp'));
 
   var SettingsCtrl,
-    scope;
+    scope,
+    UserProfileServiceMock;
 
-  // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, $rootScope) {
-    scope = $rootScope.$new();
-    SettingsCtrl = $controller('SettingsCtrl', {
-      $scope: scope
+  beforeEach(function() {
+    module('anApp');
+
+    inject(function($injector, $controller, $rootScope, $q) {
+      var promised = function () {
+        var q = $q.defer();
+        q.resolve();
+        return q.promise;
+      };
+
+      UserProfileServiceMock = {getCurrentUser: function() {}};
+      sinon.stub(UserProfileServiceMock, 'getCurrentUser').returns(promised());
+
+      scope         = $rootScope.$new();
+
+      SettingsCtrl = $controller('SettingsCtrl', {
+        $scope:                scope,
+        UserProfileService:    UserProfileServiceMock
+      });
     });
-  }));
 
-  it('should attach a list of awesomeThings to the scope', function () {
-    expect(scope.awesomeThings.length).to.equal(3);
+
+  });
+
+  it('should load user profile data', function () {
+    scope.$apply();
+    expect(UserProfileServiceMock.getCurrentUser.should.have.been.calledOnce).to.be.ok;
   });
 });
