@@ -18,7 +18,7 @@ describe('Service: Config', function () {
   }));
 
   it('should return APP_VERSION', function () {
-    expect(Config.APP_VERSION).to.equal(0.1);
+    expect(Config.APP_VERSION).toBe(0.1);
   });
 
 });

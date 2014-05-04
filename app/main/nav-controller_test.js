@@ -25,6 +25,6 @@ describe('Controller: NavCtrl', function () {
   });
 
   it('should call UserProfileService.login', function () {
-    expect(scope.isLoggedIn()).to.not.be.ok;
+    expect(!scope.isLoggedIn());
   });
 });

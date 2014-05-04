@@ -27,7 +27,7 @@ describe('login page', function() {
   });
 
   it('should not enable login if email is invalid ', function() {
-    var invalidEmails = ['notemail', 'notemail@', 'notemail@aa'];
+    var invalidEmails = ['notemail', 'notemail@', 'notemail@@aa'];
     loginHelper.ensureLoggedOut();
     loginHelper.navbarPage.login().click();
     loginHelper.loginPage.passwordInput().clear();
@@ -36,11 +36,11 @@ describe('login page', function() {
     invalidEmails.forEach(function (email) {
       loginHelper.loginPage.usernameInput().clear();
       loginHelper.loginPage.usernameInput().sendKeys(email);
-      expect(loginHelper.loginPage.submit().isEnabled()).to.eventually.not.be.true;
+      expect(loginHelper.loginPage.submit().isEnabled(), 'Invaid ' + email).to.eventually.not.be.true;
     });
 
     loginHelper.loginPage.usernameInput().clear();
-    loginHelper.loginPage.usernameInput().sendKeys('good@email.co');
+    loginHelper.loginPage.usernameInput().sendKeys('good@email.com');
     expect(loginHelper.loginPage.submit().isEnabled(), 'Valid email').to.eventually.be.true;
   });
 

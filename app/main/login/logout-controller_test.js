@@ -5,16 +5,16 @@
 /*global beforeEach */
 /*global inject */
 /*global expect */
-/*global sinon */
 
 describe('Controller: LogoutCtrl', function () {
   // load the controller's module
 
-  var AuthenticationServiceMock,
-    UserProfileServiceMock,
+  var AuthenticationService,
+    UserProfileService,
     LogoutCtrl,
     scope,
-    stateMock;
+    $state,
+    $httpBackend;
 
   beforeEach(function() {
     module('anApp');
@@ -26,22 +26,20 @@ describe('Controller: LogoutCtrl', function () {
         return q.promise;
       };
 
-      AuthenticationServiceMock = {logout: function() {}};
-      sinon.stub(AuthenticationServiceMock, 'logout').returns(promised());
+      $httpBackend          = $injector.get('$httpBackend');
+      AuthenticationService = $injector.get('AuthenticationService');
+      UserProfileService    = $injector.get('UserProfileService');
+      $state                = $injector.get('$state');
 
-      UserProfileServiceMock = {logout: function() {}};
-      sinon.stub(UserProfileServiceMock, 'logout').returns(promised());
 
-      stateMock = {go: function() {}};
-      sinon.stub(stateMock, 'go');
+      spyOn(AuthenticationService, 'logout').and.callFake(promised);
+      spyOn(UserProfileService, 'logout').and.callFake(promised);
+      spyOn($state, 'go').and.stub();
 
       scope         = $rootScope.$new();
 
       LogoutCtrl = $controller('LogoutCtrl', {
-        $scope:                scope,
-        AuthenticationService: AuthenticationServiceMock,
-        UserProfileService:    UserProfileServiceMock,
-        $state:                stateMock
+        $scope:                scope
       });
     });
 
@@ -49,13 +47,19 @@ describe('Controller: LogoutCtrl', function () {
   });
 
   it('should call AuthenticationService logout', function() {
+    $httpBackend.whenGET('main/main.html').respond(function(/* method, url */) {
+      return [200];
+    });
+
     // Don't need to call logout, constructing controller calls logout()
     scope.$apply();
 
-    expect(AuthenticationServiceMock.logout.should.have.been.calledOnce, 'AuthenticationServiceMock.logout').to.be.ok;
-    expect(UserProfileServiceMock.logout.should.have.been.calledOnce, 'UserProfileServiceMock.logout').to.be.ok;
-    expect(stateMock.go.should.have.been.calledOnce).to.be.ok;
-    expect(stateMock.go.should.have.been.calledWith('main')).to.be.ok;
+    expect(AuthenticationService.logout.calls.count()).toEqual(1);
+    expect(UserProfileService.logout.calls.count()).toEqual(1);
+    expect($state.go.calls.count()).toEqual(1);
+    expect($state.go).toHaveBeenCalledWith('main');
+
+
   });
 
 });

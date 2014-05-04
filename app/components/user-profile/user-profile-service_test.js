@@ -29,35 +29,33 @@ describe('Service: UserProfileService', function () {
 
 
   it('should return current user (default is empty)', function () {
-    expect(UserProfileService.user()).to.be.eql({});
-    expect(UserProfileService.isLoggedIn()).to.not.be.ok;
+    expect(UserProfileService.user()).toEqual({});
+    expect(UserProfileService.isLoggedIn()).not.toEqual(true);
   });
 
 
-  it('should get the current user', function (done) {
+  it('should get the current user', function () {
     $httpBackend.whenGET(/\/api\/v1\/user-profile?.*/).respond(function(/* method, url */) {
       return [200, {_id: 1, firstName: 'Fred', lastName: 'Smith'}, {}];
     });
 
     UserProfileService.getCurrentUser().then (function () {
-      expect(UserProfileService.user().fullName()).to.be.equal('Fred Smith');
-      expect(UserProfileService.isLoggedIn()).to.be.ok;
-      done();
+      expect(UserProfileService.user().fullName()).toEqual('Fred Smith');
+      expect(UserProfileService.isLoggedIn()).toEqual(true);
     });
 
     $httpBackend.flush();
   });
 
-  it('should logout', function (done) {
+  it('should logout', function () {
     $httpBackend.whenGET(/\/api\/v1\/user-profile?.*/).respond(function(/* method, url */) {
       return [200, {_id: 1, firstName: 'Fred', lastName: 'Smith'}, {}];
     });
 
     UserProfileService.getCurrentUser().then (function () {
-      expect(UserProfileService.user().fullName()).to.be.equal('Fred Smith');
+      expect(UserProfileService.user().fullName()).toEqual('Fred Smith');
       UserProfileService.logout();
-      expect(UserProfileService.user()).to.be.eql({});
-      done();
+      expect(UserProfileService.user()).toEqual({});
     });
 
     $httpBackend.flush();

@@ -5,16 +5,16 @@
 /*global beforeEach */
 /*global inject */
 /*global expect */
-/*global sinon */
 
 describe('Controller: LoginCtrl', function () {
   // load the controller's module
 
-  var AuthenticationServiceMock,
-    UserProfileServiceMock,
+  var $httpBackend,
     LoginCtrl,
     scope,
-    stateMock;
+    $state,
+    AuthenticationService,
+    UserProfileService;
 
   beforeEach(function() {
     module('anApp');
@@ -25,23 +25,20 @@ describe('Controller: LoginCtrl', function () {
         q.resolve();
         return q.promise;
       };
+      $httpBackend          = $injector.get('$httpBackend');
+      AuthenticationService = $injector.get('AuthenticationService');
+      UserProfileService    = $injector.get('UserProfileService');
+      $state                = $injector.get('$state');
 
-      AuthenticationServiceMock = {login: function() {}};
-      sinon.stub(AuthenticationServiceMock, 'login').returns(promised());
 
-      UserProfileServiceMock = {getCurrentUser: function() {}};
-      sinon.stub(UserProfileServiceMock, 'getCurrentUser').returns(promised());
-
-      stateMock = {go: function() {}};
-      sinon.stub(stateMock, 'go');
+      spyOn(AuthenticationService, 'login').and.callFake(promised);
+      spyOn(UserProfileService, 'getCurrentUser').and.callFake(promised);
+      spyOn($state, 'go').and.stub();
 
       scope         = $rootScope.$new();
 
       LoginCtrl = $controller('LoginCtrl', {
-        $scope:                scope,
-        AuthenticationService: AuthenticationServiceMock,
-        UserProfileService:    UserProfileServiceMock,
-        $state:                stateMock
+        $scope:                scope
       });
     });
 
@@ -50,14 +47,18 @@ describe('Controller: LoginCtrl', function () {
 
   it('should call AuthenticationService login', function() {
     var user = {username: 'fred@email.com', password: 'aPassword'};
+    $httpBackend.whenGET('main/main.html').respond(function(/* method, url */) {
+      return [200];
+    });
+
     scope.login(user);
     scope.$apply();
 
-    expect(AuthenticationServiceMock.login.should.have.been.calledOnce).to.be.ok;
-    expect(AuthenticationServiceMock.login.should.have.been.calledWith(user)).to.be.ok;
-    expect(UserProfileServiceMock.getCurrentUser.should.have.been.calledOnce).to.be.ok;
-    expect(stateMock.go.should.have.been.calledOnce).to.be.ok;
-    expect(stateMock.go.should.have.been.calledWith('main')).to.be.ok;
+    expect(AuthenticationService.login.calls.count()).toEqual(1);
+    expect(AuthenticationService.login).toHaveBeenCalledWith(user);
+    expect(UserProfileService.getCurrentUser.calls.count()).toEqual(1);
+    expect($state.go.calls.count()).toEqual(1);
+    expect($state.go).toHaveBeenCalledWith('main');
   });
 
 });

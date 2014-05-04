@@ -5,7 +5,6 @@
 /*global beforeEach */
 /*global inject */
 /*global expect */
-/*global sinon */
 
 describe('Controller: SettingsCtrl', function () {
 
@@ -14,7 +13,7 @@ describe('Controller: SettingsCtrl', function () {
 
   var SettingsCtrl,
     scope,
-    UserProfileServiceMock;
+    UserProfileService;
 
   beforeEach(function() {
     module('anApp');
@@ -26,14 +25,13 @@ describe('Controller: SettingsCtrl', function () {
         return q.promise;
       };
 
-      UserProfileServiceMock = {getCurrentUser: function() {}};
-      sinon.stub(UserProfileServiceMock, 'getCurrentUser').returns(promised());
+      UserProfileService    = $injector.get('UserProfileService');
+      spyOn(UserProfileService, 'getCurrentUser').and.callFake(promised);
 
       scope         = $rootScope.$new();
 
       SettingsCtrl = $controller('SettingsCtrl', {
-        $scope:                scope,
-        UserProfileService:    UserProfileServiceMock
+        $scope:                scope
       });
     });
 
@@ -42,6 +40,6 @@ describe('Controller: SettingsCtrl', function () {
 
   it('should load user profile data', function () {
     scope.$apply();
-    expect(UserProfileServiceMock.getCurrentUser.should.have.been.calledOnce).to.be.ok;
+    expect(UserProfileService.getCurrentUser.calls.count()).toEqual(1);
   });
 });

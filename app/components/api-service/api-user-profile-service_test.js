@@ -7,7 +7,6 @@
 /*global inject */
 /*global expect */
 
-/* global sinon: false */
 /* jshint -W030 */
 
 describe('Api: UserProfile', function () {
@@ -16,8 +15,9 @@ describe('Api: UserProfile', function () {
 
   beforeEach(function() {
     module('anApp');
-    notificationApi = { success: sinon.stub(),
-      error: sinon.stub()
+    notificationApi = {
+      success:  jasmine.createSpy('success'),
+      error:    jasmine.createSpy('error')
     };
 
     module(function ($provide) {
@@ -38,7 +38,7 @@ describe('Api: UserProfile', function () {
   });
 
   it('should do something', function () {
-    expect(!!UserProfile).to.equal(true);
+    expect(!!UserProfile).toBe(true);
   });
 
   it('should notify errors with message', function (done) {
@@ -47,11 +47,11 @@ describe('Api: UserProfile', function () {
     });
 
     UserProfile.getList().then(function (data) {
-      expect(data.length).to.equal(2);
+      expect(data.length).toBe(2);
       done();
     });
     $httpBackend.flush();
-    expect(notificationApi.error.should.have.been.calledOnce).to.be.ok;
+    expect(notificationApi.error).toHaveBeenCalled();
     done();
   });
 
@@ -61,11 +61,12 @@ describe('Api: UserProfile', function () {
     });
 
     UserProfile.getList().then(function (data) {
-      expect(data.length).to.equal(2);
+      expect(data.length).toBe(2);
       done();
     });
     $httpBackend.flush();
-    expect(notificationApi.error.should.have.been.calledOnce).to.be.ok;
+    expect(notificationApi.error).toHaveBeenCalled();
+
     done();
   });
 
@@ -84,14 +85,13 @@ describe('Api: UserProfile', function () {
     $httpBackend.flush();
   });
 
-  it('should extend user', function (done) {
+  it('should extend user', function () {
     $httpBackend.whenGET(/\/api\/v1\/user-profile?.*/).respond(function(/* method, url */) {
       return [200, {_id: 1, firstName: 'Fred', lastName: 'Smith'}, {}];
     });
 
     UserProfile.get(1).then(function(user) {
-      expect(user.fullName()).to.be.equal('Fred Smith');
-      done();
+      expect(user.fullName()).toEqual('Fred Smith');
     });
     $httpBackend.flush();
   });

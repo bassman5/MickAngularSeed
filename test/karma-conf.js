@@ -7,7 +7,17 @@ module.exports = function(config) {
     basePath: '../',
 
     // testing framework to use (jasmine/mocha/qunit/...)
-    frameworks: ['mocha', 'sinon-chai'],
+    frameworks: ['jasmine'],
+
+    plugins:[
+      'karma-jasmine',
+      'karma-coverage',
+//      'karma-junit-reporter',
+      'karma-phantomjs-launcher',
+      'karma-chrome-launcher',
+      'karma-firefox-launcher'
+//      'karma-ie-launcher'
+    ],
 
     // list of files / patterns to load in the browser
     files: [

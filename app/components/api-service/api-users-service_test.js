@@ -7,17 +7,15 @@
 /*global inject */
 /*global expect */
 
-/* global sinon: false */
-/* jshint -W030 */
-
 describe('Api: Users', function () {
 
   var $httpBackend, Api, Users, notificationApi, Restangular;
 
   beforeEach(function() {
     module('anApp');
-    notificationApi = { success: sinon.stub(),
-      error: sinon.stub()
+    notificationApi = {
+      success:  jasmine.createSpy('success'),
+      error:    jasmine.createSpy('error')
     };
 
     module(function ($provide) {
@@ -38,17 +36,16 @@ describe('Api: Users', function () {
   });
 
   it('should do something', function () {
-    expect(!!Users).to.equal(true);
+    expect(!!Users).toBe(true);
   });
 
-  it('should get the list of users', function (done) {
+  it('should get the list of users', function () {
     $httpBackend.whenGET(/\/api\/v1\/users?.*/).respond(function(/* method, url */) {
       return [200, [{_id: 1}, {_id: 2}], {}];
     });
 
     Users.getList().then(function (data) {
-      expect(data.length).to.equal(2);
-      done();
+      expect(data.length).toBe(2);
     });
     $httpBackend.flush();
   });
@@ -61,7 +58,7 @@ describe('Api: Users', function () {
 
     Users.getList();
     $httpBackend.flush();
-    expect(notificationApi.error.should.have.been.calledOnce).to.be.ok;
+    expect(notificationApi.error).toHaveBeenCalled();
   });
 
   it('should notify not authorized', function () {
@@ -71,7 +68,7 @@ describe('Api: Users', function () {
 
     Users.getList();
     $httpBackend.flush();
-    expect(notificationApi.error.should.have.been.calledOnce).to.be.ok;
+    expect(notificationApi.error).toHaveBeenCalled();
   });
 
   it('should notify errors with no message', function () {
@@ -81,7 +78,7 @@ describe('Api: Users', function () {
 
     Users.getList();
     $httpBackend.flush();
-    expect(notificationApi.error.should.have.been.calledOnce).to.be.ok;
+    expect(notificationApi.error).toHaveBeenCalled();
   });
 
 
@@ -104,7 +101,7 @@ describe('Api: Users', function () {
     });
 
     Users.get(1).then(function(user) {
-      expect(user.fullName()).to.be.equal('Fred Smith');
+      expect(user.fullName()).toEqual('Fred Smith');
     });
     $httpBackend.flush();
   });
