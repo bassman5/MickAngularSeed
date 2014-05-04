@@ -7,7 +7,6 @@ Install
 git clone https://github.com/bassman5/MickAngularSeed.git myapp
 cd myapp
 npm install 
-bower install
 ```
 Must have node and grunt globally installed first
 Also protractor needs some setup see https://github.com/angular/protractor/blob/master/docs/getting-started.md
