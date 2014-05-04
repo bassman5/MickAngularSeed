@@ -15,7 +15,8 @@ module.exports = function(config) {
 //      'karma-junit-reporter',
       'karma-phantomjs-launcher',
       'karma-chrome-launcher',
-      'karma-firefox-launcher'
+      'karma-firefox-launcher',
+      'karma-growl-reporter'
 //      'karma-ie-launcher'
     ],
 
