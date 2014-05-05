@@ -3,8 +3,8 @@
 var expect = require('./../test_helper.js').expect;
 
 describe('about page', function() {
-  var aboutPage = require('../pages/about-page'),
-    contactPage = require('../pages/contact-page');
+  var aboutPage = require('../../pages/about-page'),
+    contactPage = require('../../pages/contact-page');
 
   it('should load the page', function() {
     aboutPage.get();

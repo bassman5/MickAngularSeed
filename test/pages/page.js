@@ -11,7 +11,7 @@ function Page(url, el) {
 
 
 Page.prototype = {
-  get:      function() { browser.get('#' + this.url); },
+  get:      function() { return browser.get('#' + this.url); },
   content:  function() { return element(by.id(this.el)); },
   isLoaded: function() { return this.content().isPresent(); }
 };

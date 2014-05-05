@@ -1,9 +1,9 @@
 'use strict';
 
 var helper = {};
-helper.navbarPage = require('../pages/navbar-page');
-helper.homePage   = require('../pages/home-page');
-helper.loginPage  = require('../pages/login-page');
+helper.navbarPage = require('../../pages/navbar-page');
+helper.homePage   = require('../../pages/home-page');
+helper.loginPage  = require('../../pages/login-page');
 
 helper.login      = function login(user, password) {
   helper.navbarPage.login().click();

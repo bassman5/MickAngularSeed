@@ -125,7 +125,7 @@ module.exports = function (grunt) {
         options: {
           jshintrc: 'test/.jshintrc'
         },
-        src: ['test/e2e/**/*.js', '<%= yeoman.app %>/**/*_test.js']
+        src: ['test/e2e/**/*.js', 'test/cuke/**/*.js', '<%= yeoman.app %>/**/*_test.js']
       }
     },
 
