@@ -97,7 +97,7 @@ Start server (NOT NEEDED just run protractor)
 
 run tests with
 ```
-./node_modules/protractor/bin/protractor protractor-conf.js
+grunt protractor:cucumber
 ```
 
 
@@ -107,6 +107,10 @@ You can use the node.js plugin (seperate install) with '/usr/local/bin/grunt' as
 Also there is a great karma plugin (seperate install) Karam Node package is $(PROJECT_DIR)node-modules/karma and the Configuration file is test/karma-conf.js
 To debug tests in WebStorm or Idea add a run configuration of Karma with the test/karma-conf.js file and you can run (with coverage)
 or set breakpoints and debug in ide.
+To debug protractor tests
+Node Interpreter:       /usr/local/bin/node (or whereever node is installed)
+JavaScript file:        node_modules/protractor/lib/cli.js
+Application Parameters: test/protractor-cuke-conf.js
 
 #### Deployment to s3
 
