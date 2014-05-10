@@ -55,7 +55,8 @@
     "chai-as-promised": "~4.1.1",
     "cucumber": "~0.4.0",
     "lodash": "~2.4.1",
-    "grunt-protractor-runner": "~0.2.4"
+    "grunt-protractor-runner": "~0.2.4",
+    "grunt-conventional-changelog": "~1.1.0"
   },
   "license": "MIT",
   "engines": {

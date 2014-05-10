@@ -504,7 +504,15 @@ module.exports = function (grunt) {
           args: {} // Target-specific arguments
         }
       }
+    },
+
+    changelog: {
+      options: {
+        // Task-specific options go here.
+      }
     }
+
+
   });
 
 

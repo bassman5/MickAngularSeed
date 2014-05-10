@@ -32,10 +32,6 @@ I have installed locally in the project rather than globally so after initial in
 * Add more examples of ui-router, something more app like for the main page
 * Fix the yeoman scaffolding to generate the correct structure and test files
 
-#### Best Practices
-I have tried to follow the guides from Google at
-[http://blog.angularjs.org/2014/02/an-angularjs-style-guide-and-best.html]
-
 **Updated 27/Mar/14**
 Now test and scss files co-located with source files
 
@@ -48,12 +44,21 @@ Added Cucumber tests - to use grunt serve; grunt protractor:cucumber
 Note that the home page is loaded at the start of the run and then navigateTo home page is done before each scenario
 This is so that the page is only loaded once, don't use get in your tests unless you really need to.
 
+#### Best Practices
+I have tried to follow the guides from Google at
+[http://blog.angularjs.org/2014/02/an-angularjs-style-guide-and-best.html]
+
 JShint config is different for test files
 grunt build (or serve:dist) will now package minified files (and uncss to minify css), images and fonts with cache busting ids
 
 I have also not used multiple modules, just one module for all code.
 As I don't expect this to be a massive app, minified code I believe is enough. Also module lazy loading is coming in Angular 2.0, will re-look at it then.
 I expect this to change
+
+Generate a changelog using [connvetional-changelog](https://github.com/ajoslin/conventional-changelog).
+
+Uses git metadata, based on [these commit conventions](https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/).
+
 
 ### Fully configured testing
 For unit testing, karma is configured with mocha. Mocha has much better async testing support (although version 2.0 is much better).
