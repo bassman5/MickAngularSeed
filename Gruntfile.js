@@ -481,6 +481,29 @@ module.exports = function (grunt) {
         browsers: ['PhantomJS'],
         singleRun: true
       }
+    },
+
+    protractor: {
+      options: {
+        configFile: "test/protractor-cuke-conf.js", // Default config file
+        keepAlive: true, // If false, the grunt process stops when the test fails.
+        noColor: false, // If true, protractor will not use colors in its output.
+        args: {
+          // Arguments passed to the command
+        }
+      },
+      mocha: {
+        options: {
+          configFile: "test/protractor-conf.js", // Default config file
+          args: {} // Target-specific arguments
+        }
+      },
+      cucumber: {
+        options: {
+          configFile: "test/protractor-cuke-conf.js", // Default config file
+          args: {} // Target-specific arguments
+        }
+      }
     }
   });
 

@@ -13,7 +13,7 @@ module.exports = function() {
   this.World = require('../support/world.js').World; // overwrite default World constructor
 
   this.When(/^I go to the contact page$/, function (callback) {
-    this.ContactPage.get();
+    this.navigateTo(this.Navbar.contact());
     expect(this.ContactPage.isLoaded(), 'contact-view is present').to.eventually.equal(true).and.notify(callback);
   });
 

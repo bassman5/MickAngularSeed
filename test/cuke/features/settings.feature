@@ -7,7 +7,7 @@ Feature: Settings
 #    Given The user is not logged in
 
   Scenario: View my settings
-    Given An authenticated user
+    Given an authenticated user
     When  I go to the settings page
     Then  I can view my settings.
 

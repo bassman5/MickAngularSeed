@@ -3,10 +3,6 @@
 function Page(url, el) {
   this.el = el;
   this.url = url;
-
-//  this.setName = function(name) {
-//    this.nameInput.sendKeys(name);
-//  };
 }
 
 

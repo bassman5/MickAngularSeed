@@ -43,6 +43,10 @@ Now test and scss files co-located with source files
 Added google analytics
 Added login page with tests
 
+**Updated 10/May/14**
+Added Cucumber tests - to use grunt serve; grunt protractor:cucumber
+Note that the home page is loaded at the start of the run and then navigateTo home page is done before each scenario
+This is so that the page is only loaded once, don't use get in your tests unless you really need to.
 
 JShint config is different for test files
 grunt build (or serve:dist) will now package minified files (and uncss to minify css), images and fonts with cache busting ids

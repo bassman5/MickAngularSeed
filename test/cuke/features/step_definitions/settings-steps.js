@@ -10,20 +10,14 @@ var expect = chai.expect;
 
 
 module.exports = function() {
-  this.World = require('../support/world.js').World; // overwrite default World constructor
+  this.World = require('../support/world.js').World;
 
-  this.Given(/^An authenticated user$/, function (callback) {
-    this.Navbar.login().click();
-
-    expect(this.LoginPage.isLoaded(), 'login-view is present').to.eventually.equal(true);
-    this.LoginPage.usernameInput().sendKeys('user@email.com');
-    this.LoginPage.passwordInput().sendKeys('apassword');
-    this.LoginPage.submit().click();
-    callback();
+  this.Given(/^an authenticated user$/, function (callback) {
+    this.ensureLoggedIn('user@email.com','apassword').then(callback, callback.fail);
   });
 
   this.When(/^I go to the settings page$/, function (callback) {
-    this.Navbar.dropDownMemu().click();
+    this.Navbar.dropDownMenu().click();
     this.Navbar.settings().click();
     callback();
   });

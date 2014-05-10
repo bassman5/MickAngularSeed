@@ -14,7 +14,7 @@ helper.login      = function login(user, password) {
 };
 
 helper.logout      = function logout() {
-  helper.navbarPage.dropDownMemu().click();
+  helper.navbarPage.dropDownMenu().click();
   helper.navbarPage.logout().click();
 };
 

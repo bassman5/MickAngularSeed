@@ -13,7 +13,6 @@ module.exports = function() {
   this.World = require('../support/world.js').World; // overwrite default World constructor
 
   this.Given(/^A user$/, function (callback) {
-    browser.get('/');
     callback();
   });
 

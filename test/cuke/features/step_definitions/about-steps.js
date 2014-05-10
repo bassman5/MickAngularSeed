@@ -13,7 +13,7 @@ module.exports = function() {
   this.World = require('../support/world.js').World; // overwrite default World constructor
 
   this.When(/^I go to the about page$/, function (callback) {
-    this.AboutPage.get();
+    this.navigateTo(this.Navbar.about());
     expect(this.AboutPage.isLoaded(), 'about-view is present').to.eventually.equal(true).and.notify(callback);
   });
 
