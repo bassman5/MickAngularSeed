@@ -11,8 +11,9 @@ npm install
 Must have node and grunt globally installed first
 Also protractor needs some setup see https://github.com/angular/protractor/blob/master/docs/getting-started.md
 I have installed locally in the project rather than globally so after initial installation run
+npm will install webdriver (following command)
 ```
-./node_modules/protractor/bin/webdriver-manager update
+./node_modules/.bin/webdriver-manager update
 ```
 
 ### Aims
@@ -47,6 +48,9 @@ This is so that the page is only loaded once, don't use get in your tests unless
 #### Best Practices
 I have tried to follow the guides from Google at
 [http://blog.angularjs.org/2014/02/an-angularjs-style-guide-and-best.html]
+
+The style guide here
+[https://github.com/mgechev/angularjs-style-guide]
 
 JShint config is different for test files
 grunt build (or serve:dist) will now package minified files (and uncss to minify css), images and fonts with cache busting ids

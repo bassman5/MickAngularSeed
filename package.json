@@ -66,6 +66,6 @@
   },
   "scripts": {
     "test": "grunt test",
-    "postinstall": "node_modules/.bin/bower install"
+    "postinstall": "node_modules/.bin/bower install; node_modules/.bin/webdriver-manager update; (cd test/server; npm install)"
   }
 }
