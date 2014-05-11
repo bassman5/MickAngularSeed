@@ -56,7 +56,9 @@
     "cucumber": "~0.4.0",
     "lodash": "~2.4.1",
     "grunt-protractor-runner": "~0.2.4",
-    "grunt-conventional-changelog": "~1.1.0"
+    "grunt-conventional-changelog": "~1.1.0",
+    "express": "~4.1.2",
+    "grunt-express-server": "~0.4.17"
   },
   "license": "MIT",
   "engines": {

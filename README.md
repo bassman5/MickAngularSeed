@@ -102,9 +102,14 @@ Start server (NOT NEEDED just run protractor)
 
 run tests with
 ```
-grunt protractor:cucumber
+grunt e2e
 ```
-
+or
+```
+grunt e2e:dist
+```
+To run the e2e tests against a distribution build
+Note this starts an express server (test/server) which has been generated from the express generator
 
 
 #### Intellij Idea 13+ or Webstorm 7+

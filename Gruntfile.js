@@ -1,6 +1,9 @@
 // Generated on 2014-02-16 using generator-angular 0.7.1
 'use strict';
 
+/*jshint camelcase: false */
+
+
 // # Globbing
 // for performance reasons we're only matching one level down:
 // 'test/spec/{,*/}*.js'
@@ -15,6 +18,19 @@ module.exports = function (grunt) {
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
   var modRewrite = require('connect-modrewrite');
+
+  var Config = {
+    dev: {
+      port: 9000
+    },
+    test: {
+      port: 9001
+    },
+    e2e: {
+      port: 9002
+    },
+    prod: {}
+  };
 
 
   // Define the configuration for all the tasks
@@ -68,7 +84,7 @@ module.exports = function (grunt) {
     // The actual grunt server settings
     connect: {
       options: {
-        port: 9000,
+        port: Config.dev.port,
         // Change this to '0.0.0.0' to access the server from outside, localhost to only view from this machine.
         hostname: '0.0.0.0',
         livereload: 35729
@@ -106,6 +122,37 @@ module.exports = function (grunt) {
       dist: {
         options: {
           base: '<%= yeoman.dist %>'
+        }
+      }
+    },
+
+    express: {
+      options: {
+        // Override defaults here
+      },
+      dev: {
+        options: {
+          port: Config.dev.port,
+          script: 'test/server/bin/www'
+        }
+      },
+      production: {
+        options: {
+          port: Config.e2e.port,
+          node_env: 'production',
+          script: 'test/server/bin/www'
+        }
+      },
+      test: {
+        options: {
+          script: 'path/to/test/server.js'
+        }
+      },
+      e2e: {
+        options: {
+          port: Config.e2e.port,
+
+          script: 'test/server/bin/www'
         }
       }
     },
@@ -501,7 +548,9 @@ module.exports = function (grunt) {
       cucumber: {
         options: {
           configFile: 'test/protractor-cuke-conf.js', // Default config file
-          args: {} // Target-specific arguments
+          args: {
+            baseUrl: 'http://0.0.0.0:9002/'
+          } // Target-specific arguments
         }
       }
     },
@@ -545,6 +594,29 @@ module.exports = function (grunt) {
     'connect:test',
     'karma:headless'
   ]);
+
+
+
+
+  grunt.registerTask('e2e', function (target) {
+    if (target === 'dist') {
+      return grunt.task.run([
+        'build',
+        'express:production:start',
+        'protractor:cucumber',
+        'express:production:stop'
+      ]);
+    }
+
+    grunt.task.run([
+      'clean:server',
+      'concurrent:server',
+      'autoprefixer',
+      'express:e2e:start',
+      'protractor:cucumber',
+      'express:e2e:stop'
+    ]);
+  });
 
   grunt.registerTask('build', [
     'clean:dist',
