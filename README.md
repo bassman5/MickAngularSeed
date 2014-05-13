@@ -44,6 +44,7 @@ Added login page with tests
 Added Cucumber tests - to use grunt serve; grunt protractor:cucumber
 Note that the home page is loaded at the start of the run and then navigateTo home page is done before each scenario
 This is so that the page is only loaded once, don't use get in your tests unless you really need to.
+Each Page (or page section) has a page object as described by [Selenium Page Objects](https://code.google.com/p/selenium/wiki/PageObjects)
 
 #### Best Practices
 I have tried to follow the guides from Google at
@@ -63,6 +64,11 @@ Generate a changelog using [connvetional-changelog](https://github.com/ajoslin/c
 
 Uses git metadata, based on [these commit conventions](https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/).
 
+If you have a problem on a mac with grunt serve hanging add the following line to /etc/launchd.conf and reboot
+```
+limit maxfiles 2048 10480
+```
+The default open files limit is very low on macosx.
 
 ### Fully configured testing
 For unit testing, karma is configured with mocha. Mocha has much better async testing support (although version 2.0 is much better).
@@ -101,7 +107,7 @@ Will generate css (this is done automatically in watch)
 
 Start server (NOT NEEDED just run protractor)
 ```
-./node_modules/protractor/bin/webdriver-manager start
+./node_modules/.bin/webdriver-manager start
 ```
 
 run tests with
