@@ -13,7 +13,19 @@ function LoginPage( a, b ) {
 
 LoginPage.prototype               = Object.create( Page.prototype );
 LoginPage.prototype.submit        = function() { return element(by.id('login-button')); };
+LoginPage.prototype.submitLogin   = function() { return this.submit().click(); };
+LoginPage.prototype.submitEnabled = function() { return this.submit().isEnabled(); };
+
 LoginPage.prototype.usernameInput = function() { return element(by.model('credentials.username')); };
+LoginPage.prototype.typeUsername  = function(username) {
+  this.usernameInput().clear();
+  return this.usernameInput().sendKeys(username);
+};
+
 LoginPage.prototype.passwordInput = function() { return element(by.model('credentials.password')); };
+LoginPage.prototype.typePassword  = function(password) {
+  this.passwordInput().clear();
+  return this.passwordInput().sendKeys(password);
+};
 
 module.exports = new LoginPage('/login', 'login-view');

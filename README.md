@@ -60,6 +60,8 @@ I have also not used multiple modules, just one module for all code.
 As I don't expect this to be a massive app, minified code I believe is enough. Also module lazy loading is coming in Angular 2.0, will re-look at it then.
 I expect this to change
 
+Each Page (or page section) has a page object as described by [Selenium Page Objects](https://code.google.com/p/selenium/wiki/PageObjects)
+
 Generate a changelog using [connvetional-changelog](https://github.com/ajoslin/conventional-changelog).
 
 Uses git metadata, based on [these commit conventions](https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/).
@@ -71,7 +73,7 @@ limit maxfiles 2048 10480
 The default open files limit is very low on macosx.
 
 ### Fully configured testing
-For unit testing, karma is configured with mocha. Mocha has much better async testing support (although version 2.0 is much better).
+For unit testing, karma is configured with Jasmine 2.
 
 #### Build
 
@@ -124,7 +126,9 @@ Note this starts an express server (test/server) which has been generated from t
 
 #### Intellij Idea 13+ or Webstorm 7+
 You can use the node.js plugin (seperate install) with '/usr/local/bin/grunt' as the JavaScript file and 'serve' as the Application Parameter
-Also there is a great karma plugin (seperate install) Karam Node package is $(PROJECT_DIR)node-modules/karma and the Configuration file is test/karma-conf.js
+Also there is a great karma plugin (seperate install)
+
+Karam Node package is $(PROJECT_DIR)node-modules/karma and the Configuration file is test/karma-conf.js
 To debug tests in WebStorm or Idea add a run configuration of Karma with the test/karma-conf.js file and you can run (with coverage)
 or set breakpoints and debug in ide.
 

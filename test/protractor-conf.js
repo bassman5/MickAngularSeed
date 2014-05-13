@@ -23,7 +23,7 @@ exports.config = {
   specs: ['e2e/spec/**/*.js'],
 
   // The server under test
-  baseUrl: 'http://localhost:9000/',
+  baseUrl: 'http://localhost:' + (process.env.HTTP_PORT || '9000'),
 
   framework:'mocha',
 
@@ -31,7 +31,7 @@ exports.config = {
     ui: "bdd",
     reporter: "spec",
     require: 'chai',
-    slow: 3000
+    slow: 4000
   }
   // Options to be passed to Jasmine-node.
 //  jasmineNodeOpts: {

@@ -5,7 +5,7 @@ Feature: About Page
 
 #  Background:
 #    Given The user is not logged in
-  @dev
+
   Scenario: About Page has a link to contacts
     Given A user
     When  I go to the about page

@@ -22,8 +22,8 @@ NavbarPage.prototype.contact = function() { return element(by.id('nav-contact'))
 NavbarPage.prototype.login = function() { return element(by.id('nav-login')); };
 NavbarPage.prototype.logout = function() { return element(by.id('nav-logout')); };
 NavbarPage.prototype.register = function() { return element(by.id('nav-register')); };
-NavbarPage.prototype.username        = function() { return element(by.id('nav-username')); };
-NavbarPage.prototype.isAuthenticated = function() {return this.username().isDisplayed(); };
+NavbarPage.prototype.username        = function() { return element(by.id('nav-dropdown')); };
+NavbarPage.prototype.isAuthenticated = function() {return this.dropDownMenu().isDisplayed(); };
 
 
 module.exports = new NavbarPage ('/', 'Navbar');

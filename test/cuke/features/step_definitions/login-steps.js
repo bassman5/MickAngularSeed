@@ -19,15 +19,13 @@ module.exports = function() {
     this.navigateTo (this.Navbar.login());
 
     expect(this.LoginPage.isLoaded(), 'login-view is present').to.eventually.equal(true);
-    this.LoginPage.usernameInput().clear();
-    this.LoginPage.passwordInput().clear();
-    this.LoginPage.usernameInput().sendKeys(user);
-    this.LoginPage.passwordInput().sendKeys(password);
+    this.LoginPage.typeUsername(user);
+    this.LoginPage.typePassword(password);
     callback();
   });
 
   this.When(/^I submit my correct authorization details$/, function (callback) {
-    this.navigateTo (this.LoginPage.submit()).then(callback, callback.fail);
+    this.LoginPage.submitLogin().then(callback, callback.fail);
   });
 
   this.Then(/^I am fully authenticated\.$/, function (callback) {
@@ -54,14 +52,12 @@ module.exports = function() {
 
 
   this.Then(/^I enter invalid email addresses$/, function (table, callback) {
-    this.LoginPage.passwordInput().clear();
-    this.LoginPage.passwordInput().sendKeys('aPassword');
+    this.LoginPage.typePassword('aPassword');
 
     var tests = table.rows().map(function (row) {
       var email = row[0];
-      this.LoginPage.usernameInput().clear();
-      this.LoginPage.usernameInput().sendKeys(email);
-      return (this.LoginPage.submit().isEnabled());
+      this.LoginPage.typeUsername(email);
+      return (this.LoginPage.submitEnabled());
     }, this);
 
     return protractor.promise.fullyResolved(tests)
@@ -74,14 +70,12 @@ module.exports = function() {
   });
 
   this.Then(/^I enter invalid passwords$/, function (table, callback) {
-    this.LoginPage.usernameInput().clear();
-    this.LoginPage.usernameInput().sendKeys('aUser@gmail.com');
+    this.LoginPage.typeUsername('aUser@gmail.com');
 
     var tests = table.rows().map(function (row) {
       var password = row[0];
-      this.LoginPage.passwordInput().clear();
-      this.LoginPage.passwordInput().sendKeys(password);
-      return (this.LoginPage.submit().isEnabled());
+      this.LoginPage.typePassword(password);
+      return (this.LoginPage.submitEnabled());
     }, this);
 
     return protractor.promise.fullyResolved(tests)

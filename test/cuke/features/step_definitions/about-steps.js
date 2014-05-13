@@ -18,7 +18,7 @@ module.exports = function() {
   });
 
   this.Then(/^I can navigate to the contacts page\.$/, function (callback) {
-    this.AboutPage.contact().click();
+    this.navigateTo(this.AboutPage.contact());
     expect(this.ContactPage.isLoaded(), 'contact-view is present').to.eventually.equal(true).and.notify(callback);
   });
 

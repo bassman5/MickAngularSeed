@@ -111,7 +111,7 @@ module.exports = function (grunt) {
       },
       test: {
         options: {
-          port: 9001,
+          port: Config.test.port,
           base: [
             '.tmp',
             'test',
@@ -119,9 +119,24 @@ module.exports = function (grunt) {
           ]
         }
       },
+      e2e: {
+        options: {
+          keepalive: true,
+          port: Config.e2e.port,
+//          base: '<%= yeoman.dist %>'
+          base: [
+            '.tmp',
+            '<%= yeoman.app %>',
+            '.'
+          ]
+        }
+
+      },
       dist: {
         options: {
-          base: '<%= yeoman.dist %>'
+          keepalive: true,
+          port: Config.e2e.port,
+//          base: '<%= yeoman.dist %>'
         }
       }
     },

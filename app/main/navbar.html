@@ -10,19 +10,19 @@
     </div>
     <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav">
-            <li id='nav-about'><a ui-sref="about">About</a></li>
-            <li id='nav-contact'><a ui-sref="contact">Contact</a></li>
+            <li><a id='nav-about' ui-sref="about">About</a></li>
+            <li><a id='nav-contact' ui-sref="contact">Contact</a></li>
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
             <li ng-hide="isLoggedIn()"><a id='nav-login' ui-sref="login"> Login <span class="glyphicon glyphicon-log-in"></span></a></li>
             <li ng-hide="isLoggedIn()"><a id='nav-register' ui-sref="register">Register</a></li>
-            <li ng-show="isLoggedIn()" id="nav-dropdown" class="dropdown">
-                <a id='nav-username' class="dropdown-toggle" data-toggle="dropdown"> {{user().username}} <span class="glyphicon glyphicon-cog"></span></a>
+            <li ng-show="isLoggedIn()" class="dropdown">
+                <a id='nav-dropdown' class="dropdown-toggle" data-toggle="dropdown"> {{user().username}} <span class="glyphicon glyphicon-cog"></span></a>
                 <ul class="dropdown-menu">
-                    <li id="settings-dropdown"><a ui-sref="settings">Settings</a></li>
+                    <li><a id="settings-dropdown" ui-sref="settings">Settings</a></li>
                     <li class="divider"></li>
-                    <li id='nav-logout'><a ui-sref="logout"> Logout <span class="glyphicon glyphicon-log-out"></span></a></li>
+                    <li><a id='nav-logout' ui-sref="logout"> Logout <span class="glyphicon glyphicon-log-out"></span></a></li>
                 </ul>
             </li>
         </ul>

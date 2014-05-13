@@ -12,7 +12,7 @@ function AboutPage( a, b ) {
 //  this.usTabContent = element(by.css('[module=app-us] .tab-content'));
 //  this.tabs = element.all(by.repeater('pane in panes'));
 
-AboutPage.prototype = Object.create( Page.prototype );
+AboutPage.prototype         = Object.create( Page.prototype );
 AboutPage.prototype.contact = function() { return element(by.css('#about-view a')); };
 
 module.exports = new AboutPage('/about', 'about-view');

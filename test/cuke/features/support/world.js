@@ -12,26 +12,21 @@ var World = function World(callback) {
 
 
   this.login      = function login(user, password) {
-    this.Navbar.login().click();
-    this.LoginPage.usernameInput().clear();
-    this.LoginPage.passwordInput().clear();
-    this.LoginPage.usernameInput().sendKeys(user);
-    this.LoginPage.passwordInput().sendKeys(password);
-    return this.LoginPage.submit().click();
+    this.navigateTo(this.Navbar.login());
+    this.LoginPage.typeUsername(user);
+    this.LoginPage.typePassword(password);
+    return this.LoginPage.submitLogin();
   };
 
   this.logout      = function logout() {
     this.Navbar.dropDownMenu().click();
-    this.Navbar.logout().click();
+    this.navigateTo(this.Navbar.logout());
   };
 
-  this.isLoggedIn = function isLoggedIn() {
-    return this.Navbar.username().isDisplayed();
-  };
 
   this.ensureLoggedIn = function ensureLoggedIn(user, password) {
     var self   = this;
-    return this.isLoggedIn().then(function(displayed) {
+    return this.isAuthenticated().then(function(displayed) {
       if (!displayed) {
         return self.login(user, password);
       }
@@ -44,7 +39,7 @@ var World = function World(callback) {
       if (displayed) {
         self.logout();
       }
-    }, this);
+    });
   };
 
   this.goHome = function goHome() {
