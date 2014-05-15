@@ -20,6 +20,7 @@ module.exports = function (grunt) {
   var modRewrite = require('connect-modrewrite');
 
   var Config = {
+    project: 'Mick\'s Angular Seed',
     dev: {
       port: 9000
     },
@@ -549,23 +550,44 @@ module.exports = function (grunt) {
       options: {
         configFile: 'test/protractor-cuke-conf.js', // Default config file
         keepAlive: true, // If false, the grunt process stops when the test fails.
-        noColor: false, // If true, protractor will not use colors in its output.
-        args: {
-          // Arguments passed to the command
-        }
+        noColor: false // If true, protractor will not use colors in its output.
       },
       mocha: {
         options: {
+          baseUrl: 'http://0.0.0.0' + Config.e2e.port + '/',
           configFile: 'test/protractor-conf.js', // Default config file
           args: {} // Target-specific arguments
         }
       },
       cucumber: {
         options: {
-          configFile: 'test/protractor-cuke-conf.js', // Default config file
           args: {
-            baseUrl: 'http://0.0.0.0:9002/'
+            baseUrl: 'http://0.0.0.0:' + Config.e2e.port + '/',
+            seleniumAddress: 'http://0.0.0.0:4444/wd/hub',
+            capabilities: {
+              // Possible values are chrome, firefox, safari, ei, and phantomjs
+              'browserName': 'chrome'
+            }
           } // Target-specific arguments
+        }
+      },
+      saucelabs: {
+        options: {
+          args: {
+            baseUrl: 'http://0.0.0.0:' + Config.e2e.port + '/',
+            sauceUser: process.env.SAUCE_USERNAME,
+            sauceKey: process.env.SAUCE_ACCESS_KEY,
+            capabilities: {
+              // Possible values are chrome, firefox, safari, iexplore
+//              'browserName': 'chrome'
+              name: Config.project,
+              tags: ['e2e', 'ie'],
+              build: '1234',
+              platform: 'Windows 7',
+              version: 11,
+              browserName: 'iexplore'
+            }
+          }
         }
       }
     },
@@ -619,6 +641,14 @@ module.exports = function (grunt) {
         'build',
         'express:production:start',
         'protractor:cucumber',
+        'express:production:stop'
+      ]);
+    }
+    if (target === 'saucelabs') {
+      return grunt.task.run([
+        'build',
+        'express:production:start',
+        'protractor:saucelabs',
         'express:production:stop'
       ]);
     }

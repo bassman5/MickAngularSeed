@@ -13,12 +13,13 @@ module.exports = function() {
   this.World = require('../support/world.js').World;
 
   this.Given(/^an authenticated user$/, function (callback) {
-    this.ensureLoggedIn('user@email.com','apassword').then(callback, callback.fail);
+    this.ensureLoggedIn('user@email.com','apassword');
+    callback();
   });
 
   this.When(/^I go to the settings page$/, function (callback) {
-    this.Navbar.dropDownMenu().click();
-    this.Navbar.settings().click();
+    this.navigateTo(this.Navbar.dropDownMenu());
+    this.navigateTo(this.Navbar.settings());
     callback();
   });
 

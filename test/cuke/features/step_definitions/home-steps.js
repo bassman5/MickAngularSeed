@@ -17,8 +17,8 @@ module.exports = function() {
   });
 
   this.When(/^I go to the home page$/, function (callback) {
-//    element(by.id('nav-home')).click().then(callback, callback.fail);
-    this.Navbar.home().click().then(callback, callback.fail);
+    this.navigateTo(this.Navbar.home());
+    callback();
   });
 
   this.Then(/^I see the initial call to action\.$/, function (callback) {
@@ -26,7 +26,8 @@ module.exports = function() {
   });
 
   this.When(/^I navigate to the about page$/, function (callback) {
-    this.HomePage.footerAbout().click().then(callback, callback.fail);
+    this.navigateTo(this.HomePage.footerAbout());
+    callback();
   });
 
   this.Then(/^I see more information\.$/, function (callback) {
@@ -34,7 +35,8 @@ module.exports = function() {
   });
 
   this.When(/^I navigate to the contact page$/, function (callback) {
-    this.HomePage.footerContact().click().then(callback, callback.fail);
+    this.navigateTo(this.HomePage.footerContact());
+    callback();
   });
 
   this.Then(/^I see contact information\.$/, function (callback) {

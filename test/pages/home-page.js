@@ -12,6 +12,7 @@ function HomePage( a, b ) {
 //  this.tabs = element.all(by.repeater('pane in panes'));
 
 HomePage.prototype = Object.create( Page.prototype );
+
 HomePage.prototype.footerAbout   = function() { return element(by.id('about-footer')); };
 HomePage.prototype.footerContact = function() { return element(by.id('contact-footer')); };
 

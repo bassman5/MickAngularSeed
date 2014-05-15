@@ -25,7 +25,8 @@ module.exports = function() {
   });
 
   this.When(/^I submit my correct authorization details$/, function (callback) {
-    this.LoginPage.submitLogin().then(callback, callback.fail);
+    this.LoginPage.submitLogin();
+    callback();
   });
 
   this.Then(/^I am fully authenticated\.$/, function (callback) {
@@ -34,7 +35,8 @@ module.exports = function() {
 
   this.When(/^I logout$/, function (callback) {
     this.navigateTo (this.Navbar.dropDownMenu());
-    this.navigateTo (this.Navbar.logout()).then(callback, callback.fail);
+    this.navigateTo (this.Navbar.logout());
+    callback();
   });
 
   this.Then(/^I am not longer authenticated\.$/, function (callback) {
@@ -47,7 +49,8 @@ module.exports = function() {
   });
 
   this.Given(/^An unauthenticated user$/, function (callback) {
-    this.navigateTo (this.Navbar.login()).then(callback, callback.fail);
+    this.navigateTo (this.Navbar.login());
+    callback();
   });
 
 

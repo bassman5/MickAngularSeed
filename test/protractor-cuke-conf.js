@@ -10,12 +10,14 @@ exports.config = {
 //  To configure Protractor to use this separate server, we need to delete the previous two options
 //  (chromeOnly and chromeDriver) and add the seleniumAddress option that points to the running Selenium server.
 //
-  seleniumAddress: 'http://0.0.0.0:4444/wd/hub',
+//  seleniumAddress: 'http://0.0.0.0:4444/wd/hub',
 
+//  sauceUser: process.env.SAUCE_USERNAME,
+//  sauceKey: process.env.SAUCE_ACCESS_KEY,
 
   // Capabilities to be passed to the webdriver instance.
   capabilities: {
-    'browserName': 'chrome'
+    browserName: 'chrome'
   },
 
   // The server under test
