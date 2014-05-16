@@ -476,7 +476,7 @@ module.exports = function (grunt) {
       if (grunt.file.exists('.aws-credentials.json')) {
         return grunt.file.readJSON('.aws-credentials.json');  // Read the file
       }
-      return {}
+      return {};
     },
 
     s3: {
