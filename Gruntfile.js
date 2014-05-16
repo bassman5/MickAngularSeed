@@ -476,7 +476,7 @@ module.exports = function (grunt) {
       if (grunt.file.exists('.aws-credentials.json')) {
         return grunt.file.readJSON('.aws-credentials.json');  // Read the file
       }
-      return {};
+      return { accessKeyId: 'not set', secretAccessKey: 'not set'};
     },
 
     s3: {
@@ -583,8 +583,8 @@ module.exports = function (grunt) {
             capabilities: {
               name: Config.project,
               tags: ['e2e'],
-              build:               process.env.TRAVIS_JOB_NUMBER,
-              'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER,
+              build:               '<%= process.env.TRAVIS_JOB_NUMBER %>',
+              'tunnel-identifier': '<%= process.env.TRAVIS_JOB_NUMBER %>',
 
               // Values Windows 8.1, Windows 8, Windows 7, Windows XP, OS X 10.6, OS X 10.8, OS X 10.9, Linux
               platform: 'Windows 8',
