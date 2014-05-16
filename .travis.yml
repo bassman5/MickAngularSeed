@@ -9,3 +9,15 @@ before_script:
 cache:
   directories:
     - node_modules
+
+addons:
+  sauce_connect:
+    username: 'bassman5'
+    access_key: 'c3b0d12a-4148-4c13-a62d-a1bc76028876'
+
+env:
+  global:
+    - SAUCE_USERNAME=bassman5
+    - SAUCE_ACCESS_KEY=c3b0d12a-4148-4c13-a62d-a1bc76028876
+
+script: 'grunt travis'

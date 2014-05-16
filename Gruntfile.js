@@ -578,14 +578,17 @@ module.exports = function (grunt) {
             sauceUser: process.env.SAUCE_USERNAME,
             sauceKey: process.env.SAUCE_ACCESS_KEY,
             capabilities: {
-              // Possible values are chrome, firefox, safari, iexplore
-//              'browserName': 'chrome'
               name: Config.project,
-              tags: ['e2e', 'ie'],
-              build: '1234',
-              platform: 'Windows 7',
-              version: 11,
-              browserName: 'iexplore'
+              tags: ['e2e'],
+              build:               process.env.TRAVIS_JOB_NUMBER,
+              'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER,
+
+              // Values Windows 8.1, Windows 8, Windows 7, Windows XP, OS X 10.6, OS X 10.8, OS X 10.9, Linux
+              platform: 'Windows 8',
+              // Possible values are chrome, firefox, safari, iexplore
+              browserName: 'firefox',
+              // Browser version
+//              version: 9
             }
           }
         }
@@ -662,6 +665,15 @@ module.exports = function (grunt) {
       'express:e2e:stop'
     ]);
   });
+
+  grunt.registerTask('travis', [
+    'test',
+    'build',
+    'express:production:start',
+    'protractor:saucelabs',
+    'express:production:stop'
+  ]);
+
 
   grunt.registerTask('build', [
     'clean:dist',
