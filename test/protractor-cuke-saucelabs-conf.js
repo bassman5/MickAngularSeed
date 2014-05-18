@@ -28,14 +28,14 @@ exports.config = {
       platform: 'OS X 10.9',
       'browserName': 'safari'
     },
-    {
-      name: 'MAS - Client',
-      tags: ['e2e'],
-      build:               '"' + process.env.TRAVIS_JOB_NUMBER + '"',
-      'tunnel-identifier': '' + process.env.TRAVIS_JOB_NUMBER,
-      platform: 'OS X 10.9',
-      'browserName': 'chrome'
-    },
+//    {
+//      name: 'MAS - Client',
+//      tags: ['e2e'],
+//      build:               '"' + process.env.TRAVIS_JOB_NUMBER + '"',
+//      'tunnel-identifier': '' + process.env.TRAVIS_JOB_NUMBER,
+//      platform: 'OS X 10.9',
+//      'browserName': 'chrome'
+//    },
     {
       name: 'MAS - Client',
       tags: ['e2e'],
