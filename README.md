@@ -123,6 +123,16 @@ grunt e2e:dist
 To run the e2e tests against a distribution build
 Note this starts an express server (test/server) which has been generated from the express generator
 
+```
+grunt e2e:desktops
+```
+Will run chrome, safari, and firefox tests on a distribution build on the local machine
+
+```
+grunt e2e:saucelabs
+```
+Is designed to run multiple browser tests on SauceLabs on a distribution build, intended to run from Travis or your CI builder
+
 
 #### Intellij Idea 13+ or Webstorm 7+
 You can use the node.js plugin (seperate install) with '/usr/local/bin/grunt' as the JavaScript file and 'serve' as the Application Parameter
