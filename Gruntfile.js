@@ -578,7 +578,7 @@ module.exports = function (grunt) {
       },
       saucelabs: {
         options: {
-          configFile: 'test/protractor-cuke-desktop-win-conf.js', // Default config file
+          configFile: 'test/protractor-cuke-saucelabs-conf.js', // Default config file
           args: {
             baseUrl: 'http://0.0.0.0:' + Config.e2e.port + '/',
             sauceUser: process.env.SAUCE_USERNAME,

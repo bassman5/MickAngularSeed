@@ -11,6 +11,7 @@ exports.config = {
       name: 'MAS - Client',
       tags: ['e2e'],
       build:               '"' + process.env.TRAVIS_JOB_NUMBER + '"',
+      'tunnel-identifier': '' + process.env.TRAVIS_JOB_NUMBER,
       platform: 'Windows 7',
       'browserName': 'firefox'
     },
@@ -23,6 +24,7 @@ exports.config = {
       name: 'MAS - Client',
       tags: ['e2e'],
       build:               '"' + process.env.TRAVIS_JOB_NUMBER + '"',
+      'tunnel-identifier': '' + process.env.TRAVIS_JOB_NUMBER,
       platform: 'OS X 10.9',
       'browserName': 'safari'
     },
@@ -30,6 +32,7 @@ exports.config = {
       name: 'MAS - Client',
       tags: ['e2e'],
       build:               '"' + process.env.TRAVIS_JOB_NUMBER + '"',
+      'tunnel-identifier': '' + process.env.TRAVIS_JOB_NUMBER,
       platform: 'OS X 10.9',
       'browserName': 'chrome'
     },
@@ -37,6 +40,7 @@ exports.config = {
       name: 'MAS - Client',
       tags: ['e2e'],
       build:               '"' + process.env.TRAVIS_JOB_NUMBER + '"',
+      'tunnel-identifier': '' + process.env.TRAVIS_JOB_NUMBER,
       platform: 'Windows 7',
       'browserName': 'iexplore',
       version: 9

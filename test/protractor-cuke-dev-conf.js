@@ -12,7 +12,7 @@ exports.config = {
 
 
   // The server under test
-  baseUrl: 'http://localhost:' + (process.env.HTTP_PORT || '9000'),
+  baseUrl: 'http://0.0.0.0:' + (process.env.HTTP_PORT || '9000'),
 
   framework:'cucumber',
 
