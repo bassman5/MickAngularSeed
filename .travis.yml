@@ -4,8 +4,12 @@ node_js:
 before_install:
   - 'gem install compass'
 before_script:
-  - 'npm install -g bower grunt-cli'
+  - 'npm install -g bower grunt-cli codeclimate-test-reporter'
   - 'bower install'
+after_success:
+  - 'bower install'
+  - 'CODECLIMATE_REPO_TOKEN=6dc07a009f8134d7b5989c8231affbdc4dbfad4101249b70af2baf9d4e902405 codeclimate < "coverage/*/lcov.info"'
+
 cache:
   directories:
     - node_modules

@@ -39,7 +39,7 @@ module.exports = function(config) {
 
 
       'app/*.js',
-      'app/**/*.js',
+      'app/**/*.js'
     ],
 
     // list of files / patterns to exclude
@@ -78,7 +78,10 @@ module.exports = function(config) {
     // possible values: 'dots', 'progress', 'junit', 'growl', 'coverage'
     reporters: ['progress', 'growl', 'coverage'],
 
-
+    coverageReporter: {
+      type : 'lcov',
+      dir : 'coverage/'
+    },
     // Continuous Integration mode
     // if true, it capture browsers, run tests and exit
     singleRun: false
