@@ -136,7 +136,7 @@ module.exports = function (grunt) {
       dist: {
         options: {
           keepalive: true,
-          port: Config.e2e.port,
+          port: Config.e2e.port
 //          base: '<%= yeoman.dist %>'
         }
       }
@@ -332,7 +332,6 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           cwd: '<%= yeoman.distTmp %>',
-//          src: ['*.html'],
           src: ['*.html', '**/*.html'],
           dest: '<%= yeoman.distTmp %>'
         }]
@@ -551,48 +550,42 @@ module.exports = function (grunt) {
 
     protractor: {
       options: {
-        configFile: 'test/protractor-cuke-conf.js', // Default config file
+//        configFile: 'test/protractor-cuke-conf.js', // Default config file
         keepAlive: true, // If false, the grunt process stops when the test fails.
         noColor: false // If true, protractor will not use colors in its output.
       },
       mocha: {
         options: {
-          baseUrl: 'http://0.0.0.0' + Config.e2e.port + '/',
+          baseUrl: 'http://0.0.0.0:' + Config.e2e.port + '/',
           configFile: 'test/protractor-conf.js', // Default config file
           args: {} // Target-specific arguments
         }
       },
-      cucumber: {
+      e2e: {
         options: {
+          configFile: 'test/protractor-cuke-conf.js', // Default config file
           args: {
+            chromeOnly: true,
+
             baseUrl: 'http://0.0.0.0:' + Config.e2e.port + '/',
-            seleniumAddress: 'http://0.0.0.0:4444/wd/hub',
             capabilities: {
               // Possible values are chrome, firefox, safari, ei, and phantomjs
               'browserName': 'chrome'
             }
+
           } // Target-specific arguments
         }
       },
       saucelabs: {
         options: {
+          configFile: 'test/protractor-cuke-desktop-win-conf.js', // Default config file
           args: {
             baseUrl: 'http://0.0.0.0:' + Config.e2e.port + '/',
             sauceUser: process.env.SAUCE_USERNAME,
             sauceKey: process.env.SAUCE_ACCESS_KEY,
-            capabilities: {
-              name: Config.project,
-              tags: ['e2e'],
-              build:               '"' + process.env.TRAVIS_JOB_NUMBER + '"',
-              'tunnel-identifier': '' + process.env.TRAVIS_JOB_NUMBER,
-
-              // Values Windows 8.1, Windows 8, Windows 7, Windows XP, OS X 10.6, OS X 10.8, OS X 10.9, Linux
-              platform: 'Windows 8',
-              // Possible values are chrome, firefox, safari, iexplore
-              browserName: 'firefox'
-              // Browser version
-//              version: 9
-            }
+            name: Config.project,
+            tags: ['e2e'],
+            build:               '"' + process.env.TRAVIS_JOB_NUMBER + '"'
           }
         }
       }
@@ -610,14 +603,18 @@ module.exports = function (grunt) {
 
   grunt.registerTask('serve', function (target) {
     if (target === 'dist') {
-      return grunt.task.run(['build', 'connect:dist:keepalive']);
+      return grunt.task.run([
+        'build',
+        'connect:dist:keepalive'
+      ]);
     }
 
     grunt.task.run([
       'clean:server',
       'concurrent:server',
       'autoprefixer',
-      'connect:livereload',
+//      'connect:livereload',
+      'express:dev',
       'karma:watch:start',
       'watch'
     ]);
@@ -646,7 +643,7 @@ module.exports = function (grunt) {
       return grunt.task.run([
         'build',
         'express:production:start',
-        'protractor:cucumber',
+        'protractor:e2e',
         'express:production:stop'
       ]);
     }
@@ -664,7 +661,7 @@ module.exports = function (grunt) {
       'concurrent:server',
       'autoprefixer',
       'express:e2e:start',
-      'protractor:cucumber',
+      'protractor:e2e',
       'express:e2e:stop'
     ]);
   });

@@ -1,7 +1,7 @@
 // An example configuration file.
 exports.config = {
   // Do not start a Selenium Standalone sever - only run this using chrome.
-//  chromeOnly: true,
+  chromeOnly: false,
 //  chromeDriver: '../node_modules/protractor/selenium/chromedriver',
 
 //  The second method for running Protractor tests is to connect to a separately running Selenium server.
@@ -16,9 +16,23 @@ exports.config = {
 //  sauceKey: process.env.SAUCE_ACCESS_KEY,
 
   // Capabilities to be passed to the webdriver instance.
+  seleniumAddress: 'http://127.0.0.1:4444/wd/hub',
+
   capabilities: {
-    browserName: 'chrome'
+    browserName: 'firefox'
   },
+//  multiCapabilities: [
+//    {
+//      'browserName': 'firefox'
+//    },
+//    {
+//      'browserName': 'safari'
+//    },
+//    {
+//    'browserName': 'chrome'
+//    }
+//  ],
+
 
   // The server under test
   baseUrl: 'http://localhost:' + (process.env.HTTP_PORT || '9000'),

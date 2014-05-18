@@ -16,6 +16,7 @@ module.exports = function(config) {
       'karma-phantomjs-launcher',
       'karma-chrome-launcher',
       'karma-firefox-launcher',
+      'karma-safari-launcher',
       'karma-growl-reporter'
 //      'karma-ie-launcher'
     ],
@@ -63,7 +64,12 @@ module.exports = function(config) {
     // - Safari (only Mac)
     // - PhantomJS
     // - IE (only Windows)
+    // You can run multiple browsers e.g.
+    // browsers: ['Chrome', 'Firefox', 'Safari'],
+    // On Windows to run IE you must also include the karma-ie-launcher to the plugin section above AND add to you node modules with
+    // npm install karma-ie-launcher --save-dev
     browsers: ['Chrome'],
+
 
     preprocessors: {
       'app/**/!(*_test).js': 'coverage'
