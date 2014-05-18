@@ -8,15 +8,12 @@ exports.config = {
 
   multiCapabilities: [
     {
-//      platform: 'OS X 10.9',
       'browserName': 'firefox'
     },
     {
-//      platform: 'OS X 10.9',
       'browserName': 'safari'
     },
     {
-//      platform: 'OS X 10.9',
       'browserName': 'chrome'
     }
   ],

@@ -161,7 +161,8 @@ module.exports = function (grunt) {
       },
       test: {
         options: {
-          script: 'path/to/test/server.js'
+          port: Config.test.port,
+          script: 'test/server/bin/www'
         }
       },
       e2e: {
@@ -554,19 +555,47 @@ module.exports = function (grunt) {
         keepAlive: true, // If false, the grunt process stops when the test fails.
         noColor: false // If true, protractor will not use colors in its output.
       },
-      mocha: {
+//      mocha: {
+//        options: {
+//          baseUrl: 'http://0.0.0.0:' + Config.e2e.port + '/',
+//          configFile: 'test/protractor-conf.js', // Default config file
+//          args: {} // Target-specific arguments
+//        }
+//      },
+      test: {
         options: {
-          baseUrl: 'http://0.0.0.0:' + Config.e2e.port + '/',
-          configFile: 'test/protractor-conf.js', // Default config file
-          args: {} // Target-specific arguments
-        }
-      },
-      e2e: {
-        options: {
-          configFile: 'test/protractor-cuke-conf.js', // Default config file
+          configFile: 'test/protractor-cuke-chrome-conf.js', // Default config file
           args: {
             chromeOnly: true,
 
+            baseUrl: 'http://0.0.0.0:' + Config.test.port + '/',
+            capabilities: {
+              // Possible values are chrome, firefox, safari, ei, and phantomjs
+              'browserName': 'chrome'
+            }
+
+          } // Target-specific arguments
+        }
+      },
+      dist: {
+        options: {
+          configFile: 'test/protractor-cuke-chrome-conf.js', // Default config file
+          args: {
+            chromeOnly: true,
+
+            baseUrl: 'http://0.0.0.0:' + Config.e2e.port + '/',
+            capabilities: {
+              // Possible values are chrome, firefox, safari, ei, and phantomjs
+              'browserName': 'chrome'
+            }
+
+          } // Target-specific arguments
+        }
+      },
+      desktops: {
+        options: {
+          configFile: 'test/protractor-cuke-desktops-conf.js', // Default config file
+          args: {
             baseUrl: 'http://0.0.0.0:' + Config.e2e.port + '/',
             capabilities: {
               // Possible values are chrome, firefox, safari, ei, and phantomjs
@@ -643,10 +672,20 @@ module.exports = function (grunt) {
       return grunt.task.run([
         'build',
         'express:production:start',
-        'protractor:e2e',
+        'protractor:dist',
         'express:production:stop'
       ]);
     }
+    if (target === 'desktops') {
+      return grunt.task.run([
+        'build',
+        'express:production:start',
+        'protractor:desktops',
+        'express:production:stop'
+      ]);
+    }
+
+    // Always do saucelabs with a dist build
     if (target === 'saucelabs') {
       return grunt.task.run([
         'build',
@@ -660,9 +699,9 @@ module.exports = function (grunt) {
       'clean:server',
       'concurrent:server',
       'autoprefixer',
-      'express:e2e:start',
-      'protractor:e2e',
-      'express:e2e:stop'
+      'express:test:start',
+      'protractor:test',
+      'express:test:stop'
     ]);
   });
 
