@@ -14,6 +14,7 @@ describe('Controller: LogoutCtrl', function () {
     LogoutCtrl,
     scope,
     $state,
+    Notification,
     $httpBackend;
 
   beforeEach(function() {
@@ -30,11 +31,13 @@ describe('Controller: LogoutCtrl', function () {
       AuthenticationService = $injector.get('AuthenticationService');
       UserProfileService    = $injector.get('UserProfileService');
       $state                = $injector.get('$state');
+      Notification          = $injector.get('Notification');
 
 
       spyOn(AuthenticationService, 'logout').and.callFake(promised);
       spyOn(UserProfileService, 'logout').and.callFake(promised);
       spyOn($state, 'go').and.stub();
+      spyOn(Notification, 'success').and.stub();
 
       scope         = $rootScope.$new();
 
@@ -46,7 +49,7 @@ describe('Controller: LogoutCtrl', function () {
 
   });
 
-  it('should call AuthenticationService logout', function() {
+  it('should call AuthenticationService logout and notify user', function() {
     $httpBackend.whenGET('main/main.html').respond(function(/* method, url */) {
       return [200];
     });
@@ -58,8 +61,7 @@ describe('Controller: LogoutCtrl', function () {
     expect(UserProfileService.logout.calls.count()).toEqual(1);
     expect($state.go.calls.count()).toEqual(1);
     expect($state.go).toHaveBeenCalledWith('main');
-
-
+    expect(Notification.success).toHaveBeenCalled();
   });
 
 });

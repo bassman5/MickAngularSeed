@@ -6,6 +6,7 @@ angular.module('anApp', [
     'ngCookies',
     'ngResource',
     'ngSanitize',
+    'ngAnimate',
     'restangular',
     'angular-growl',
     'http-auth-interceptor',

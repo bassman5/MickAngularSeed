@@ -617,6 +617,18 @@ module.exports = function (grunt) {
             build:               '"' + process.env.TRAVIS_JOB_NUMBER + '"'
           }
         }
+      },
+      saucelabsDev: {
+        options: {
+          configFile: 'test/protractor-cuke-saucelabs-dev-conf.js', // Default config file
+          args: {
+            baseUrl: 'http://0.0.0.0:' + Config.test.port + '/',
+            sauceUser: process.env.SAUCE_USERNAME,
+            sauceKey: process.env.SAUCE_ACCESS_KEY,
+            name: Config.project,
+            tags: ['dev']
+          }
+        }
       }
     },
 
@@ -692,6 +704,16 @@ module.exports = function (grunt) {
         'express:production:start',
         'protractor:saucelabs',
         'express:production:stop'
+      ]);
+    }
+    if (target === 'saucelabsDev') {
+      return grunt.task.run([
+        'clean:server',
+        'concurrent:server',
+        'autoprefixer',
+        'express:test:start',
+        'protractor:saucelabsDev',
+        'express:test:stop'
       ]);
     }
 

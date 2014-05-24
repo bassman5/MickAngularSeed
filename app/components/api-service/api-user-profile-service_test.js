@@ -11,25 +11,21 @@
 
 describe('Api: UserProfile', function () {
 
-  var $httpBackend, Api, UserProfile, notificationApi, Restangular;
+  var $httpBackend, Api, UserProfile, Restangular, Notification;
 
   beforeEach(function() {
     module('anApp');
-    notificationApi = {
-      success:  jasmine.createSpy('success'),
-      error:    jasmine.createSpy('error')
-    };
-
-    module(function ($provide) {
-      $provide.value('Notification', notificationApi);
-    });
 
     inject(function($injector) {
       $httpBackend = $injector.get('$httpBackend');
-      UserProfile = $injector.get('UserProfile');
-      Api         = $injector.get('Api');
-      Restangular = $injector.get('Restangular');
+      UserProfile  = $injector.get('UserProfile');
+      Api          = $injector.get('Api');
+      Restangular  = $injector.get('Restangular');
+      Notification = $injector.get('Notification');
     });
+    spyOn(Notification, 'success').and.stub();
+    spyOn(Notification, 'error'  ).and.stub();
+
   });
 
   afterEach(function() {
@@ -51,7 +47,7 @@ describe('Api: UserProfile', function () {
       done();
     });
     $httpBackend.flush();
-    expect(notificationApi.error).toHaveBeenCalled();
+    expect(Notification.error).toHaveBeenCalled();
     done();
   });
 
@@ -65,7 +61,7 @@ describe('Api: UserProfile', function () {
       done();
     });
     $httpBackend.flush();
-    expect(notificationApi.error).toHaveBeenCalled();
+    expect(Notification.error).toHaveBeenCalled();
 
     done();
   });

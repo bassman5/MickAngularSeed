@@ -18,7 +18,8 @@
     "angular-http-auth": "~1.2.1",
     "angular-bootstrap": "~0.10.0",
     "angulartics": "~0.14.15",
-    "angular-mocks": "1.2.14"
+    "angular-mocks": "1.2.14",
+    "angular-animate": "1.2.14"
   },
   "devDependencies": {
     "angular-scenario": "1.2.14"

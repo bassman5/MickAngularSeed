@@ -9,25 +9,19 @@
 
 describe('Api: Users', function () {
 
-  var $httpBackend, Api, Users, notificationApi, Restangular;
+  var $httpBackend, Api, Users, Notification, Restangular;
 
   beforeEach(function() {
     module('anApp');
-    notificationApi = {
-      success:  jasmine.createSpy('success'),
-      error:    jasmine.createSpy('error')
-    };
-
-    module(function ($provide) {
-      $provide.value('Notification', notificationApi);
-    });
-
     inject(function($injector) {
       $httpBackend = $injector.get('$httpBackend');
       Users = $injector.get('Users');
       Api = $injector.get('Api');
       Restangular = $injector.get('Restangular');
+      Notification = $injector.get('Notification');
     });
+    spyOn(Notification, 'success').and.stub();
+    spyOn(Notification, 'error'  ).and.stub();
   });
 
   afterEach(function() {
@@ -58,7 +52,7 @@ describe('Api: Users', function () {
 
     Users.getList();
     $httpBackend.flush();
-    expect(notificationApi.error).toHaveBeenCalled();
+    expect(Notification.error).toHaveBeenCalled();
   });
 
   it('should notify not authorized', function () {
@@ -68,7 +62,7 @@ describe('Api: Users', function () {
 
     Users.getList();
     $httpBackend.flush();
-    expect(notificationApi.error).toHaveBeenCalled();
+    expect(Notification.error).toHaveBeenCalled();
   });
 
   it('should notify errors with no message', function () {
@@ -78,7 +72,7 @@ describe('Api: Users', function () {
 
     Users.getList();
     $httpBackend.flush();
-    expect(notificationApi.error).toHaveBeenCalled();
+    expect(Notification.error).toHaveBeenCalled();
   });
 
 

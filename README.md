@@ -1,6 +1,6 @@
 ## This is an AngularJS Application with testing and distribution build configured
 
-[![Build Status](http://img.shields.io/travis/bassman5/MickAngularSeed.svg)](https://travis-ci.org/bassman5/MickAngularSeed) [![Code Climate](https://codeclimate.com/github/bassman5/MickAngularSeed.png)](https://codeclimate.com/github/bassman5/MickAngularSeed) [![Dependency Status](https://david-dm.org/bassman5/MickAngularSeed.svg?theme=shields.io)](https://david-dm.org/bassman5/MickAngularSeed) [![devDependency Status](https://david-dm.org/bassman5/MickAngularSeed/dev-status.svg?theme=shields.io)](https://david-dm.org/bassman5/MickAngularSeed#info=devDependencies)
+[![Build Status](http://img.shields.io/travis/bassman5/MickAngularSeed.svg)](https://travis-ci.org/bassman5/MickAngularSeed) [![Dependency Status](https://david-dm.org/bassman5/MickAngularSeed.svg?theme=shields.io)](https://david-dm.org/bassman5/MickAngularSeed) [![devDependency Status](https://david-dm.org/bassman5/MickAngularSeed/dev-status.svg?theme=shields.io)](https://david-dm.org/bassman5/MickAngularSeed#info=devDependencies)
 
 Install
 ```
@@ -68,7 +68,7 @@ Uses git metadata, based on [these commit conventions](https://docs.google.com/d
 
 If you have a problem on a mac with grunt serve hanging add the following line to /etc/launchd.conf and reboot
 ```
-limit maxfiles 2048 10480
+limit maxfiles 8000 10480
 ```
 The default open files limit is very low on macosx.
 
@@ -173,6 +173,12 @@ This task expects a file called .aws-credentials.json in you project root but be
        "secretAccessKey": "..."
      }
      ```
+
+### Code Quality Report
+A report can be generated using [Plato JavaScript static code analysis](https://github.com/es-analysis/plato)
+Install plato with: `npm install -g plato`
+Then run the code report with `npm run-script report`
+A browser will open report/index.html
 
 
 

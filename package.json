@@ -65,6 +65,8 @@
   },
   "scripts": {
     "test": "grunt test",
-    "postinstall": "node_modules/.bin/bower install; node_modules/.bin/webdriver-manager update; (cd test/server; npm install)"
+    "postinstall": "node_modules/.bin/bower install; node_modules/.bin/webdriver-manager update; (cd test/server; npm install)",
+    "report": "plato -r -d report -l .jshintrc -t 'Mick Angular Seed' -x _test.js app; open report/index.html"
+
   }
 }
