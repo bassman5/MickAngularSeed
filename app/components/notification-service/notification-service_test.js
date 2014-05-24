@@ -8,21 +8,18 @@
 
 describe('Service: Notification', function () {
 
-  var Notification, growlApi;
+  var Notification, growl;
   beforeEach(function() {
     module('anApp');
-    growlApi = {
-      addErrorMessage: jasmine.createSpy('addErrorMessage'),
-      addSuccessMessage: jasmine.createSpy('addSuccessMessage')
-    };
-
-    module(function ($provide) {
-      $provide.value('growl', growlApi);
-    });
 
     inject(function($injector) {
       Notification = $injector.get('Notification');
+      growl        = $injector.get('growl');
     });
+    spyOn(growl, 'addErrorMessage').and.stub();
+    spyOn(growl, 'addSuccessMessage').and.stub();
+    spyOn(growl, 'addWarnMessage').and.stub();
+
   });
 
   it('should do something', function () {
@@ -31,15 +28,22 @@ describe('Service: Notification', function () {
 
   it('should call error notification', function() {
     Notification.error('An Error Message');
-    expect(growlApi.addErrorMessage.calls.count()).toEqual(1);
-    expect(growlApi.addErrorMessage).toHaveBeenCalledWith('An Error Message', { ttl : -1 });
+    expect(growl.addErrorMessage.calls.count()).toEqual(1);
+    expect(growl.addErrorMessage).toHaveBeenCalledWith('An Error Message', { ttl : -1 });
   });
 
   it('should call success notification', function() {
     var msg = 'A Success Message';
     Notification.success(msg);
-    expect(growlApi.addSuccessMessage.calls.count()).toEqual(1);
-    expect(growlApi.addSuccessMessage).toHaveBeenCalledWith(msg);
+    expect(growl.addSuccessMessage.calls.count()).toEqual(1);
+    expect(growl.addSuccessMessage).toHaveBeenCalledWith(msg);
+  });
+
+  it('should call warn notification', function() {
+    var msg = 'A Warn Message';
+    Notification.warn(msg);
+    expect(growl.addWarnMessage.calls.count()).toEqual(1);
+    expect(growl.addWarnMessage).toHaveBeenCalledWith(msg);
   });
 
 });

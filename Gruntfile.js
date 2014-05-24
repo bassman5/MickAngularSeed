@@ -403,7 +403,7 @@ module.exports = function (grunt) {
       },
       options: {
         csspath: '../<%= yeoman.tmp %>/',
-        ignore: ['#added_at_runtime', /\.open/, /\.ng-invalid/, /disabled/]
+        ignore: ['#added_at_runtime', /\.open/, /\.growl/, /\.alert/, /\.close/, /\.ng-invalid/, /disabled/]
       }
     },
 
@@ -646,7 +646,8 @@ module.exports = function (grunt) {
     if (target === 'dist') {
       return grunt.task.run([
         'build',
-        'connect:dist:keepalive'
+        'express:production',
+        'watch'
       ]);
     }
 
@@ -654,7 +655,6 @@ module.exports = function (grunt) {
       'clean:server',
       'concurrent:server',
       'autoprefixer',
-//      'connect:livereload',
       'express:dev',
       'karma:watch:start',
       'watch'

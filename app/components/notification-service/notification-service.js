@@ -11,6 +11,9 @@ angular.module('anApp')
       success: function (text) {
         growl.addSuccessMessage(text);
       },
+      warn: function (text) {
+        growl.addWarnMessage(text);
+      },
       error: function (text) {
         growl.addErrorMessage(text, {ttl: -1});
       }
