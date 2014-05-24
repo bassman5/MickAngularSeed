@@ -17,7 +17,26 @@ exports.config = {
       'browserName': 'chrome'
     }
   ],
+  onPrepare: function() {
+    // Set the browser size with this
+//    browser.driver.manage().window().setSize(1200, 800);
+    // Disable Animations with this
+    var disableNgAnimate = function() {
+      angular.module('disableNgAnimate', []).run(function($animate) {
+        $animate.enabled(false);
+      });
+    };
+    browser.addMockModule('disableNgAnimate', disableNgAnimate);
 
+    // This will make the default time for a growl message 10ms
+    var disableGrowlTTL= function() {
+      angular.module('disableGrowlTTL', []).config(function(growlProvider) {
+        growlProvider.globalTimeToLive(10);
+      });
+    };
+
+    browser.addMockModule('disableGrowlTTL', disableGrowlTTL);
+  },
 
   // The server under test
   baseUrl: 'http://localhost:' + (process.env.HTTP_PORT || '9000'),
