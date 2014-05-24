@@ -53,9 +53,9 @@
     "chai-as-promised": "~4.1.1",
     "cucumber": "~0.4.0",
     "lodash": "~2.4.1",
-    "grunt-protractor-runner": "~0.2.4",
+    "grunt-protractor-runner": "~1.0.0",
     "grunt-conventional-changelog": "~1.1.0",
-    "express": "~4.2.0",
+    "express": "~4.3.1",
     "grunt-express-server": "~0.4.17",
     "karma-safari-launcher": "~0.1.1"
   },
