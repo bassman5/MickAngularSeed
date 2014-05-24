@@ -68,7 +68,7 @@ Uses git metadata, based on [these commit conventions](https://docs.google.com/d
 
 If you have a problem on a mac with grunt serve hanging add the following line to /etc/launchd.conf and reboot
 ```
-limit maxfiles 8000 10480
+limit maxfiles 16384 32768
 ```
 The default open files limit is very low on macosx.
 

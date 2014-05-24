@@ -623,6 +623,14 @@ module.exports = function (grunt) {
           configFile: 'test/protractor-cuke-saucelabs-dev-conf.js', // Default config file
           args: {
             baseUrl: 'http://0.0.0.0:' + Config.test.port + '/',
+            capabilities: {
+              // Possible values are chrome, firefox, safari, ei, and phantomjs
+              build:'Local',
+              name: 'MAS - Client',
+              platform: 'Windows 7',
+              'browserName': 'iexplore',
+              version: 10
+            },
             sauceUser: process.env.SAUCE_USERNAME,
             sauceKey: process.env.SAUCE_ACCESS_KEY,
             name: Config.project,
