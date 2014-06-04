@@ -797,7 +797,6 @@ module.exports = function (grunt) {
         'build',
         'express:production:start',
         'protractor:saucelabs',
-        'protractor:saucelabsWin',
         'express:production:stop'
       ]);
     }
@@ -827,6 +826,7 @@ module.exports = function (grunt) {
     'build',
     'express:production:start',
     'protractor:saucelabs',
+    'protractor:saucelabsWin',
     'express:production:stop'
   ]);
 
