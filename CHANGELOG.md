@@ -1,3 +1,12 @@
+<a name="0.3.0"></a>
+## 0.3.0 (2014-06-04)
+
+
+#### Features
+
+* **test:** Add grunt e2e command ([b745fa31](https://github.com/bassman5/MickAngularSeed/commit/b745fa318796d4af3b6e23a4b1e0608124f5436a), closes [#4](https://github.com/bassman5/MickAngularSeed/issues/4))
+* **IE8:** Add IE8 support with SauceLabs tests ([36d322b](https://github.com/bassman5/MickAngularSeed/commit/36d322bf23c948ab2cd4eae4ca14f02eba7534bc))
+
 <a name="0.2.1"></a>
 ### 0.2.1 (2014-05-10)
 

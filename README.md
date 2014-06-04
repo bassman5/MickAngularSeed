@@ -181,6 +181,14 @@ Then run the code report with `npm run-script report`
 A browser will open report/index.html
 
 
+### Creating a release
+The [grunt bump plugin](https://github.com/vojtajina/grunt-bump) is used.
+To create a release
+```
+grunt bump-only:major # or minor, patch, build 
+grunt changelog
+grunt bump-commit
+```
 
 #### MIT License
 
