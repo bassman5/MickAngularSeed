@@ -1,21 +1,19 @@
 // # Footer
 // #########
-@import '../styles/_base.scss';
 
-footer {
-  line-height: 6px;
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
   height: 44px;
   color: $footer-color;
-  margin: 0;
-  margin-top: 54px;
-  padding-top: 18px;
-  padding-right: 24px;
-  font-size: 12px;
+  background-color: $footer-bg;
   border-top: 1px solid $footer-border;
 
   ul {
     padding-left: 0;
-    margin: 0 0px 0 0;
+    margin: 10px 0px 0 0px;
 
     li {
       display: inline;

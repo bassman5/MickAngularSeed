@@ -1,10 +1,17 @@
+$icon-font-path: "/styles/fonts/";
 
-@import '_bootstrap.scss';
-@import '_base.scss';
-@import '_general.scss';
-@import '_angular-growl.scss';
-@import '../main/_footer.scss';
-@import '../main/_main.scss';
+
+@import 'variables.scss';
+
+// bower:scss
+@import "../../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap.scss";
+// endbower
+@import "angular-growl.min.scss";
+
+@import 'general.scss';
+@import '../main/footer.scss';
+@import '../main/main.scss';
 @import '../main/navbar.scss';
-@import '../main/login/_login.scss';
+@import '../main/login/login.scss';
+@import '../components/notification-service/_notification.scss';
 

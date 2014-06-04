@@ -9,7 +9,7 @@ angular.module('anApp')
         route: 'restangularRoute',
         selfLink: 'self.href'
       });
-      RestangularConfigurer.setRequestSuffix('.json');
+//      RestangularConfigurer.setRequestSuffix('.json');
       RestangularConfigurer.setErrorInterceptor(
         function(resp) {
           Notification.error('Server error ' + (resp.data ? resp.data.message : '' || ''));

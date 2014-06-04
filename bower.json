@@ -3,10 +3,7 @@
   "version": "0.0.0",
   "dependencies": {
     "angular": "1.2.16",
-    "json3": "~3.2.6",
-    "es5-shim": "~2.1.0",
-    "jquery": "~1.10.2",
-    "sass-bootstrap": "~3.0.2",
+    "jquery": "~1.11.0",
     "angular-resource": "1.2.16",
     "angular-cookies": "1.2.16",
     "angular-sanitize": "1.2.16",
@@ -18,10 +15,15 @@
     "angular-http-auth": "~1.2.1",
     "angular-bootstrap": "~0.10.0",
     "angulartics": "~0.14.15",
-    "angular-mocks": "1.2.16",
-    "angular-animate": "1.2.16"
+    "angular-animate": "1.2.16",
+    "bootstrap-sass-official": "v3.1.1+2"
   },
   "devDependencies": {
+    "respond": "~1.4.2",
+    "html5shiv": "~3.7.2",
+    "json3": "~3.2.6",
+    "es5-shim": "~2.1.0",
+    "angular-mocks": "1.2.16",
     "angular-scenario": "1.2.16"
   },
   "resolutions": {

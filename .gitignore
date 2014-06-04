@@ -8,4 +8,4 @@ bower_components
 dist
 coverage
 report
-.aws-credentials.json
+.credentials.json

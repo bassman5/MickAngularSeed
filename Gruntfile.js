@@ -20,7 +20,7 @@ module.exports = function (grunt) {
   var modRewrite = require('connect-modrewrite');
 
   var Config = {
-    project: 'Mick\'s Angular Seed',
+    project: 'MAS',
     dev: {
       port: 9000
     },
@@ -37,6 +37,16 @@ module.exports = function (grunt) {
   // Define the configuration for all the tasks
   grunt.initConfig({
 
+    credentials: function() {
+      if (grunt.file.exists('.credentials.json')) {
+        return grunt.file.readJSON('.credentials.json');  // Read the file
+      }
+      return {  // Use values if there is no file called .credentials.json
+        AwsAccessKeyId: 'not set', AwsSecretAccessKey: 'not set',
+        GoogleAnalyticsKey: 'XXXXXXXXX', GoogleAnalyticsHost: 'aaa.host.com'};
+    },
+
+
     // Project settings
     yeoman: {
       // configurable paths
@@ -48,6 +58,10 @@ module.exports = function (grunt) {
 
     // Watches files for changes and runs tasks based on the changed files
     watch: {
+      bower: {
+        files: ['bower.json'],
+        tasks: ['wiredep']
+      },
       js: {
         files: ['<%= yeoman.app %>/**/*.js'],
         tasks: ['newer:jshint:all'],
@@ -60,12 +74,19 @@ module.exports = function (grunt) {
         tasks: ['karma:watch:run'] //NOTE the :run flag
       },
       jsTest: {
-        files: ['<%= yeoman.app %>/**/*_test.js', 'test/**/*.js'],
+        files: ['<%= yeoman.app %>/**/*_test.js', 'test/**/*.js', '!test/server/node_modules/**/*.js'],
         tasks: ['newer:jshint:test']
       },
       compass: {
         files: ['<%= yeoman.app %>/**/*.{scss,sass}'],
         tasks: ['compass:server', 'autoprefixer']
+      },
+      express: {
+        files:  [ 'test/server/**/*.js', '!test/server/node_modules/**/*.js' ],
+        tasks:  [ 'express:dev' ],
+        options: {
+          spawn: false // for grunt-contrib-watch v0.5.0+, "nospawn: true" for lower versions. Without this option specified express won't be reloaded
+        }
       },
       gruntfile: {
         files: ['Gruntfile.js']
@@ -224,17 +245,39 @@ module.exports = function (grunt) {
       }
     },
 
+    // Automatically inject Bower components into the app
+    wiredep: {
+      app: {
+        src: ['<%= yeoman.app %>/index.html'],
+        ignorePath: '<%= yeoman.app %>/'
+        // Optional:
+        // ---------
+//        cwd: '',
+//        dependencies: true,
+//        devDependencies: false,
+//        exclude: [],
+//        fileTypes: {},
+//        ignorePath: '',
+//        overrides: {}
+
+      },
+      sass: {
+        src: ['<%= yeoman.app %>/styles/app.scss'],
+        ignorePath: '<%= yeoman.app %>/bower_components/'
+      }
+    },
+
 
     // Compiles Sass to CSS and generates necessary files if requested
     compass: {
       options: {
         sassDir: '<%= yeoman.app %>/styles',
-        cssDir: '<%= yeoman.tmp %>/styles',
-        generatedImagesDir: '<%= yeoman.tmp %>/images/generated',
+        cssDir: '.tmp/styles',
+        generatedImagesDir: '.tmp/images/generated',
         imagesDir: '<%= yeoman.app %>/images',
-        javascriptsDir: '<%= yeoman.app %>/js',
+        javascriptsDir: '<%= yeoman.app %>/scripts',
         fontsDir: '<%= yeoman.app %>/styles/fonts',
-        importPath: 'bower_components',
+        importPath: '<%= yeoman.app %>/../bower_components',
         httpImagesPath: '/images',
         httpGeneratedImagesPath: '/images/generated',
         httpFontsPath: '/styles/fonts',
@@ -244,7 +287,12 @@ module.exports = function (grunt) {
       },
       dist: {
         options: {
-          generatedImagesDir: '<%= yeoman.distTmp %>/images/generated'
+          generatedImagesDir: '<%= yeoman.dist %>/images/generated'
+        }
+      },
+      ie8: {
+        options: {
+          debugInfo: false
         }
       },
       server: {
@@ -254,25 +302,21 @@ module.exports = function (grunt) {
       }
     },
 
-    // Renames files for browser caching purposes
-    rev: {
+    filerev: {
       options: {
         encoding: 'utf8',
         algorithm: 'md5',
         length: 8
       },
       dist: {
-        files: {
-          src: [
-            '<%= yeoman.distTmp %>/js/{,*/}*.js',
-            '<%= yeoman.distTmp %>/styles/{,*/}*.css',
-            '<%= yeoman.distTmp %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
-            '<%= yeoman.distTmp %>/styles/fonts/*'
-          ]
-        }
+        src: [
+          '<%= yeoman.distTmp %>/js/{,*/}*.js',
+          '<%= yeoman.distTmp %>/styles/{,*/}*.css',
+          '<%= yeoman.distTmp %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
+          '<%= yeoman.distTmp %>/styles/fonts/*'
+        ]
       }
     },
-
 
 
     // Reads HTML for usemin blocks to enable smart builds that automatically
@@ -281,11 +325,32 @@ module.exports = function (grunt) {
     useminPrepare: {
       html: '<%= yeoman.app %>/index.html',
       options: {
-//        root: '<%= yeoman.app %>',
-        root: '.',
+        root: '<%= yeoman.app %>',
         dest: '<%= yeoman.distTmp %>'
       }
 
+    },
+
+    replace: {
+      // Only add Analytics tracking when doing production build
+      // Could add different credentials for test if required
+      dist: {
+        options: {
+          patterns: [
+            {
+              match: 'GOOGLE_ANALYTICS_KEY',    // replace @@GOOGLE_ANALYTICS_KEY
+              replacement: '<%= credentials().GoogleAnalyticsKey %>'
+            },
+            {
+              match: 'GOOGLE_ANALYTICS_HOST',   // replace @@GOOGLE_ANALYTICS_HOST
+              replacement: '<%= credentials().GoogleAnalyticsHost %>'
+            }          ],
+          force: true
+        },
+        files: [
+          {expand: true, flatten: true, src: ['<%= yeoman.distTmp %>/index.html'], dest: '<%= yeoman.distTmp %>'}
+        ]
+      }
     },
 
     // Performs rewrites based on rev and the useminPrepare configuration
@@ -293,10 +358,10 @@ module.exports = function (grunt) {
       html: ['<%= yeoman.distTmp %>/{,*/}*.html', '<%= yeoman.distTmp %>/**/*.html'],
       css: ['<%= yeoman.distTmp %>/styles/{,*/}*.css'],
       options: {
-        assetsDirs: ['<%= yeoman.distTmp %>', '<%= yeoman.distTmp %>/styles/fonts/', '<%= yeoman.distTmp %>/images/'],
-        patterns: {
-          css: [[/url\(\s*['']?([^''\)]+)['']?\s*\)/img, 'Replacing reference to urls']] // FIXME While usemin won't have full support for revved files we have to put all references manually here
-        }
+        assetsDirs: ['<%= yeoman.distTmp %>', '<%= yeoman.distTmp %>/styles/fonts/', '<%= yeoman.distTmp %>/images/']
+//        patterns: {
+//          css: [[/url\(\s*['']?([^''\)]+)['']?\s*\)/img, 'Replacing reference to urls']] // FIXME While usemin won't have full support for revved files we have to put all references manually here
+//        }
 
       }
     },
@@ -393,16 +458,15 @@ module.exports = function (grunt) {
       }
     },
 
-
     // Remove unused CSS across multiple files and ignore specific selectors
     uncss: {
       dist: {
         files: {
-          '<%= yeoman.tmp %>/styles/app.css': ['<%= yeoman.app %>/index.html','<%= yeoman.app %>/**/*.html']
+          '<%= yeoman.distTmp %>/styles/app.css': ['<%= yeoman.distTmp %>/index.html','<%= yeoman.distTmp %>/**/*.html']
         }
       },
       options: {
-        csspath: '../<%= yeoman.tmp %>/',
+        csspath: '../../<%= yeoman.distTmp %>/',
         ignore: ['#added_at_runtime', /\.open/, /\.growl/, /\.alert/, /\.close/, /\.ng-invalid/, /disabled/]
       }
     },
@@ -436,6 +500,17 @@ module.exports = function (grunt) {
           cwd: '<%= yeoman.tmp %>/images',
           dest: '<%= yeoman.distTmp %>/images',
           src: ['generated/*']
+        }]
+      },
+      css: {
+        files: [{
+          expand: true,
+          dot: true,
+          cwd: '<%= yeoman.tmp %>/concat/styles',
+          dest: '<%= yeoman.distTmp %>',
+          src: [
+            'styles/*.css'
+          ]
         }]
       },
       distFinal: {
@@ -472,17 +547,12 @@ module.exports = function (grunt) {
       ]
     },
 
-    aws: function() {
-      if (grunt.file.exists('.aws-credentials.json')) {
-        return grunt.file.readJSON('.aws-credentials.json');  // Read the file
-      }
-      return { accessKeyId: 'not set', secretAccessKey: 'not set'};
-    },
+
 
     s3: {
       options: {
-        accessKeyId: '<%= aws().accessKeyId %>',
-        secretAccessKey: '<%= aws().secretAccessKey %>',
+        accessKeyId: '<%= credentials().AwsAccessKeyId %>',
+        secretAccessKey: '<%= credentials().AwsSecretAccessKey %>',
         bucket: 'angularseed',
         createBucket: true,
         enableWeb: true,
@@ -500,16 +570,15 @@ module.exports = function (grunt) {
   // By default, your `index.html`'s <!-- Usemin block --> will take care of
     // minification. These next options are pre-configured if you do not wish
     // to use the Usemin blocks.
-    // cssmin: {
-    //   dist: {
-    //     files: {
-    //       '<%= yeoman.distTmp %>/styles/main.css': [
-    //         '<%= yeoman.tmp %>/styles/{,*/}*.css',
-    //         '<%= yeoman.app %>/styles/{,*/}*.css'
-    //       ]
-    //     }
-    //   }
-    // },
+    cssmin: {
+       dist: {
+         files: {
+           '<%= yeoman.distTmp %>/styles/app.css': [
+             '<%= yeoman.distTmp %>/styles/app.css'
+           ]
+         }
+       }
+    },
     // uglify: {
     //   dist: {
     //     files: {
@@ -523,11 +592,10 @@ module.exports = function (grunt) {
     //   dist: {}
     // },
 
-
     templatesConcat: {
-      src: '<%= yeoman.distTmp %>/js/*.app.js',
+      src: '<%= yeoman.distTmp %>/js/app.*.js',
       templates: '<%= yeoman.tmp %>/js/templates-ugly/app-templates.js',
-      dest: '<%= yeoman.dist %>/js/*.app.js',
+      dest: '<%= yeoman.dist %>/js/app.*.js',
       index:'<%= yeoman.dist %>/index.html'
     },
 
@@ -618,23 +686,34 @@ module.exports = function (grunt) {
           }
         }
       },
+      saucelabsWin: {
+        options: {
+          configFile: 'test/protractor-cuke-saucelabs-win-conf.js', // Default config file
+          args: {
+            baseUrl: 'http://0.0.0.0:' + Config.e2e.port + '/',
+            sauceUser: process.env.SAUCE_USERNAME,
+            sauceKey: process.env.SAUCE_ACCESS_KEY,
+            name: Config.project,
+            tags: ['e2e'],
+            build:               '"' + process.env.TRAVIS_JOB_NUMBER + '"'
+          }
+        }
+      },
       saucelabsDev: {
         options: {
           configFile: 'test/protractor-cuke-saucelabs-dev-conf.js', // Default config file
           args: {
-            baseUrl: 'http://0.0.0.0:' + Config.test.port + '/',
+            baseUrl: 'http://127.0.0.1:' + Config.test.port + '/',
+            sauceUser: process.env.SAUCE_USERNAME,
+            sauceKey: process.env.SAUCE_ACCESS_KEY,
             capabilities: {
-              // Possible values are chrome, firefox, safari, ei, and phantomjs
+              // Possible values are chrome, firefox, safari, iexplore, and phantomjs
               build:'Local',
               name: 'MAS - Client',
               platform: 'Windows 7',
               'browserName': 'iexplore',
-              version: 10
-            },
-            sauceUser: process.env.SAUCE_USERNAME,
-            sauceKey: process.env.SAUCE_ACCESS_KEY,
-            name: Config.project,
-            tags: ['dev']
+              version: 8
+            }
           }
         }
       }
@@ -649,25 +728,33 @@ module.exports = function (grunt) {
 
   });
 
+  // Serve
+  grunt.registerTask('serve', [
+    'clean:server',
+    'wiredep',
+    'concurrent:server',
+    'autoprefixer',
+    'express:dev',
+    'karma:watch:start',
+    'watch'
+  ]);
 
-  grunt.registerTask('serve', function (target) {
-    if (target === 'dist') {
-      return grunt.task.run([
-        'build',
-        'express:production',
-        'watch'
-      ]);
-    }
+  grunt.registerTask('serve:dist', [
+    'build',
+    'express:production',
+    'watch'
+  ]);
 
-    grunt.task.run([
-      'clean:server',
-      'concurrent:server',
-      'autoprefixer',
-      'express:dev',
-      'karma:watch:start',
-      'watch'
-    ]);
-  });
+  grunt.registerTask('serve:ie8', [
+    'clean:server',
+    'wiredep',
+    'compass:ie8',
+    'autoprefixer',
+    'express:dev',
+    'karma:watch:start',
+    'watch'
+  ]);
+
 
 
   grunt.registerTask('server', function () {
@@ -680,7 +767,6 @@ module.exports = function (grunt) {
     'concurrent:test',
     'newer:jshint:all',
     'autoprefixer',
-    'connect:test',
     'karma:headless'
   ]);
 
@@ -711,13 +797,14 @@ module.exports = function (grunt) {
         'build',
         'express:production:start',
         'protractor:saucelabs',
+        'protractor:saucelabsWin',
         'express:production:stop'
       ]);
     }
     if (target === 'saucelabsDev') {
       return grunt.task.run([
         'clean:server',
-        'concurrent:server',
+        'compass:ie8',
         'autoprefixer',
         'express:test:start',
         'protractor:saucelabsDev',
@@ -745,18 +832,22 @@ module.exports = function (grunt) {
 
 
   grunt.registerTask('build', [
-    'clean:dist',
+  'clean:dist',
+    'wiredep',
     'useminPrepare',
     'concurrent:dist',
-    'uncss',
     'autoprefixer',
     'concat',
     'ngmin',
     'copy:dist',
+    'replace:dist',
     'cdnify',
+    'copy:css',
     'cssmin',
+    'uncss',
+    'cssmin:dist',
     'uglify',
-    'rev',
+    'filerev',
     'usemin',
     'htmlmin',
     'ngtemplates',
@@ -764,8 +855,8 @@ module.exports = function (grunt) {
     'uglify:templates',
     'copy:distFinal',
     'templatesConcat'
-
   ]);
+
 
   grunt.registerTask('default', [
     'newer:jshint',
@@ -793,14 +884,15 @@ module.exports = function (grunt) {
     this.requiresConfig(['templatesConcat', 'templates']);
     this.requiresConfig(['templatesConcat', 'dest']);
     this.requiresConfig(['templatesConcat', 'index']);
-    this.requiresConfig(['rev', 'options']);
+    this.requiresConfig(['filerev', 'options']);
 
     this.config = {};
     this.config.src       = grunt.config.get('templatesConcat.src');
     this.config.templates = grunt.config.get('templatesConcat.templates');
     this.config.dest      = grunt.config.get('templatesConcat.dest');
     this.config.index     = grunt.config.get('templatesConcat.index');
-    this.config.options   = grunt.config.get('rev.options');
+    this.config.options   = grunt.config.get('filerev.options');
+    this.config.filerev   = grunt.filerev;
     // Log... conditionally.
     grunt.verbose.ok('Config. ' + JSON.stringify(this.config));
 

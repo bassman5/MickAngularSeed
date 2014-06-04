@@ -1,32 +1,32 @@
-<nav class="navbar navbar-default" role="navigation" ng-controller="NavCtrl">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-        <a id="nav-home" class="navbar-brand" ui-sref="main">Home</a>
-    </div>
-    <div class="collapse navbar-collapse navbar-ex1-collapse">
-        <ul class="nav navbar-nav">
-            <li><a id='nav-about' ui-sref="about">About</a></li>
-            <li><a id='nav-contact' ui-sref="contact">Contact</a></li>
-        </ul>
-
-        <ul class="nav navbar-nav navbar-right">
-            <li ng-hide="isLoggedIn()"><a id='nav-login' ui-sref="login"> Login <span class="glyphicon glyphicon-log-in"></span></a></li>
-            <li ng-hide="isLoggedIn()"><a id='nav-register' ui-sref="register">Register</a></li>
-            <li ng-show="isLoggedIn()" class="dropdown">
-                <a id='nav-dropdown' class="dropdown-toggle" data-toggle="dropdown"> {{user().username}} <span class="glyphicon glyphicon-cog"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a id="settings-dropdown" ui-sref="settings">Settings</a></li>
-                    <li class="divider"></li>
-                    <li><a id='nav-logout' ui-sref="logout"> Logout <span class="glyphicon glyphicon-log-out"></span></a></li>
-                </ul>
-            </li>
-        </ul>
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation" ng-controller="NavCtrl">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a id="nav-home" class="navbar-brand" ui-sref="main">Home</a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                <li><a id='nav-about' ui-sref="about">About</a></li>
+                <li><a id='nav-contact' ui-sref="contact">Contact</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li ng-hide="isLoggedIn()"><a id='nav-login' ui-sref="login"> Login <span class="glyphicon glyphicon-log-in"></span></a></li>
+                <li ng-hide="isLoggedIn()"><a id='nav-register' ui-sref="register">Register</a></li>
+                <li ng-show="isLoggedIn()" class="dropdown">
+                    <a id='nav-dropdown' class="dropdown-toggle" data-toggle="dropdown"> {{user().username}} <span class="glyphicon glyphicon-cog"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a id="settings-dropdown" ui-sref="settings">Settings</a></li>
+                        <li class="divider"></li>
+                        <li><a id='nav-logout' ui-sref="logout"> Logout <span class="glyphicon glyphicon-log-out"></span></a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
     </div>
 </nav>
 <div growl></div>
-

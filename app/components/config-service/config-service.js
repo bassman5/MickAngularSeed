@@ -22,7 +22,7 @@ angular.module('anApp')
       LOGIN: '/login',
       LOGOUT: '/logout',
       REGISTER: '/register',
-      USER_PROFILE: '/api/v1/user-profile.json'
+      USER_PROFILE: '/api/v1/user-profile'
     },
     // Events for authentication
     EVENTS: {
