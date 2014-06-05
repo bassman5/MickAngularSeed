@@ -550,11 +550,11 @@ module.exports = function (grunt) {
       ]
     },
 
-    "git-describe": {
-      "options": {
+    'git-describe': {
+      'options': {
         // Task-specific options go here.
       },
-      "cwd": {
+      'cwd': {
         // Target-specific file lists and/or options go here.
       }
     },
@@ -894,10 +894,10 @@ module.exports = function (grunt) {
 
   grunt.registerTask('gitRevision', function() {
     grunt.event.once('git-describe', function (rev) {
-      grunt.log.writeln("Git Revision:   " + rev);
-      grunt.log.writeln("Git rev tag:    " + rev.tag);
-      grunt.log.writeln("Git rev object: " + rev.object); // The 6 character commit SHA by itself
-      grunt.log.writeln("Git rev dirty:  " + rev.dirty);   // A flag denoting whether all local changes are committed
+      grunt.log.writeln('Git Revision:   ' + rev);
+      grunt.log.writeln('Git rev tag:    ' + rev.tag);
+      grunt.log.writeln('Git rev object: ' + rev.object); // The 6 character commit SHA by itself
+      grunt.log.writeln('Git rev dirty:  ' + rev.dirty);   // A flag denoting whether all local changes are committed
       grunt.option('gitRevision', rev);
       grunt.option('gitTag', rev.tag);
       grunt.option('gitObj', rev.object);
