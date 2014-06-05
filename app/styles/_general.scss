@@ -52,6 +52,9 @@ body {
 .jumbotron {
   text-align: center;
   border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 10px;
+  padding-top: 24px;
+  padding-bottom: 24px;
 }
 
 .jumbotron .btn {
@@ -61,7 +64,7 @@ body {
 
 /* Supporting marketing content */
 .marketing {
-  margin: 40px 0;
+  margin-bottom: 40px;
 }
 
 .marketing p + h4 {

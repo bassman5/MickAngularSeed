@@ -21,6 +21,9 @@ module.exports = function (grunt) {
 
   var Config = {
     project: 'MAS',
+    bucket: 'angularseed',
+//    region: 'us-west-1',
+    region: 'us-east-1',
     dev: {
       port: 9000
     },
@@ -467,7 +470,7 @@ module.exports = function (grunt) {
       },
       options: {
         csspath: '../../<%= yeoman.distTmp %>/',
-        ignore: ['#added_at_runtime', /\.open/, /\.growl/, /\.alert/, /\.close/, /\.ng-invalid/, /disabled/]
+        ignore: ['#added_at_runtime', /\.in/, /\.collapsing/, /\.open/, /\.growl/, /\.alert/, /\.close/, /\.ng-invalid/, /disabled/]
       }
     },
 
@@ -547,13 +550,21 @@ module.exports = function (grunt) {
       ]
     },
 
-
+    "git-describe": {
+      "options": {
+        // Task-specific options go here.
+      },
+      "cwd": {
+        // Target-specific file lists and/or options go here.
+      }
+    },
 
     s3: {
       options: {
         accessKeyId: '<%= credentials().AwsAccessKeyId %>',
         secretAccessKey: '<%= credentials().AwsSecretAccessKey %>',
-        bucket: 'angularseed',
+        bucket: Config.bucket, // + '/' + '<%= grunt.option(\'gitRevision\') %>',
+        region: Config.region,
         createBucket: true,
         enableWeb: true,
         headers: {
@@ -563,7 +574,8 @@ module.exports = function (grunt) {
       },
       build: {
         cwd: 'dist',
-        src: '**'
+        src: '**',
+//        dest: '<%= grunt.option(\'gitRevision\') %>/'
       }
     },
 
@@ -878,6 +890,24 @@ module.exports = function (grunt) {
     'newer:jshint',
     'test',
     'build'
+  ]);
+
+  grunt.registerTask('gitRevision', function() {
+    grunt.event.once('git-describe', function (rev) {
+      grunt.log.writeln("Git Revision:   " + rev);
+      grunt.log.writeln("Git rev tag:    " + rev.tag);
+      grunt.log.writeln("Git rev object: " + rev.object); // The 6 character commit SHA by itself
+      grunt.log.writeln("Git rev dirty:  " + rev.dirty);   // A flag denoting whether all local changes are committed
+      grunt.option('gitRevision', rev);
+      grunt.option('gitTag', rev.tag);
+      grunt.option('gitObj', rev.object);
+    });
+    grunt.task.run('git-describe');
+  });
+
+  grunt.registerTask('deploy', [
+    'gitRevision',
+    's3'
   ]);
 
 

@@ -61,7 +61,8 @@
     "grunt-replace": "~0.7.7",
     "grunt-filerev": "~0.2.1",
     "grunt-wiredep": "~1.7.0",
-    "grunt-bump": "0.0.14"
+    "grunt-bump": "0.0.14",
+    "grunt-git-describe": "~2.3.2"
   },
   "license": "MIT",
   "engines": {
