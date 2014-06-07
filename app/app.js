@@ -53,5 +53,8 @@ angular.module('anApp', [
         templateUrl: 'settings/settings.html',
         controller: 'SettingsCtrl'
       });
-  }]);
+  }])
+  .run(function() {
+    FastClick.attach(document.body);
+});
 

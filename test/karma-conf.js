@@ -37,6 +37,7 @@ module.exports = function(config) {
       'bower_components/angular-http-auth/src/http-auth-interceptor.js',
       'bower_components/angulartics/src/angulartics.js',
       'bower_components/angulartics/src/angulartics-ga.js',
+      'bower_components/fastclick/lib/fastclick.js',
 
 
       'app/*.js',

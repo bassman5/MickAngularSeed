@@ -60,10 +60,10 @@ Each Page (or page section) has a page object as described by [Selenium Page Obj
 
 #### Changelog
 Generate a changelog using [connvetional-changelog](https://github.com/ajoslin/conventional-changelog).
-This generates a README.md file for you.
+This generates a README.md file for you based on [these commit conventions](https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/).
 
 #### Git Metadata available
-Uses git metadata, based on [these commit conventions](https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/).
+Uses git metadata.
 
 #### Release management
 Creates git tags and updates your version numbers.
