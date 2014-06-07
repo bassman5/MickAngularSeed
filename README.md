@@ -49,7 +49,7 @@ As I don't expect this to be a massive app, minified code I believe is enough. A
 I expect this to change
 
 #### Api as a service
-The backend calls are managed as an Angular service build on [Restangular](https://github.com/mgonto/restangular).
+The backend calls are managed as an Angular service built on [Restangular](https://github.com/mgonto/restangular).
 There is an express server in test/server to provide the services for this app. Note I use version in the URL, may change this.
 
 #### e2e Testing

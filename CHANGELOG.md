@@ -1,3 +1,10 @@
+<a name="0.3.1"></a>
+### 0.3.1 (2014-06-07)
+
+#### Features
+
+* **mobile:** Add FastClick to remove 300ms delay on mobile browsers ([dad98ca0a6](https://github.com/bassman5/MickAngularSeed/commit/dad98ca0a665fa3a0701d829e5f1cbc8132e1c7c))
+
 <a name="0.3.0"></a>
 ## 0.3.0 (2014-06-04)
 
