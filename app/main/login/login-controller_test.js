@@ -1,11 +1,5 @@
 'use strict';
 
-/*global describe */
-/*global it */
-/*global beforeEach */
-/*global inject */
-/*global expect */
-
 describe('Controller: LoginCtrl', function () {
   // load the controller's module
 

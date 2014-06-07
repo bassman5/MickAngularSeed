@@ -17,12 +17,16 @@ angular.module('anApp')
     };
   })
 
+  .constant('API', {
+     URL: '/api/v1'
+  })
+
   .constant('AUTH', {
     URL: {
       LOGIN: '/login',
       LOGOUT: '/logout',
       REGISTER: '/register',
-      USER_PROFILE: '/api/v1/user-profile'
+      USER_PROFILE: '/user-profile'
     },
     // Events for authentication
     EVENTS: {

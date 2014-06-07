@@ -6,22 +6,6 @@ var url = require('url');
 var routes = {
   links: [
     {
-      rel: 'login',
-      href: '/login',
-      "method": "POST"
-
-    },
-    {
-      rel: 'register',
-      href: '/register',
-      "method": "POST"
-    },
-    {
-      rel: 'logout',
-      href: '/logout',
-      "method": "POST"
-    },
-    {
       rel: 'api',
       href: '/api/v1'
     }
@@ -37,20 +21,11 @@ router.get('/', function(req, res, next) {
   }
 });
 
-/* POST login. */
-router.post('/login', function (req, res) {
-  res.json({ authorizationToken: 'NjMwNjM4OTQtMjE0Mi00ZWYzLWEzMDQtYWYyMjkyMzNiOGIy' });
+/* GET status page. */
+router.get('/status', function(req, res, next) {
+  res.send(200, 'OK');
 });
 
-/* POST register. */
-router.post('/register', function (req, res) {
-  res.json({ authorizationToken: 'NjMwNjM4OTQtMjE0Mi00ZWYzLWEzMDQtYWYyMjkyMzNiOGIy' });
-});
-
-/* POST logout. */
-router.post('/logout', function (req, res) {
-  res.json({});
-});
 
 /* POST sink,html. */
 router.post('/sink.html', function (req, res) {

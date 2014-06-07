@@ -1,15 +1,9 @@
 'use strict';
 
-/*global describe */
-/*global it */
-/*global beforeEach */
-/*global inject */
-/*global expect */
-
 describe('Service: AuthenticationService', function () {
 
 
-  var AuthenticationService, $httpBackend, rootScope, authService, $http, Config, AUTH;
+  var AuthenticationService, $httpBackend, rootScope, authService, $http, Config, AUTH, API;
   beforeEach(function() {
     module('anApp');
 
@@ -20,6 +14,7 @@ describe('Service: AuthenticationService', function () {
       authService           = $injector.get('authService');
       rootScope            = $injector.get('$rootScope');
       Config                = $injector.get('Config');
+      API                  = $injector.get('API');
       AUTH                  = $injector.get('AUTH');
     });
 
@@ -35,7 +30,7 @@ describe('Service: AuthenticationService', function () {
   function loginSuccessfully() {
     var response = { authorizationToken: 'abcdefghijk' };
 
-    $httpBackend.whenPOST(AUTH.URL.LOGIN).respond(function(/* method, url */) {
+    $httpBackend.whenPOST(API.URL + AUTH.URL.LOGIN).respond(function(/* method, url */) {
 //      console.log('loginSuccessfully');
       return  [200 , response ];
     });
@@ -65,7 +60,7 @@ describe('Service: AuthenticationService', function () {
 
   it('should handle login failed', function () {
 
-    $httpBackend.whenPOST(AUTH.URL.LOGIN).respond(function(/* method, url */) {
+    $httpBackend.whenPOST(API.URL + AUTH.URL.LOGIN).respond(function(/* method, url */) {
       return  [401 , {error: 'Invalid login details'} ];
     });
 
@@ -106,7 +101,7 @@ describe('Service: AuthenticationService', function () {
       }
     });
 
-    $httpBackend.whenPOST(AUTH.URL.LOGIN).respond(function(/* method, url */) {
+    $httpBackend.whenPOST(API.URL + AUTH.URL.LOGIN).respond(function(/* method, url */) {
       return  [200 , response ];
     });
 
@@ -133,7 +128,7 @@ describe('Service: AuthenticationService', function () {
         return  [401 , {error: 'You are not allowed to see this'} ];
       }
     });
-    $httpBackend.whenPOST(AUTH.URL.LOGIN).respond(function(/* method, url */) {
+    $httpBackend.whenPOST(API.URL + AUTH.URL.LOGIN).respond(function(/* method, url */) {
       return  [401 , {error: 'Invalid login details'} ];
     });
 
@@ -167,7 +162,7 @@ describe('Service: AuthenticationService', function () {
         return  [401 , {error: 'You are not allowed to see this'} ];
       }
     });
-    $httpBackend.whenPOST(AUTH.URL.LOGIN).respond(function(/* method, url */) {
+    $httpBackend.whenPOST(API.URL + AUTH.URL.LOGIN).respond(function(/* method, url */) {
       return  [200 , response ];
     });
 

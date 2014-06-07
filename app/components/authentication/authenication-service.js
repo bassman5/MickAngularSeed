@@ -3,12 +3,12 @@
 // The config service has the URLs and token names to use
 // from https://medium.com/opinionated-angularjs/techniques-for-authentication-in-angularjs-applications-7bbf0346acec
 angular.module('anApp')
-  .service('AuthenticationService', ['$http', 'authService', '$rootScope', 'AUTH', '$q', function AuthenticationService($http, authService, $rootScope, AUTH, $q) {
+  .service('AuthenticationService', ['$http', 'authService', '$rootScope', 'AUTH', 'API', '$q', function AuthenticationService($http, authService, $rootScope, AUTH, API, $q) {
     var authenticated = false;
 
     function login(user) {
       var deferred = $q.defer();
-      $http.post(AUTH.URL.LOGIN, {user: user}, { ignoreAuthModule: true })
+      $http.post(API.URL + AUTH.URL.LOGIN, {user: user}, { ignoreAuthModule: true })
         .success(function (data, status, headers, config) {
 
           $http.defaults.headers.common[AUTH.TOKEN.HEADER_NAME] = data[AUTH.TOKEN.DATA_NAME];  // Step 1
@@ -37,7 +37,7 @@ angular.module('anApp')
 
     function logout() {
       var deferred = $q.defer();
-      $http.post(AUTH.URL.LOGOUT, {}, { ignoreAuthModule: true })
+      $http.post(API.URL + AUTH.URL.LOGOUT, {}, { ignoreAuthModule: true })
         // This is ie8 funky syntax for finally
         ['finally'](function() {
           delete $http.defaults.headers.common[AUTH.TOKEN.HEADER_NAME];

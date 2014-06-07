@@ -33,38 +33,51 @@ npm will install webdriver (following command)
 * Add more examples of ui-router, something more app like for the main page
 * Fix the yeoman scaffolding to generate the correct structure and test files
 
-**Updated 27/Mar/14**
-Now test and scss files co-located with source files
-
-**Updated 3/May/14**
-Added google analytics
-Added login page with tests
-
-**Updated 10/May/14**
-Added Cucumber tests - to use grunt serve; grunt protractor:cucumber
-Note that the home page is loaded at the start of the run and then navigateTo home page is done before each scenario
-This is so that the page is only loaded once, don't use get in your tests unless you really need to.
-Each Page (or page section) has a page object as described by [Selenium Page Objects](https://code.google.com/p/selenium/wiki/PageObjects)
-
-#### Best Practices
+## Best Practices
 I have tried to follow the guides from Google at
 [http://blog.angularjs.org/2014/02/an-angularjs-style-guide-and-best.html]
 
 The style guide here
 [https://github.com/mgechev/angularjs-style-guide]
 
-JShint config is different for test files
-grunt build (or serve:dist) will now package minified files (and uncss to minify css), images and fonts with cache busting ids
+#### JShint 
+Configured differently for test files, so that the globals introduced by the testing framework are recognized without errors.
 
+#### Modules
 I have also not used multiple modules, just one module for all code.
 As I don't expect this to be a massive app, minified code I believe is enough. Also module lazy loading is coming in Angular 2.0, will re-look at it then.
 I expect this to change
 
+#### Api as a service
+The backend calls are managed as an Angular service build on [Restangular](https://github.com/mgonto/restangular).
+There is an express server in test/server to provide the services for this app. Note I use version in the URL, may change this.
+
+#### e2e Testing
+Added Cucumber tests - to use grunt serve; grunt protractor:cucumber
+Note that the home page is loaded at the start of the run and then navigateTo home page is done before each scenario
+This is so that the page is only loaded once, don't use get in your tests unless you really need to.
 Each Page (or page section) has a page object as described by [Selenium Page Objects](https://code.google.com/p/selenium/wiki/PageObjects)
 
+#### Changelog
 Generate a changelog using [connvetional-changelog](https://github.com/ajoslin/conventional-changelog).
+This generates a README.md file for you.
 
+#### Git Metadata available
 Uses git metadata, based on [these commit conventions](https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/).
+
+#### Release management
+Creates git tags and updates your version numbers.
+
+#### Deployment
+Built artifacts are pushed to S3
+
+#### Analytics
+Integrated with Google Analytics see [angulartics](http://luisfarzati.github.io/angulartics/) for options, currently all page views are logged.
+Put your google analytics ids in your .credentials.json file
+```
+  "GoogleAnalyticsKey": "UA-12345678-1",
+  "GoogleAnalyticsHost": "awebsite.yourhost.net",
+```
 
 If you have a problem on a mac with grunt serve hanging add the following line to /etc/launchd.conf and reboot
 ```
@@ -75,9 +88,12 @@ The default open files limit is very low on macosx.
 ### Fully configured testing
 For unit testing, karma is configured with Jasmine 2.
 
-#### Build
+## Build
 
-It is important that we follow pagespeed guidelines.
+It is important that we follow pagespeed/YSlow guidelines.
+Build will now package minified files (and uncss to minify css), images and fonts with cache busting ids, Angular html templates are converted to JS and included once.
+URLs for assests, (JavaScript, CSS, Images, Fonts) include their hash code, so new files are generated when a file changes. Index.html is updated to contain the correct versions of the assets.
+
 ```
 grunt build
 ```
@@ -105,9 +121,9 @@ grunt compass
 Will generate css (this is done automatically in watch)
 
 
-#### For e2e test (protractor / webdriver )
+## For e2e test (protractor / webdriver )
 
-Start server (NOT NEEDED just run protractor)
+Start server (NOT NEEDED just run chrome only driver)
 ```
 ./node_modules/.bin/webdriver-manager start
 ```
@@ -134,7 +150,7 @@ grunt e2e:saucelabs
 Is designed to run multiple browser tests on SauceLabs on a distribution build, intended to run from Travis or your CI builder
 
 
-#### Intellij Idea 13+ or Webstorm 7+
+## Intellij Idea 13+ or Webstorm 7+
 You can use the node.js plugin (seperate install) with '/usr/local/bin/grunt' as the JavaScript file and 'serve' as the Application Parameter
 Also there is a great karma plugin (seperate install)
 
@@ -149,7 +165,7 @@ JavaScript file:        node_modules/protractor/lib/cli.js
 Application Parameters: test/protractor-cuke-conf.js
 ```
 
-#### Deployment to s3
+## Deployment to s3
 
 See https://github.com/jpillora/grunt-aws for options
 ```
@@ -165,7 +181,7 @@ If you then add to a Cloudfront distribution you get 98/100 from ySlow and Pages
 
 This task expects a file called .aws-credentials.json in you project root but be careful not to add to source control, this file has been added to .gitignore
 
- * Create a `.aws-credentials.json` file like:
+ * Create a `credentials.json` file like:
 
      ``` json
      {
@@ -174,14 +190,19 @@ This task expects a file called .aws-credentials.json in you project root but be
      }
      ```
 
-### Code Quality Report
+## Code Quality Report
 A report can be generated using [Plato JavaScript static code analysis](https://github.com/es-analysis/plato)
-Install plato with: `npm install -g plato`
-Then run the code report with `npm run-script report`
-A browser will open report/index.html
+Run the code report with `npm run-script report`
+A browser will open `report/index.html`
+
+## Code Coverage Reports
+Code coverage reports are created in the coverage directory every time you run the karma unit tests.
+If you continue to run your karma tests with PhantomJS the html report is at `coverage/PhantomJS 1.9.7 (Mac OS X)/lcov-report/index.html` (note the PhantomJS directory changes with version numbers).
 
 
-### Creating a release
+
+
+## Creating a release
 The [grunt bump plugin](https://github.com/vojtajina/grunt-bump) is used.
 To create a release
 ```
