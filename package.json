@@ -2,7 +2,7 @@
   "name": "angular-seed",
   "author": "Mick <mick@dudley.uk.com>",
   "description": "An AngularJS seed project",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/bassman5/MickAngularSeed.git"
@@ -55,7 +55,6 @@
     "lodash": "~2.4.1",
     "grunt-protractor-runner": "~1.0.0",
     "grunt-conventional-changelog": "~1.1.0",
-    "express": "~4.3.1",
     "grunt-express-server": "~0.4.17",
     "karma-safari-launcher": "~0.1.1",
     "grunt-replace": "~0.7.7",
