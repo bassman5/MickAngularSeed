@@ -761,6 +761,7 @@ module.exports = function (grunt) {
     'clean:server',
     'wiredep',
     'concurrent:server',
+    'jshint:all',
     'autoprefixer',
     'express:dev',
     'karma:watch:start',
@@ -777,6 +778,7 @@ module.exports = function (grunt) {
     'clean:server',
     'wiredep',
     'compass:ie8',
+    'jshint:all',
     'autoprefixer',
     'express:dev',
     'karma:watch:start',
@@ -793,7 +795,7 @@ module.exports = function (grunt) {
   grunt.registerTask('test', [
     'clean:server',
     'concurrent:test',
-    'newer:jshint:all',
+    'jshint:all',
     'autoprefixer',
     'karma:headless'
   ]);

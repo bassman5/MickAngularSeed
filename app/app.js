@@ -55,6 +55,7 @@ angular.module('anApp', [
       });
   }])
   .run(function() {
+    /* global FastClick: false */
     FastClick.attach(document.body);
 });
 
