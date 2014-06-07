@@ -347,7 +347,8 @@ module.exports = function (grunt) {
             {
               match: 'GOOGLE_ANALYTICS_HOST',   // replace @@GOOGLE_ANALYTICS_HOST
               replacement: '<%= credentials().GoogleAnalyticsHost %>'
-            }          ],
+            }
+          ],
           force: true
         },
         files: [
@@ -563,7 +564,7 @@ module.exports = function (grunt) {
       options: {
         accessKeyId: '<%= credentials().AwsAccessKeyId %>',
         secretAccessKey: '<%= credentials().AwsSecretAccessKey %>',
-        bucket: Config.bucket, // + '/' + '<%= grunt.option(\'gitRevision\') %>',
+        bucket: Config.bucket,
         region: Config.region,
         createBucket: true,
         enableWeb: true,
@@ -574,7 +575,7 @@ module.exports = function (grunt) {
       },
       build: {
         cwd: 'dist',
-        src: '**',
+        src: '**'
 //        dest: '<%= grunt.option(\'gitRevision\') %>/'
       }
     },
@@ -863,7 +864,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
   'clean:dist',
-    'wiredep',
+    'gitRevision',
     'useminPrepare',
     'concurrent:dist',
     'autoprefixer',
