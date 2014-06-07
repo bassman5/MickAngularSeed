@@ -30,7 +30,7 @@ angular.module('anApp')
         })
         .error(function (data, status /*, headers, config */) {
           $rootScope.$broadcast(AUTH.EVENTS.loginFailed, status, data);
-          deferred.reject();
+          deferred.reject(data);
         });
       return deferred.promise;
     }

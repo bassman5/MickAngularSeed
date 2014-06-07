@@ -14,6 +14,7 @@ function LoginPage( a, b ) {
 LoginPage.prototype               = Object.create( Page.prototype );
 LoginPage.prototype.submit        = function() { return element(by.id('login-button')); };
 LoginPage.prototype.submitLogin   = function() { return this.submit().click(); };
+LoginPage.prototype.errorMessage  = function() { return element(by.binding('error')).getText(); };
 LoginPage.prototype.submitEnabled = function() { return this.submit().isEnabled(); };
 
 LoginPage.prototype.usernameInput = function() { return element(by.model('credentials.username')); };

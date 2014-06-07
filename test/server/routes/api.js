@@ -39,7 +39,12 @@ router.get('/user-profile', function (req, res) {
 
 /* POST login. */
 router.post('/login', function (req, res) {
-  res.json({ authorizationToken: 'NjMwNjM4OTQtMjE0Mi00ZWYzLWEzMDQtYWYyMjkyMzNiOGIy' });
+  if (req.body.user.password === 'Password') {
+    return res.json({ authorizationToken: 'NjMwNjM4OTQtMjE0Mi00ZWYzLWEzMDQtYWYyMjkyMzNiOGIy' });
+  }
+  else {
+    return res.json(401, {message: 'Username or password incorrect'});
+  }
 });
 
 /* POST register. */

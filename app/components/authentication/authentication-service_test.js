@@ -44,7 +44,7 @@ describe('Service: AuthenticationService', function () {
   }
 
   function loginFailedCheck() {
-    expect(rootScope.$broadcast).toHaveBeenCalledWith(AUTH.EVENTS.loginFailed, 401, { error: 'Invalid login details' });
+    expect(rootScope.$broadcast).toHaveBeenCalledWith(AUTH.EVENTS.loginFailed, 401, { message: 'Invalid login details' });
     expect(authService.loginConfirmed.calls.count()).toEqual(0);
     expect(!AuthenticationService.isAuthenticated());
   }
@@ -61,7 +61,7 @@ describe('Service: AuthenticationService', function () {
   it('should handle login failed', function () {
 
     $httpBackend.whenPOST(API.URL + AUTH.URL.LOGIN).respond(function(/* method, url */) {
-      return  [401 , {error: 'Invalid login details'} ];
+      return  [401 , {message: 'Invalid login details'} ];
     });
 
     AuthenticationService.login({user: 'fred', password: 'bad'});
@@ -97,7 +97,7 @@ describe('Service: AuthenticationService', function () {
         return [200, 'OK'];
       }
       else {
-        return  [401 , {error: 'You are not allowed to see this'} ];
+        return  [401 , {message: 'You are not allowed to see this'} ];
       }
     });
 
@@ -129,7 +129,7 @@ describe('Service: AuthenticationService', function () {
       }
     });
     $httpBackend.whenPOST(API.URL + AUTH.URL.LOGIN).respond(function(/* method, url */) {
-      return  [401 , {error: 'Invalid login details'} ];
+      return  [401 , {message: 'Invalid login details'} ];
     });
 
     rootScope.$on(AUTH.EVENTS.notAuthenticated, function(/* e, rejection */ ) {
@@ -159,7 +159,7 @@ describe('Service: AuthenticationService', function () {
         }
       }
       else {
-        return  [401 , {error: 'You are not allowed to see this'} ];
+        return  [401 , {message: 'You are not allowed to see this'} ];
       }
     });
     $httpBackend.whenPOST(API.URL + AUTH.URL.LOGIN).respond(function(/* method, url */) {

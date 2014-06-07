@@ -1,5 +1,6 @@
 <!-- Modal -->
 <div id='login-view'>
+    <div class="container">
 
     <h3 class="modal-title" id="loginModalLabel">Login</h3>
 
@@ -7,6 +8,7 @@
 
     <form name="loginForm"
           role="form"
+          class="login-form"
           action="sink.html" target="sink" method="post"
           ng-submit="login(credentials)"
           form-autofill-fix novalidate>
@@ -32,8 +34,13 @@
                    required/>
         </div>
 
-        <button id='login-button' type="submit" class="btn btn-primary"
-                ng-disabled="loginForm.$invalid || !loginForm.$dirty">Login
-        </button>
+        <div class="form-group">
+            <button id='login-button' type="submit" class="btn btn-primary"
+                    ng-disabled="loginForm.$invalid || !loginForm.$dirty">Login
+            </button>
+        </div>
+        <div class="alert alert-danger" ng-hide="error === ''">{{ error }}</div>
     </form>
+</div>
+
 </div>

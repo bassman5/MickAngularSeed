@@ -7,7 +7,7 @@ Feature: Login
 #  Background:
 
   Scenario: Normal Login
-    Given A registered user with credentials "user@email.com" "aPassword"
+    Given A registered user with credentials "user@email.com" "Password"
     When  I submit my correct authorization details
     Then  I am fully authenticated.
 
@@ -15,6 +15,12 @@ Feature: Login
     Given An authenticated user
     When  I logout
     Then  I am not longer authenticated.
+
+  Scenario: Invalid login credentials
+    Given A registered user with credentials "user@email.com" "Password"
+    When  I submit incorrect authorization details
+    Then  I am not authenticated.
+    And   An error message is displayed
 
   Scenario: Do not allow login with an invalid email
     Given An unauthenticated user

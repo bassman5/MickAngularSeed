@@ -91,9 +91,27 @@ module.exports = function() {
   });
 
 
+  this.When(/^I submit incorrect authorization details$/, function (callback) {
+    this.LoginPage.typePassword('badPassword');
+    this.LoginPage.submitLogin();
+    callback();
+  });
+
+
+  this.Then(/^I am not authenticated\.$/, function (callback) {
+    expect(this.isAuthenticated(), 'isAuthenticated').to.eventually.equal(false).and.notify(callback);
+  });
+
+  this.Then(/^An error message is displayed$/, function (callback) {
+    expect(this.LoginPage.errorMessage(), 'error message is displayed').to.eventually.equal('Invalid login');
+    callback();
+  });
+
+
+
 
   this.Then(/^I am not allowed to login\.$/, function (callback) {
-    callback();
+    expect(this.LoginPage.submitEnabled()).to.eventually.equal(false).and.notify(callback);
   });
 
 

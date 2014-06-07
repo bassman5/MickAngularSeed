@@ -13,7 +13,7 @@ module.exports = function() {
   this.World = require('../support/world.js').World;
 
   this.Given(/^an authenticated user$/, function (callback) {
-    this.ensureLoggedIn('user@email.com','apassword');
+    this.ensureLoggedIn('user@email.com','Password');
     callback();
   });
 
