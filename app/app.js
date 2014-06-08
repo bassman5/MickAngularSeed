@@ -14,7 +14,7 @@ angular.module('anApp', [
     'angulartics.google.analytics'
 
   ])
-  .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function ($stateProvider, $urlRouterProvider, $locationProvider) {
+  .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 'AUTH', function ($stateProvider, $urlRouterProvider, $locationProvider, AUTH) {
     $locationProvider.html5Mode(false);
 
     //
@@ -46,6 +46,15 @@ angular.module('anApp', [
         url: '/contact',
         templateUrl: 'contact/contact.html',
         controller: 'ContactCtrl'
+      })
+      .state('dashboard', {
+        url: '/dashboard',
+        templateUrl: 'dashboard/dashboard.html',
+        controller: 'DashboardCtrl',
+        data: {
+          authorizedRoles: [AUTH.ROLES.ADMIN, AUTH.ROLES.USER]
+        }
+
       })
       // For any unmatched url, redirect to /state1
       .state('settings', {

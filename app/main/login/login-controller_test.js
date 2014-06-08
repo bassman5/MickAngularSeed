@@ -68,7 +68,7 @@ describe('Controller: LoginCtrl', function () {
     expect(AuthenticationService.login).toHaveBeenCalledWith(user);
     expect(UserProfileService.getCurrentUser.calls.count()).toEqual(1);
     expect($state.go.calls.count()).toEqual(1);
-    expect($state.go).toHaveBeenCalledWith('main');
+    expect($state.go).toHaveBeenCalledWith('dashboard');
   });
 
 

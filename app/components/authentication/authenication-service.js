@@ -1,7 +1,8 @@
 'use strict';
 // This service provides login and logout services
 // The config service has the URLs and token names to use
-// from https://medium.com/opinionated-angularjs/techniques-for-authentication-in-angularjs-applications-7bbf0346acec
+// from https://medium.com/opinionated-angularjs/7bbf0346acec
+// and https://medium.com/opinionated-angularjs/techniques-for-authentication-in-angularjs-applications-7bbf0346acec
 angular.module('anApp')
   .service('AuthenticationService', ['$http', 'authService', '$rootScope', 'AUTH', 'API', '$q', function AuthenticationService($http, authService, $rootScope, AUTH, API, $q) {
     var authenticated = false;
@@ -58,11 +59,31 @@ angular.module('anApp')
       return authenticated;
     }
 
+    // TODO retrieve roles from server and check them
+    function isAuthorized( /* permittedRoles */) {
+      return authenticated;
+    }
 
     return {
       login:           login,
       logout:          logout,
       loginCancelled:  loginCancelled,
-      isAuthenticated: isAuthenticated
+      isAuthenticated: isAuthenticated,
+      isAuthorized:    isAuthorized
     };
+  }])
+  .run(['$rootScope', 'AuthenticationService', 'AUTH', function ($rootScope, AuthenticationService, AUTH) {
+    $rootScope.$on('$stateChangeStart', function (event, next) {
+      var authorizedRoles = next.data && next.data.authorizedRoles || [];
+      if (authorizedRoles.length > 0 && !AuthenticationService.isAuthorized(authorizedRoles)) {
+        event.preventDefault();
+        if (AuthenticationService.isAuthenticated()) {
+          // user is not allowed
+          $rootScope.$broadcast(AUTH.EVENTS.notAuthorized);
+        } else {
+          // user is not logged in
+          $rootScope.$broadcast(AUTH.EVENTS.notAuthenticated);
+        }
+      }
+    });
   }]);

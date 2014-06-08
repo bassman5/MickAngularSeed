@@ -6,10 +6,11 @@
   bottom: 0;
   width: 100%;
   /* Set the fixed height of the footer here */
-  height: 44px;
+  height: $footer-height;
   color: $footer-color;
   background-color: $footer-bg;
   border-top: 1px solid $footer-border;
+  z-index: 1;
 
   ul {
     padding-left: 0;

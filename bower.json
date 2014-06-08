@@ -17,7 +17,9 @@
     "angulartics": "~0.14.15",
     "angular-animate": "1.2.16",
     "bootstrap-sass-official": "v3.1.1+2",
-    "fastclick": "~1.0.2"
+    "fastclick": "~1.0.2",
+    "raphael": "~2.1.2",
+    "morrisjs": "~0.5.0"
   },
   "devDependencies": {
     "respond": "~1.4.2",
@@ -28,6 +30,7 @@
     "angular-scenario": "1.2.16"
   },
   "resolutions": {
-    "angular": "1.2.16"
+    "angular": "1.2.16",
+    "jquery": ">= 2.1.0"
   }
 }
