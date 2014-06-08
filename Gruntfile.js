@@ -569,14 +569,31 @@ module.exports = function (grunt) {
         createBucket: true,
         enableWeb: true,
         headers: {
-          CacheControl: 630720000, //max-age=630720000, public
-          Expires: new Date('2050') //Sat, 01 Jan 2050 00:00:00 GMT
+          CacheControl: 630720000,
+          Vary: 'Accept-Encoding',
+          Expires: new Date('2050')
         }
       },
-      build: {
+      nonHtml: {
         cwd: 'dist',
-        src: '**'
-//        dest: '<%= grunt.option(\'gitRevision\') %>/'
+        src: '**',
+        options: {
+          headers: {
+            CacheControl: 630720000, //max-age=630720000, public
+            Expires: new Date('2050') //Sat, 01 Jan 2050 00:00:00 GMT
+          }
+        }
+      },
+      html: {
+        cwd: 'dist',
+        src: '*.html',
+        options: {
+          headers: {
+            ContentType: 'text/html;charset=\'UTF-8\'',
+            CacheControl: 630720000, //max-age=630720000, public
+            Expires: new Date('2050') //Sat, 01 Jan 2050 00:00:00 GMT
+          }
+        }
       }
     },
 
