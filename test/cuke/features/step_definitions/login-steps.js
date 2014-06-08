@@ -103,7 +103,7 @@ module.exports = function() {
   });
 
   this.Then(/^An error message is displayed$/, function (callback) {
-    expect(this.LoginPage.errorMessage(), 'error message is displayed').to.eventually.equal('Invalid login');
+    expect(this.LoginPage.errorMessage(), 'error message is displayed').to.eventually.equal('Username or password incorrect');
     callback();
   });
 
