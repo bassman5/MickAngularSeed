@@ -2,6 +2,8 @@
 
 [![Build Status](http://img.shields.io/travis/bassman5/MickAngularSeed.svg)](https://travis-ci.org/bassman5/MickAngularSeed) [![Dependency Status](https://david-dm.org/bassman5/MickAngularSeed.svg?theme=shields.io)](https://david-dm.org/bassman5/MickAngularSeed) [![devDependency Status](https://david-dm.org/bassman5/MickAngularSeed/dev-status.svg?theme=shields.io)](https://david-dm.org/bassman5/MickAngularSeed#info=devDependencies)
 
+[Task Board](https://huboard.com/bassman5/MickAngularSeed#/)
+
 Install
 ```
 git clone https://github.com/bassman5/MickAngularSeed.git myapp
