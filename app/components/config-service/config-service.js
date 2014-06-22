@@ -18,7 +18,7 @@ angular.module('anApp')
   })
 
   .constant('API', {
-     URL: '/api/v1'
+    URL: '/api/v1'
   })
 
   .constant('AUTH', {

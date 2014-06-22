@@ -1,14 +1,5 @@
 'use strict';
 
-/*global describe */
-/*global it */
-/*global beforeEach */
-/*global afterEach */
-/*global inject */
-/*global expect */
-
-/* jshint -W030 */
-
 describe('Api: UserProfile', function () {
 
   var $httpBackend, Api, UserProfile, Restangular, Notification;

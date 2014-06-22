@@ -1,4 +1,5 @@
-// An example configuration file.
+'use strict';
+
 exports.config = {
   // Do not start a Selenium Standalone sever - only run this using chrome.
   chromeOnly: true,
@@ -28,8 +29,8 @@ exports.config = {
   framework:'mocha',
 
   mochaOpts: {
-    ui: "bdd",
-    reporter: "spec",
+    ui: 'bdd',
+    reporter: 'spec',
     require: 'chai',
     slow: 4000
   }

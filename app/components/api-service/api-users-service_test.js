@@ -1,12 +1,5 @@
 'use strict';
 
-/*global describe */
-/*global it */
-/*global beforeEach */
-/*global afterEach */
-/*global inject */
-/*global expect */
-
 describe('Api: Users', function () {
 
   var $httpBackend, Api, Users, Notification, Restangular;

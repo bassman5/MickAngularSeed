@@ -15,6 +15,7 @@ angular.module('anApp', [
 
   ])
   .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function ($stateProvider, $urlRouterProvider, $locationProvider) {
+
     $locationProvider.html5Mode(false);
 
     //
@@ -47,7 +48,6 @@ angular.module('anApp', [
         templateUrl: 'contact/contact.html',
         controller: 'ContactCtrl'
       })
-      // For any unmatched url, redirect to /state1
       .state('settings', {
         url: '/settings',
         templateUrl: 'settings/settings.html',
@@ -57,5 +57,5 @@ angular.module('anApp', [
   .run(function() {
     /* global FastClick: false */
     FastClick.attach(document.body);
-});
+  });
 

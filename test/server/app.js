@@ -1,3 +1,5 @@
+'use strict';
+
 var express        = require('express');
 var path           = require('path');
 var favicon        = require('static-favicon');
@@ -21,12 +23,12 @@ app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 
 // serve some dynamic pages if we need them
-app.use('/', require('./routes/index'));
+app.use('/',       require('./routes/index'));
 app.use('/api/v1', require('./routes/api'));
 
 
 var env = process.env.NODE_ENV || 'development';
-if ('development' == env) {
+if ('development' === env) {
   // configure stuff here
 }
 

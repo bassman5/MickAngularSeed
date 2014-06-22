@@ -2,7 +2,6 @@
 
 var express = require('express');
 var router = express.Router();
-var url = require('url');
 var routes = {
   links: [
     {
@@ -22,7 +21,7 @@ router.get('/', function(req, res, next) {
 });
 
 /* GET status page. */
-router.get('/status', function(req, res, next) {
+router.get('/status', function(req, res) {
   res.send(200, 'OK');
 });
 
