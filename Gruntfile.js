@@ -632,16 +632,16 @@ module.exports = function (grunt) {
     // Test settings
     karma: {
       unit: {
-        configFile: 'test/karma-conf.js',
+        configFile: 'test/karma.conf.js',
         singleRun: true
       },
       watch: {
-        configFile: 'test/karma-conf.js',
+        configFile: 'test/karma.conf.js',
         singleRun: false,
         background: true
       },
       headless: {
-        configFile: 'test/karma-conf.js',
+        configFile: 'test/karma.conf.js',
         browsers: ['PhantomJS'],
         singleRun: true
       }
@@ -656,7 +656,7 @@ module.exports = function (grunt) {
 //      mocha: {
 //        options: {
 //          baseUrl: 'http://0.0.0.0:' + Config.e2e.port + '/',
-//          configFile: 'test/protractor-conf.js', // Default config file
+//          configFile: 'test/protractor.conf.js', // Default config file
 //          args: {} // Target-specific arguments
 //        }
 //      },
