@@ -1002,6 +1002,5 @@ module.exports = function (grunt) {
     grunt.file.delete(file);
 
     grunt.log.ok('Written file ' + newName);
-
   });
 };
