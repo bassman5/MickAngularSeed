@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('anApp')
-  .factory('Api', ['Config', 'Restangular', 'Notification', function (Config, Restangular, Notification) {
+  .factory('Api', ['CONST', 'Restangular', 'Notification', function (CONST, Restangular, Notification) {
     return Restangular.withConfig(function (RestangularConfigurer) {
-      RestangularConfigurer.setBaseUrl(Config.API_BASE_URL);
+      RestangularConfigurer.setBaseUrl(CONST.API.BASE_URL);
       RestangularConfigurer.setRestangularFields({
         id: '_id',
         route: 'restangularRoute',
@@ -12,7 +12,7 @@ angular.module('anApp')
 //      RestangularConfigurer.setRequestSuffix('.json');
       RestangularConfigurer.setErrorInterceptor(
         function(resp) {
-          Notification.error('Server error ' + (resp.data ? resp.data.message : '' || ''));
+          Notification.error((resp.data ? resp.data.message : 'Server error') || 'Server error');
           return false; // stop the promise chain
         });
       RestangularConfigurer.setDefaultHttpFields({cache: false});

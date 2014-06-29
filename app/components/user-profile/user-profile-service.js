@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('anApp')
-  .service('UserProfileService', ['$rootScope', '$http', 'Config', 'UserProfile', '_', '$q', 'AUTH', function UserProfileService($rootScope, $http, Config, UserProfile, _, $q, AUTH) {
+  .service('UserProfileService', ['$rootScope', '$http', 'UserProfile', '_', '$q', 'CONST', function UserProfileService($rootScope, $http, UserProfile, _, $q, CONST) {
     var _user = {};
 
 
@@ -13,7 +13,7 @@ angular.module('anApp')
       var deferred = $q.defer();
       UserProfile.get('').then (function (user) {
         _user = user;
-        $rootScope.$broadcast(AUTH.EVENTS.userProfileLoaded);
+        $rootScope.$broadcast(CONST.AUTH.EVENTS.userProfileLoaded);
         deferred.resolve(_user);
       });
       return deferred.promise;

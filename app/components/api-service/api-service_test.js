@@ -2,13 +2,14 @@
 
 describe('Service: Api', function () {
 
-  var Api;
+  var Api, CONST;
 
   beforeEach(function() {
     module('anApp');
 
     inject(function($injector) {
       Api = $injector.get('Api');
+      CONST = $injector.get('CONST');
     });
   });
 
@@ -18,6 +19,6 @@ describe('Service: Api', function () {
   });
 
   it('should have configuration', function () {
-    expect(!!Api.configuration).toBe(true);
+    expect(Api.configuration.baseUrl).toEqual(CONST.API.BASE_URL);
   });
 });

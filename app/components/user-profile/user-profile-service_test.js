@@ -3,7 +3,7 @@
 describe('Service: UserProfileService', function () {
 
 
-  var UserProfileService, $httpBackend, $rootScope, $http, Config;
+  var UserProfileService, $httpBackend, $rootScope, $http, CONST, serviceUrl;
   beforeEach(function() {
     module('anApp');
 
@@ -11,9 +11,11 @@ describe('Service: UserProfileService', function () {
       $httpBackend          = $injector.get('$httpBackend');
       $http                 = $injector.get('$http');
       UserProfileService    = $injector.get('UserProfileService');
+      CONST                 = $injector.get('CONST');
       $rootScope            = $injector.get('$rootScope');
-      Config                = $injector.get('Config');
     });
+    serviceUrl = CONST.API.BASE_URL + '/' + CONST.API.USER_PROFILE;
+
   });
 
   afterEach(function() {
@@ -29,7 +31,7 @@ describe('Service: UserProfileService', function () {
 
 
   it('should get the current user', function () {
-    $httpBackend.whenGET(/\/api\/v1\/user-profile?.*/).respond(function(/* method, url */) {
+    $httpBackend.whenGET(serviceUrl).respond(function(/* method, url */) {
       return [200, {_id: 1, firstName: 'Fred', lastName: 'Smith'}, {}];
     });
 
@@ -42,7 +44,7 @@ describe('Service: UserProfileService', function () {
   });
 
   it('should logout', function () {
-    $httpBackend.whenGET(/\/api\/v1\/user-profile?.*/).respond(function(/* method, url */) {
+    $httpBackend.whenGET(serviceUrl).respond(function(/* method, url */) {
       return [200, {_id: 1, firstName: 'Fred', lastName: 'Smith'}, {}];
     });
 

@@ -2,17 +2,18 @@
 
 describe('Service: Config', function () {
 
-  // load the service's module
-  beforeEach(module('anApp'));
+  var CONST;
 
-  // instantiate service
-  var Config;
-  beforeEach(inject(function (_Config_) {
-    Config = _Config_;
-  }));
+  beforeEach(function() {
+    module('anApp');
 
-  it('should return APP_VERSION', function () {
-    expect(Config.APP_VERSION).toBe(0.1);
+    inject(function($injector) {
+      CONST = $injector.get('CONST');
+    });
+  });
+
+  it('should return a constant', function () {
+    expect(!!CONST.API.BASE_URL).toBe(true);
   });
 
 });

@@ -2,7 +2,7 @@
 
 describe('Api: UserProfile', function () {
 
-  var $httpBackend, Api, UserProfile, Restangular, Notification;
+  var $httpBackend, CONST, UserProfile, Notification, serviceUrl;
 
   beforeEach(function() {
     module('anApp');
@@ -10,13 +10,12 @@ describe('Api: UserProfile', function () {
     inject(function($injector) {
       $httpBackend = $injector.get('$httpBackend');
       UserProfile  = $injector.get('UserProfile');
-      Api          = $injector.get('Api');
-      Restangular  = $injector.get('Restangular');
+      CONST        = $injector.get('CONST');
       Notification = $injector.get('Notification');
     });
+    serviceUrl = CONST.API.BASE_URL + '/' + CONST.API.USER_PROFILE + '/';
     spyOn(Notification, 'success').and.stub();
     spyOn(Notification, 'error'  ).and.stub();
-
   });
 
   afterEach(function() {
@@ -28,44 +27,40 @@ describe('Api: UserProfile', function () {
     expect(!!UserProfile).toBe(true);
   });
 
-  it('should notify errors with message', function (done) {
-    $httpBackend.whenGET(/\/api\/v1\/user-profile?.*/).respond(function(/* method, url */) {
+  it('should notify errors with message', function () {
+    $httpBackend.whenGET(serviceUrl + '1').respond(function(/* method, url */) {
       return [400, {status: 'Error', message: 'Opps'}, {}];
     });
 
-    UserProfile.getList().then(function (data) {
-      expect(data.length).toBe(2);
-      done();
-    });
+    UserProfile.get(1);
     $httpBackend.flush();
-    expect(Notification.error).toHaveBeenCalled();
-    done();
+    expect(Notification.error).toHaveBeenCalledWith('Opps');
   });
 
-  it('should notify errors with no message', function (done) {
-    $httpBackend.whenGET(/\/api\/v1\/user-profile?.*/).respond(function(/* method, url */) {
+  it('should notify errors with no message', function () {
+    $httpBackend.whenGET(serviceUrl + '1').respond(function(/* method, url */) {
       return [400];
     });
 
-    UserProfile.getList().then(function (data) {
-      expect(data.length).toBe(2);
-      done();
-    });
+    UserProfile.get(1);
     $httpBackend.flush();
-    expect(Notification.error).toHaveBeenCalled();
-
-    done();
+    expect(Notification.error).toHaveBeenCalledWith('Server error');
   });
 
 
   it('should remove _id when put and patch', function () {
-    $httpBackend.whenGET(/\/api\/v1\/user-profile?.*/).respond(function(/* method, url */) {
-      return [200, {_id: 1, firstName: 'fred', lastName: 'Smith'}, {}];
-    });
-    $httpBackend.expectPATCH(/\/api\/v1\/user-profile?.*/, {'firstName':'Jim'}).respond(201, '');
+    var id = 23456,
+      testUrl = serviceUrl + id;
 
-    UserProfile.get(1).then(function(user) {
+    $httpBackend.whenGET(new RegExp(testUrl + '?.*', 'g')).respond(function(/* method, url */) {
+      return [200, {_id: id, firstName: 'fred', lastName: 'Smith'}, {}];
+    });
+    $httpBackend.expectPUT(testUrl, {'firstName':'Jim', 'lastName': 'Smith'}).respond(201, '');
+    $httpBackend.expectPATCH(testUrl, {'firstName':'Jim'}).respond(201, '');
+
+    UserProfile.get(id).then(function(user) {
       user.firstName = 'Jim';
+      user.put();
       delete user.lastName;
       user.patch();
     });
@@ -73,14 +68,16 @@ describe('Api: UserProfile', function () {
   });
 
   it('should extend user', function () {
-    $httpBackend.whenGET(/\/api\/v1\/user-profile?.*/).respond(function(/* method, url */) {
-      return [200, {_id: 1, firstName: 'Fred', lastName: 'Smith'}, {}];
+    var id = 45678,
+      testUrl = serviceUrl + id;
+
+    $httpBackend.whenGET(testUrl).respond(function(/* method, url */) {
+      return [200, {_id: id, firstName: 'Fred', lastName: 'Smith'}, {}];
     });
 
-    UserProfile.get(1).then(function(user) {
+    UserProfile.get(id).then(function(user) {
       expect(user.fullName()).toEqual('Fred Smith');
     });
     $httpBackend.flush();
   });
-
 });

@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('anApp')
-  .config(['growlProvider', function(growlProvider) {
-    growlProvider.globalTimeToLive(5000);
+  .config(['growlProvider', 'CONST', function(growlProvider, CONST) {
+    growlProvider.globalTimeToLive(CONST.NOTIFICATION.TTL);
   }])
 
   .factory('Notification', ['growl', function (growl) {

@@ -3,7 +3,7 @@
 describe('Service: AuthenticationService', function () {
 
 
-  var AuthenticationService, $httpBackend, rootScope, authService, $http, Config, AUTH, API;
+  var AuthenticationService, $httpBackend, rootScope, authService, $http, CONST;
   beforeEach(function() {
     module('anApp');
 
@@ -12,10 +12,8 @@ describe('Service: AuthenticationService', function () {
       $http                 = $injector.get('$http');
       AuthenticationService = $injector.get('AuthenticationService');
       authService           = $injector.get('authService');
-      rootScope            = $injector.get('$rootScope');
-      Config                = $injector.get('Config');
-      API                  = $injector.get('API');
-      AUTH                  = $injector.get('AUTH');
+      rootScope             = $injector.get('$rootScope');
+      CONST                 = $injector.get('CONST');
     });
 
     spyOn(authService, 'loginConfirmed').and.callThrough();
@@ -30,7 +28,7 @@ describe('Service: AuthenticationService', function () {
   function loginSuccessfully() {
     var response = { authorizationToken: 'abcdefghijk' };
 
-    $httpBackend.whenPOST(API.URL + AUTH.URL.LOGIN).respond(function(/* method, url */) {
+    $httpBackend.whenPOST(CONST.API.BASE_URL + '/' + CONST.API.LOGIN).respond(function(/* method, url */) {
 //      console.log('loginSuccessfully');
       return  [200 , response ];
     });
@@ -39,12 +37,12 @@ describe('Service: AuthenticationService', function () {
 
   function loginSuccessCheck() {
     expect(authService.loginConfirmed).toHaveBeenCalled();
-    expect(rootScope.$broadcast).toHaveBeenCalledWith(AUTH.EVENTS.loginSuccess, jasmine.any(Object));
+    expect(rootScope.$broadcast).toHaveBeenCalledWith(CONST.AUTH.EVENTS.loginSuccess, jasmine.any(Object));
     expect(AuthenticationService.isAuthenticated());
   }
 
   function loginFailedCheck() {
-    expect(rootScope.$broadcast).toHaveBeenCalledWith(AUTH.EVENTS.loginFailed, 401, { message: 'Invalid login details' });
+    expect(rootScope.$broadcast).toHaveBeenCalledWith(CONST.AUTH.EVENTS.loginFailed, 401, { message: 'Invalid login details' });
     expect(authService.loginConfirmed.calls.count()).toEqual(0);
     expect(!AuthenticationService.isAuthenticated());
   }
@@ -60,7 +58,7 @@ describe('Service: AuthenticationService', function () {
 
   it('should handle login failed', function () {
 
-    $httpBackend.whenPOST(API.URL + AUTH.URL.LOGIN).respond(function(/* method, url */) {
+    $httpBackend.whenPOST(CONST.API.BASE_URL + '/' + CONST.API.LOGIN).respond(function(/* method, url */) {
       return  [401 , {message: 'Invalid login details'} ];
     });
 
@@ -79,7 +77,7 @@ describe('Service: AuthenticationService', function () {
     AuthenticationService.logout();
     $httpBackend.flush();
     expect(!AuthenticationService.isAuthenticated());
-    expect(rootScope.$broadcast).toHaveBeenCalledWith(AUTH.EVENTS.logoutSuccess);
+    expect(rootScope.$broadcast).toHaveBeenCalledWith(CONST.AUTH.EVENTS.logoutSuccess);
   });
 
   it('should cancel a login attempt', function () {
@@ -101,11 +99,11 @@ describe('Service: AuthenticationService', function () {
       }
     });
 
-    $httpBackend.whenPOST(API.URL + AUTH.URL.LOGIN).respond(function(/* method, url */) {
+    $httpBackend.whenPOST(CONST.API.BASE_URL + '/' + CONST.API.LOGIN).respond(function(/* method, url */) {
       return  [200 , response ];
     });
 
-    rootScope.$on(AUTH.EVENTS.notAuthenticated, function(/* e, rejection */) {
+    rootScope.$on(CONST.AUTH.EVENTS.notAuthenticated, function(/* e, rejection */) {
       AuthenticationService.login({user: 'fred', password: 'Password'});
     });
 
@@ -128,11 +126,11 @@ describe('Service: AuthenticationService', function () {
         return  [401 , {error: 'You are not allowed to see this'} ];
       }
     });
-    $httpBackend.whenPOST(API.URL + AUTH.URL.LOGIN).respond(function(/* method, url */) {
+    $httpBackend.whenPOST(CONST.API.BASE_URL + '/' + CONST.API.LOGIN).respond(function(/* method, url */) {
       return  [401 , {message: 'Invalid login details'} ];
     });
 
-    rootScope.$on(AUTH.EVENTS.notAuthenticated, function(/* e, rejection */ ) {
+    rootScope.$on(CONST.AUTH.EVENTS.notAuthenticated, function(/* e, rejection */ ) {
       AuthenticationService.login({user: 'fred', password: 'Password'});
     });
 
@@ -162,11 +160,11 @@ describe('Service: AuthenticationService', function () {
         return  [401 , {message: 'You are not allowed to see this'} ];
       }
     });
-    $httpBackend.whenPOST(API.URL + AUTH.URL.LOGIN).respond(function(/* method, url */) {
+    $httpBackend.whenPOST(CONST.API.BASE_URL + '/' + CONST.API.LOGIN).respond(function(/* method, url */) {
       return  [200 , response ];
     });
 
-    rootScope.$on(AUTH.EVENTS.notAuthenticated, function(/* e, rejection */) {
+    rootScope.$on(CONST.AUTH.EVENTS.notAuthenticated, function(/* e, rejection */) {
       AuthenticationService.login({user: 'fred', password: 'Password'});
     });
 

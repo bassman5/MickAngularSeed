@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('e2e-mocks', ['ngMockE2E'])
-  .run(['$httpBackend', 'AUTH', function ($httpBackend, AUTH) {
+  .run(['$httpBackend', 'CONST', function ($httpBackend, CONST) {
     // Mocking code used for simulation purposes (using ngMockE2E module)
     var authorized = false;
     var customers = [
@@ -14,7 +14,7 @@ angular.module('e2e-mocks', ['ngMockE2E'])
       return authorized ? [200, customers] : [401];
     });
 
-    $httpBackend.whenGET(AUTH.URL.USER_PROFILE).respond(function () {
+    $httpBackend.whenGET(CONST.AUTH.URL.USER_PROFILE).respond(function () {
       return authorized ? [200, {id: 1, firstName: 'Fred', lastName: 'Jones', username: 'fred@jones.com'}] : [401];
     });
 
