@@ -15,7 +15,7 @@ var gulp = require('gulp'),
 //  imagemin = require('gulp-imagemin'),
 //  rename = require('gulp-rename'),
 //  concat = require('gulp-concat'),
-//  notify = require('gulp-notify'),
+  notify = require('gulp-notify'),
 //  cache = require('gulp-cache'),
   livereload = require('gulp-livereload'),
   fs = require('fs');
@@ -35,7 +35,6 @@ var Config = {
   region: 'us-east-1',
   app: {
     js: [
-      'gulpfile.js',
       yeoman.app + '/*.js',
       yeoman.app + '/**/*.js',
       '!' + yeoman.app + '/**/*_test.js'
@@ -43,6 +42,7 @@ var Config = {
     html: [yeoman.app + '/*.html',
         yeoman.app + '/**/*.html'],
     jsTest: [
+      'gulpfile.js',
       yeoman.app + '/**/*_test.js',
       yeoman.test + '/**/*.js',
       '!' + yeoman.test + '/server/node_modules/**/*.js'
@@ -81,8 +81,11 @@ gulp.task('lint-app', function() {
   return gulp.src(Config.app.js)
     .pipe(jshint())
     .pipe(jshint.reporter('jshint-stylish'))
-    .pipe(jshint.reporter('fail'))
-    .pipe(livereload());
+    .on('error', notify.onError())
+    .on('error', function (err) {
+      console.log('Error:', err);
+    })
+    .pipe(jshint.reporter('fail'));
 });
 
 gulp.task('lint-test', function() {
@@ -98,12 +101,13 @@ gulp.task('watch', ['styles', 'lint', 'serve'], function() {
   // Create LiveReload server
   var server = livereload();
 
-
 //  // Watch .scss files
   gulp.watch(Config.app.style, ['styles']);
 
   // Watch .js files
-  gulp.watch(Config.app.js,     ['lint-app',  'test-unit']);
+  gulp.watch(Config.app.js, ['lint-app', 'test-unit']).on('change', function (file) {
+    server.changed(file.path);
+  });
   gulp.watch(Config.app.jsTest, ['lint-test', 'test-unit']);
 
   // Watch .html files
@@ -117,12 +121,9 @@ gulp.task('watch', ['styles', 'lint', 'serve'], function() {
 
 
   // Watch any files in dist/, reload on change
-  gulp.watch(['dist/**']).on('change', function(file) {
+  gulp.watch(['.tmp/**']).on('change', function (file) {
     server.changed(file.path);
   });
-
-
-
 
 
 });
@@ -145,7 +146,6 @@ gulp.task('test-unit', function () {
     singleRun: true
   }, function (exitCode) {
     gutil.log('Karma has exited with ' + exitCode);
-//    process.exit(exitCode);
   });
 });
 
@@ -162,8 +162,7 @@ gulp.task('styles', function() {
   return gulp.src(Config.app.sassMain)
     .pipe(sass({ style: 'expended', precision: 10, sourcemap: true }))
     .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
-    .pipe(gulp.dest(yeoman.temp + '/styles'))
-    .pipe(livereload());
+    .pipe(gulp.dest(yeoman.temp + '/styles'));
 });
 
 gulp.task('serve', function () {
@@ -176,6 +175,6 @@ gulp.task('serve', function () {
       }).on('start', function () {
         setTimeout(function () {
           livereload.changed();
-        }, 500); // wait for the server to finish loading before restarting the browsers
+        }, 1000); // wait for the server to finish loading before restarting the browsers
         });
-      });
+});
