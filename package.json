@@ -78,7 +78,8 @@
     "gulp-cache": "~0.1.11",
     "gulp-notify": "~1.3.1",
     "gulp-imagemin": "~0.6.1",
-    "gulp-nodemon": "~1.0.4"
+    "gulp-nodemon": "~1.0.4",
+    "grunt-plato": "~1.0.0"
   },
   "license": "MIT",
   "engines": {
@@ -87,6 +88,6 @@
   "scripts": {
     "test": "grunt test",
     "postinstall": "node_modules/.bin/bower install; node_modules/.bin/webdriver-manager update; (cd test/server; npm install)",
-    "report": "plato -r -d report -l .jshintrc -t 'Mick Angular Seed' -x _test.js app; open report/index.html"
+    "report": "grunt plato; open report/index.html"
   }
 }

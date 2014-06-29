@@ -11,6 +11,7 @@ after_success:
 cache:
   directories:
     - node_modules
+    - bower_components
 
 addons:
   sauce_connect:

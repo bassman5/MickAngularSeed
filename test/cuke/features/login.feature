@@ -4,8 +4,6 @@ Feature: Login
   I want to login
   So that I can see my private information
 
-#  Background:
-
   Scenario: Normal Login
     Given A registered user with credentials "user@email.com" "Password"
     When  I submit my correct authorization details

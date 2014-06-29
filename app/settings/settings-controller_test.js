@@ -15,7 +15,7 @@ describe('Controller: SettingsCtrl', function () {
     inject(function($injector, $controller, $rootScope, $q) {
       var promised = function () {
         var q = $q.defer();
-        q.resolve();
+        q.resolve({'firstName':'Jim', 'lastName': 'Smith'});
         return q.promise;
       };
 
@@ -35,5 +35,7 @@ describe('Controller: SettingsCtrl', function () {
   it('should load user profile data', function () {
     scope.$apply();
     expect(UserProfileService.getCurrentUser.calls.count()).toEqual(1);
+    expect(scope.user.firstName).toEqual('Jim');
+    expect(scope.user.lastName).toEqual('Smith');
   });
 });

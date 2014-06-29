@@ -39,8 +39,7 @@ module.exports = function(config) {
       'bower_components/angulartics/src/angulartics.js',
       'bower_components/angulartics/src/angulartics-ga.js',
       'bower_components/fastclick/lib/fastclick.js',
-
-
+      // Our code
       'app/*.js',
       'app/**/*.js'
     ],
@@ -68,7 +67,7 @@ module.exports = function(config) {
     // - PhantomJS
     // - IE (only Windows)
     // You can run multiple browsers e.g.
-    // browsers: ['Chrome', 'Firefox', 'Safari'],
+    // browsers: ['Chrome', 'Firefox', 'Safari', 'PhantomJS'],
     // On Windows to run IE you must also include the karma-ie-launcher to the plugin section above AND add to you node modules with
     // npm install karma-ie-launcher --save-dev
     browsers: ['Chrome'],

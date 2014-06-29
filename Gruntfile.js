@@ -653,18 +653,31 @@ module.exports = function (grunt) {
         keepAlive: true, // If false, the grunt process stops when the test fails.
         noColor: false // If true, protractor will not use colors in its output.
       },
-//      mocha: {
-//        options: {
-//          baseUrl: 'http://0.0.0.0:' + Config.e2e.port + '/',
-//          configFile: 'test/protractor.conf.js', // Default config file
-//          args: {} // Target-specific arguments
-//        }
-//      },
-      test: {
+      jasmine: {
         options: {
-          configFile: 'test/protractor-cuke-chrome-conf.js', // Default config file
+          configFile: 'test/protractor.conf.js', // Default config file
           args: {
             chromeOnly: true,
+            framework:'jasmine',
+            specs: ['test/e2e/spec/**/*.js'],
+            baseUrl: 'http://0.0.0.0:' + Config.test.port + '/',
+            capabilities: {
+              // Possible values are chrome, firefox, safari, ei, and phantomjs
+              'browserName': 'chrome'
+            }
+
+          } // Target-specific arguments
+        }
+      },
+
+      test: {
+        options: {
+          configFile: 'test/protractor.conf.js', // Default config file
+
+          args: {
+            chromeOnly: true,
+            framework:'cucumber',
+            specs: ['test/cuke/features/*.feature'],
 
             baseUrl: 'http://0.0.0.0:' + Config.test.port + '/',
             capabilities: {
@@ -745,6 +758,22 @@ module.exports = function (grunt) {
               version: 8
             }
           }
+        }
+      }
+    },
+
+    // Static analysis with Plato
+    plato: {
+      report: {
+        options : {
+          jshint : grunt.file.readJSON('.jshintrc'),
+          title: 'Mick Angular Seed',
+          recurse: true,
+          dir: 'report',
+          exclude: /_test\.js$/
+        },
+        files: {
+          'report': ['app']
         }
       }
     },
@@ -838,7 +867,13 @@ module.exports = function (grunt) {
         'express:production:stop'
       ]);
     }
-
+    if (target === 'jasmine') {
+      return grunt.task.run([
+        'express:test:start',
+        'protractor:jasmine',
+        'express:test:stop'
+      ]);
+    }
     // Always do saucelabs with a dist build
     if (target === 'saucelabs') {
       return grunt.task.run([

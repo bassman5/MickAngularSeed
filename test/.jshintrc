@@ -35,7 +35,9 @@
     "jasmine": false,
     "element": false,
     "by": false,
-    "spyOn": false
+    "spyOn": false,
+    "protractor": false,
+    "pending": false
   }
 }
 

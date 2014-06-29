@@ -7,23 +7,23 @@ describe('login page', function() {
 
   it('should load the home page', function() {
     loginHelper.homePage.get();
-    expect(loginHelper.homePage.isLoaded()).to.eventually.be.true;
+    expect(loginHelper.homePage.isLoaded()).to.eventually.equal(true);
   });
 
 
   it('should login', function() {
-    expect(loginHelper.isAuthenticated()).to.eventually.not.be.true;
-    loginHelper.login('fred@jones.com', 'aPassword');
-    expect(loginHelper.isAuthenticated()).to.eventually.be.true;
-    expect(loginHelper.homePage.isLoaded()).to.eventually.be.true;
+    expect(loginHelper.isAuthenticated()).to.eventually.equal(false);
+    loginHelper.login('fred@jones.com', 'Password');
+    expect(loginHelper.isAuthenticated()).to.eventually.equal(true);
+    expect(loginHelper.homePage.isLoaded()).to.eventually.equal(true);
     expect(loginHelper.navbarPage.username().getText()).to.eventually.be.equal('fred@jones.com');
   });
 
   it('should login then logout ', function() {
-    loginHelper.ensureLoggedIn('fred@jones.com', 'aPassword');
-    expect(loginHelper.isAuthenticated(), 'loggedIn').to.eventually.be.true;
+    loginHelper.ensureLoggedIn('fred@jones.com', 'Password');
+    expect(loginHelper.isAuthenticated(), 'loggedIn').to.eventually.equal(true);
     loginHelper.logout();
-    expect(loginHelper.isAuthenticated(), 'not isLoggedIn').to.eventually.not.be.true;
+    expect(loginHelper.isAuthenticated(), 'not isLoggedIn').to.eventually.equal(false);
   });
 
 

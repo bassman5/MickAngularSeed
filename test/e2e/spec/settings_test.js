@@ -12,7 +12,7 @@ describe('settings page', function() {
   });
 
   it('should navigate to the settings page from nav dropdown', function() {
-    loginHelper.ensureLoggedIn('fred@jones.com', 'aPassword');
+    loginHelper.ensureLoggedIn('fred@jones.com', 'Password');
     loginHelper.navbarPage.dropDownMenu().click();
     loginHelper.navbarPage.settings().click();
     expect(settingsPage.isLoaded()).to.eventually.be.true;

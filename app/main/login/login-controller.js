@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('anApp')
-  .controller('LoginCtrl', ['$scope', '$log', 'AuthenticationService', '$state', 'UserProfileService', function ($scope, $log, AuthenticationService, $state, UserProfileService) {
+  .controller('LoginCtrl', ['$scope', 'AuthenticationService', '$state', 'UserProfileService', function ($scope, AuthenticationService, $state, UserProfileService) {
     $scope.login = function (credentials) {
       $scope.error = '';
       AuthenticationService.login(credentials).then(function () {

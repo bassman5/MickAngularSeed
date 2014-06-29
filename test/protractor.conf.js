@@ -26,17 +26,42 @@ exports.config = {
   // The server under test
   baseUrl: 'http://localhost:' + (process.env.HTTP_PORT || '9000'),
 
-  framework:'mocha',
+  onPrepare: function() {
+    // Set the browser size with this
+//    browser.driver.manage().window().setSize(1200, 800);
+    // Disable Animations with this
+    var disableNgAnimate = function() {
+      angular.module('disableNgAnimate', []).run(function($animate) {
+        $animate.enabled(false);
+      });
+    };
+    browser.addMockModule('disableNgAnimate', disableNgAnimate);
 
-  mochaOpts: {
-    ui: 'bdd',
-    reporter: 'spec',
-    require: 'chai',
-    slow: 4000
-  }
-  // Options to be passed to Jasmine-node.
-//  jasmineNodeOpts: {
-//    showColors: true,
-//    defaultTimeoutInterval: 30000
+    // This will make the default time for a growl message 10ms
+    var disableGrowlTTL= function() {
+      angular.module('disableGrowlTTL', []).config(function(growlProvider) {
+        growlProvider.globalTimeToLive(10);
+      });
+    };
+
+    browser.addMockModule('disableGrowlTTL', disableGrowlTTL);
+  },
+
+  framework:'jasmine',
+
+//  mochaOpts: {
+//    ui: 'bdd',
+//    reporter: 'spec',
+//    require: 'chai',
+//    slow: 4000
 //  }
+  // Options to be passed to Jasmine-node.
+  jasmineNodeOpts: {
+    showColors: true,
+    defaultTimeoutInterval: 30000
+  },
+  cucumberOpts: {
+//    tags: '@dev',
+    format: 'pretty'
+  }
 };
