@@ -1,26 +1,21 @@
 language: node_js
 node_js:
-  - '0.10'
+- '0.10'
 before_install:
-  - 'gem install compass'
+- gem install compass
 before_script:
-  - 'npm install -g bower grunt-cli codeclimate-test-reporter'
+- npm install -g bower grunt-cli codeclimate-test-reporter
 after_success:
-  - 'CODECLIMATE_REPO_TOKEN=6dc07a009f8134d7b5989c8231affbdc4dbfad4101249b70af2baf9d4e902405 codeclimate < "coverage/*/lcov.info"'
-
+- CODECLIMATE_REPO_TOKEN=6dc07a009f8134d7b5989c8231affbdc4dbfad4101249b70af2baf9d4e902405
+  codeclimate < "coverage/*/lcov.info"
 cache:
   directories:
-    - node_modules
-    - bower_components
-
+  - node_modules
+  - bower_components
 addons:
-  sauce_connect:
-    username: 'bassman5'
-    access_key: 'c3b0d12a-4148-4c13-a62d-a1bc76028876'
-
+  sauce_connect: true
 env:
   global:
-    - SAUCE_USERNAME=bassman5
-    - SAUCE_ACCESS_KEY=c3b0d12a-4148-4c13-a62d-a1bc76028876
-
-script: 'grunt travis'
+  - secure: TEEMYSXDuqnJeP0twU7Ouqvh8je2vNbFQ204pjfuD1+xH2xwuhgdnUlNuHp7ubW0X1WCCyAY+yT/oXirRr/OLchCOmsyVBnU6s0AkBVI+b+DmwR0NDFhvoMclzfkHMEV3Kvjav32+FQtLCeKyjf/W7Bnmpd9Wqfcw5zClBfSRoE=
+  - secure: e2rkw1Ba77iF2XxNV0M5bLyZQdq5XuijAus8Szv8AUc/E00oV8K7ohb9QgaKsVOtWg3ihBZAhEypnqY6JlgJOJwzEGTtkYZzk6kXgxTyw/49bIDKOuSmU75PclQzRW8shqpHauAErxfrclpfULYn4Gvlp3L3jnooP1W7tLSUqiI=
+script: grunt travis
