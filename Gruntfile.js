@@ -607,7 +607,15 @@ module.exports = function (grunt) {
              '<%= yeoman.distTmp %>/styles/app.css'
            ]
          }
-       }
+       },
+      tmp: {
+        files: {
+          '<%= yeoman.distTmp %>/styles/app.css': [
+            '<%= yeoman.tmp %>/styles/app.css'
+          ]
+        }
+      }
+
     },
     // uglify: {
     //   dist: {
@@ -926,7 +934,7 @@ module.exports = function (grunt) {
     'replace:dist',
     'cdnify',
     'copy:css',
-    'cssmin',
+    'cssmin:tmp',
     'uncss',
     'cssmin:dist',
     'uglify',

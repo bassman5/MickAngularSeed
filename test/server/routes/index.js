@@ -25,13 +25,7 @@ router.get('/status', function(req, res) {
   res.send(200, 'OK');
 });
 
-
-/* POST sink,html. */
-router.post('/sink.html', function (req, res) {
-  res.json({});
-});
-
-router.get('/sink.html', function (req, res)
+router.all('/sink.html', function (req, res)
 {
   res.send(200, '<!doctype html><html><head></head><body></body></html>');
 });
