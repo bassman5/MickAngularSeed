@@ -4,18 +4,21 @@
 
 [![Stories in Ready](https://badge.waffle.io/bassman5/mickangularseed.png?label=ready&title=Ready)](https://waffle.io/bassman5/mickangularseed)
 
-Install
+### Install
+
+#### Prerequisites
+[Install NodeJS](http://nodejs.org/download/)
+
+[Install Compass](http://compass-style.org/install/)
+
+```
+npm install -g bower grunt-cli
+```
+
 ```
 git clone https://github.com/bassman5/MickAngularSeed.git myapp
 cd myapp
 npm install 
-```
-Must have node and grunt globally installed first
-Also protractor needs some setup see https://github.com/angular/protractor/blob/master/docs/getting-started.md
-I have installed locally in the project rather than globally so after initial installation run
-npm will install webdriver (following command)
-```
-./node_modules/.bin/webdriver-manager update
 ```
 
 ### Aims
