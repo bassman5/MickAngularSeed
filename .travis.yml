@@ -17,5 +17,5 @@ addons:
 env:
   global:
   - secure: TEEMYSXDuqnJeP0twU7Ouqvh8je2vNbFQ204pjfuD1+xH2xwuhgdnUlNuHp7ubW0X1WCCyAY+yT/oXirRr/OLchCOmsyVBnU6s0AkBVI+b+DmwR0NDFhvoMclzfkHMEV3Kvjav32+FQtLCeKyjf/W7Bnmpd9Wqfcw5zClBfSRoE=
-  - secure: e2rkw1Ba77iF2XxNV0M5bLyZQdq5XuijAus8Szv8AUc/E00oV8K7ohb9QgaKsVOtWg3ihBZAhEypnqY6JlgJOJwzEGTtkYZzk6kXgxTyw/49bIDKOuSmU75PclQzRW8shqpHauAErxfrclpfULYn4Gvlp3L3jnooP1W7tLSUqiI=
+  - secure: bAlKgUyLmRxbBnu2BfUdaAo1aP2060+OAjrJB0qu92zVEaQFEfb62sBHHngAeQfmk4G/UaUo3FcOLs1kjLIsIna+Tem/D8T4egh6bk0aFcpouzohZ607K7VcLZqRaZCbcVXy138VsaFNhRlwTY/4lo5q0QGqwbtlP7MrU6+LLyQ=
 script: grunt travis
