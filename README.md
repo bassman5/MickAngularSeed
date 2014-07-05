@@ -4,9 +4,8 @@
 
 [![Stories in Ready](https://badge.waffle.io/bassman5/mickangularseed.png?label=ready&title=Ready)](https://waffle.io/bassman5/mickangularseed)
 
-### Install
+### Prerequisites
 
-#### Prerequisites
 [Install NodeJS](http://nodejs.org/download/)
 
 [Install Compass](http://compass-style.org/install/)
@@ -15,10 +14,18 @@
 npm install -g bower grunt-cli
 ```
 
+### Install
+
 ```
 git clone https://github.com/bassman5/MickAngularSeed.git myapp
 cd myapp
 npm install 
+```
+
+Validate install
+
+```
+npm test
 ```
 
 ### Aims
