@@ -135,7 +135,7 @@ Will generate css (this is done automatically in watch)
 
 ## For e2e test (protractor / webdriver )
 
-Start server (NOT NEEDED just run chrome only driver)
+Start server (NOT NEEDED if only running chrome only driver)
 ```
 ./node_modules/.bin/webdriver-manager start
 ```
@@ -155,6 +155,15 @@ Note this starts an express server (test/server) which has been generated from t
 grunt e2e:desktops
 ```
 Will run chrome, safari, and firefox tests on a distribution build on the local machine
+This does need webdriver to run, so this must be started with 
+```
+./node_modules/.bin/webdriver-manager start
+```
+or
+```
+npm run-script webdriver
+```
+
 
 ```
 grunt e2e:saucelabs
