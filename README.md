@@ -198,7 +198,7 @@ Will push the dist fold to an s3 bucket defined in the options section
         bucket: "angularseed",
 ```
 
-If you then add to a Cloudfront distribution you get 98/100 from ySlow and Pagespeed looks good too!
+If you then add to a Cloudfront distribution you get 99/100 from ySlow and Pagespeed looks good too!
 
 This task expects a file called .aws-credentials.json in you project root but be careful not to add to source control, this file has been added to .gitignore
 
