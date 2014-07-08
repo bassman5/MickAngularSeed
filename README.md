@@ -195,10 +195,13 @@ This task expects a file called .aws-credentials.json in you project root but be
 
  * Create a `credentials.json` file like:
 
-     ``` json
+     ``` 
      {
-       "accessKeyId": "...",
-       "secretAccessKey": "..."
+       "GoogleAnalyticsKey": "UA-12345678-1",
+       "GoogleAnalyticsHost": "awebsite.yourhost.net",
+     
+       "AwsAccessKeyId": "...",
+       "AwsSecretAccessKey": "..."
      }
      ```
 
