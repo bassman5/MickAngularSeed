@@ -7,23 +7,33 @@ exports.config = {
   // Capabilities to be passed to the webdriver instance.
 //  seleniumAddress: 'http://127.0.0.1:4444/wd/hub',
 
-  multiCapabilities: [
-    {
-      name: 'MAS - Client',
-      tags: ['e2e'],
-      build:               '"' + process.env.TRAVIS_JOB_NUMBER + '"',
-      'tunnel-identifier': '' + process.env.TRAVIS_JOB_NUMBER,
-      platform: 'Windows 8',
-      'browserName': 'firefox'
-    },
-    {
-      name: 'MAS - Client',
-      tags: ['e2e'],
-      build:               '"' + process.env.TRAVIS_JOB_NUMBER + '"',
-      'tunnel-identifier': '' + process.env.TRAVIS_JOB_NUMBER,
-      platform: 'OS X 10.9',
-      'browserName': 'safari'
-    }
+  capabilities: {
+    name: 'MAS - Client',
+    tags: ['e2e'],
+    build:               '"' + process.env.TRAVIS_JOB_NUMBER + '"',
+    'tunnel-identifier': '' + process.env.TRAVIS_JOB_NUMBER,
+    platform: 'OS X 10.9',
+    'browserName': 'safari'
+  },
+
+
+//  multiCapabilities: [
+//    {
+//      name: 'MAS - Client',
+//      tags: ['e2e'],
+//      build:               '"' + process.env.TRAVIS_JOB_NUMBER + '"',
+//      'tunnel-identifier': '' + process.env.TRAVIS_JOB_NUMBER,
+//      platform: 'Windows 8',
+//      'browserName': 'firefox'
+//    },
+//    {
+//      name: 'MAS - Client',
+//      tags: ['e2e'],
+//      build:               '"' + process.env.TRAVIS_JOB_NUMBER + '"',
+//      'tunnel-identifier': '' + process.env.TRAVIS_JOB_NUMBER,
+//      platform: 'OS X 10.9',
+//      'browserName': 'safari'
+//    }
 //    ,
 //    {
 //      name: 'MAS - Client',
@@ -33,7 +43,7 @@ exports.config = {
 //      platform: 'OS X 10.9',
 //      'browserName': 'chrome'
 //    }
-  ],
+//  ],
 
 
   // The server under test
