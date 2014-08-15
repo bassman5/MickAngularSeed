@@ -45,7 +45,7 @@
     "karma-growl-reporter": "0.1.1",
     "protractor": "1.0.0-rc2",
     "grunt-uncss": "0.3.3",
-    "grunt-aws": "0.3.1",
+    "grunt-aws": "0.3.0",
     "grunt-angular-templates": "0.5.3",
     "bower": "",
     "connect-modrewrite": "0.7.4",
