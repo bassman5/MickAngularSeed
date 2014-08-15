@@ -21,7 +21,7 @@ module.exports = function (grunt) {
 
   var Config = {
     project: 'MAS',
-    bucket: 'angularseed',
+    bucket: 'mickangularseed',
 //    region: 'us-west-1',
     region: 'us-east-1',
     dev: {

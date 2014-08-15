@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('e2e-mocks', ['ngMockE2E'])
-  .run(['$httpBackend', 'CONST', function ($httpBackend, CONST) {
+  .run(['$httpBackend', function ($httpBackend) {
     // Mocking code used for simulation purposes (using ngMockE2E module)
     var authorized = false;
     var customers = [
@@ -14,17 +14,17 @@ angular.module('e2e-mocks', ['ngMockE2E'])
       return authorized ? [200, customers] : [401];
     });
 
-    $httpBackend.whenGET(CONST.AUTH.URL.USER_PROFILE).respond(function () {
+    $httpBackend.whenGET('/api/v1/user-profile').respond(function () {
       return authorized ? [200, {id: 1, firstName: 'Fred', lastName: 'Jones', username: 'fred@jones.com'}] : [401];
     });
 
 
-    $httpBackend.whenPOST('/login').respond(function () {
+    $httpBackend.whenPOST('/api/v1/login').respond(function () {
       authorized = true;
       return  [200 , { authorizationToken: 'NjMwNjM4OTQtMjE0Mi00ZWYzLWEzMDQtYWYyMjkyMzNiOGIy' } ];
     });
 
-    $httpBackend.whenPOST('/logout').respond(function () {
+    $httpBackend.whenPOST('/api/v1/logout').respond(function () {
       authorized = false;
       return [200];
     });

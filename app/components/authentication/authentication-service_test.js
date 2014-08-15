@@ -29,7 +29,6 @@ describe('Service: AuthenticationService', function () {
     var response = { authorizationToken: 'abcdefghijk' };
 
     $httpBackend.whenPOST(CONST.API.BASE_URL + '/' + CONST.API.LOGIN).respond(function(/* method, url */) {
-//      console.log('loginSuccessfully');
       return  [200 , response ];
     });
     AuthenticationService.login({user: 'fred', password: 'Password'});
