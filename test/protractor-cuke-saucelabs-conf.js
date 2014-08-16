@@ -47,7 +47,9 @@ exports.config = {
 
 
   // The server under test
-  baseUrl: 'http://0.0.0.0:' + (process.env.HTTP_PORT || '9000'),
+//  baseUrl: 'http://0.0.0.0:' + (process.env.HTTP_PORT || '9000'),
+  baseUrl: 'http://mickangularseed.s3-website-us-east-1.amazonaws.com',
+
   onPrepare: function() {
     // Set the browser size with this
 //    browser.driver.manage().window().setSize(1200, 800);
