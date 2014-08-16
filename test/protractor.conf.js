@@ -24,7 +24,8 @@ exports.config = {
   specs: ['e2e/spec/**/*.js'],
 
   // The server under test
-  baseUrl: 'http://localhost:' + (process.env.HTTP_PORT || '9000'),
+//  baseUrl: 'http://localhost:' + (process.env.HTTP_PORT || '9000'),
+  baseUrl: 'http://mickangularseed.s3-website-us-east-1.amazonaws.com',
 
   onPrepare: function() {
     // Set the browser size with this
