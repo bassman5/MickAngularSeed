@@ -687,7 +687,7 @@ module.exports = function (grunt) {
             framework:'cucumber',
             specs: ['test/cuke/features/*.feature'],
 
-            baseUrl: 'http://0.0.0.0:' + Config.test.port + '/',
+//            baseUrl: 'http://0.0.0.0:' + Config.test.port + '/',
             capabilities: {
               // Possible values are chrome, firefox, safari, ei, and phantomjs
               'browserName': 'chrome'
@@ -728,7 +728,8 @@ module.exports = function (grunt) {
         options: {
           configFile: 'test/protractor-cuke-saucelabs-conf.js', // Default config file
           args: {
-            baseUrl: 'http://0.0.0.0:' + Config.e2e.port + '/',
+//            baseUrl: 'http://0.0.0.0:' + Config.e2e.port + '/',
+            baseUrl: 'http://mickangularseed.s3-website-us-east-1.amazonaws.com',
             sauceUser: process.env.SAUCE_USERNAME,
             sauceKey: process.env.SAUCE_ACCESS_KEY,
             name: Config.project,
@@ -741,7 +742,8 @@ module.exports = function (grunt) {
         options: {
           configFile: 'test/protractor-cuke-saucelabs-win-conf.js', // Default config file
           args: {
-            baseUrl: 'http://0.0.0.0:' + Config.e2e.port + '/',
+//            baseUrl: 'http://0.0.0.0:' + Config.e2e.port + '/',
+            baseUrl: 'http://mickangularseed.s3-website-us-east-1.amazonaws.com',
             sauceUser: process.env.SAUCE_USERNAME,
             sauceKey: process.env.SAUCE_ACCESS_KEY,
             name: Config.project,

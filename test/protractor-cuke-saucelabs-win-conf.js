@@ -17,15 +17,15 @@ exports.config = {
       'browserName': 'iexplore',
       version: 11
     },
-//    {
-//      name: 'MAS - Client',
-//      tags: ['e2e'],
-//      build:               '"' + process.env.TRAVIS_JOB_NUMBER + '"',
-//      'tunnel-identifier': '' + process.env.TRAVIS_JOB_NUMBER,
-//      platform: 'Windows 8',
-//      'browserName': 'iexplore',
-//      version: 10
-//    },
+    {
+      name: 'MAS - Client',
+      tags: ['e2e'],
+      build:               '"' + process.env.TRAVIS_JOB_NUMBER + '"',
+      'tunnel-identifier': '' + process.env.TRAVIS_JOB_NUMBER,
+      platform: 'Windows 8',
+      'browserName': 'iexplore',
+      version: 10
+    },
     {
       name: 'MAS - Client',
       tags: ['e2e'],
