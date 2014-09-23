@@ -1,5 +1,7 @@
 ## This is an AngularJS Application with testing and distribution build configured
 
+[ ![Codeship Status for bassman5/MickAngularSeed](https://www.codeship.io/projects/06f5e0e0-259c-0132-13af-2ac3e15a4c5d/status)](https://www.codeship.io/projects/37226)
+
 [![Build Status](http://img.shields.io/travis/bassman5/MickAngularSeed.svg)](https://travis-ci.org/bassman5/MickAngularSeed) [![Dependency Status](https://david-dm.org/bassman5/MickAngularSeed.svg?theme=shields.io)](https://david-dm.org/bassman5/MickAngularSeed) [![devDependency Status](https://david-dm.org/bassman5/MickAngularSeed/dev-status.svg?theme=shields.io)](https://david-dm.org/bassman5/MickAngularSeed#info=devDependencies)
 
 [![Stories in Ready](https://badge.waffle.io/bassman5/mickangularseed.png?label=ready&title=Ready)](https://waffle.io/bassman5/mickangularseed)
