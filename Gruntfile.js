@@ -735,7 +735,7 @@ module.exports = function (grunt) {
             sauceKey: process.env.SAUCE_ACCESS_KEY,
             name: Config.project,
             tags: ['e2e'],
-            build:               '"' + process.env.TRAVIS_JOB_NUMBER + '"'
+            build: '"' + process.env.TRAVIS_JOB_NUMBER + '"'
           }
         }
       },
@@ -749,7 +749,7 @@ module.exports = function (grunt) {
             sauceKey: process.env.SAUCE_ACCESS_KEY,
             name: Config.project,
             tags: ['e2e'],
-            build:               '"' + process.env.TRAVIS_JOB_NUMBER + '"'
+            build: '"' + process.env.TRAVIS_JOB_NUMBER + '"'
           }
         }
       },

@@ -12,7 +12,7 @@ exports.config = {
       name: 'MAS - Client',
       tags: ['e2e'],
       build:               '"' + process.env.TRAVIS_JOB_NUMBER + '"',
-      'tunnel-identifier': '' + process.env.TRAVIS_JOB_NUMBER,
+//      'tunnel-identifier': '' + process.env.TRAVIS_JOB_NUMBER,
       platform: 'Windows 8.1',
       'browserName': 'iexplore',
       version: 11
@@ -21,7 +21,7 @@ exports.config = {
       name: 'MAS - Client',
       tags: ['e2e'],
       build:               '"' + process.env.TRAVIS_JOB_NUMBER + '"',
-      'tunnel-identifier': '' + process.env.TRAVIS_JOB_NUMBER,
+//      'tunnel-identifier': '' + process.env.TRAVIS_JOB_NUMBER,
       platform: 'Windows 8',
       'browserName': 'iexplore',
       version: 10
@@ -30,7 +30,7 @@ exports.config = {
       name: 'MAS - Client',
       tags: ['e2e'],
       build:               '"' + process.env.TRAVIS_JOB_NUMBER + '"',
-      'tunnel-identifier': '' + process.env.TRAVIS_JOB_NUMBER,
+//      'tunnel-identifier': '' + process.env.TRAVIS_JOB_NUMBER,
       platform: 'Windows 7',
       'browserName': 'iexplore',
       version: 8
@@ -59,6 +59,36 @@ exports.config = {
     };
 
     browser.addMockModule('disableGrowlTTL', disableGrowlTTL);
+    // Mock backend
+    var httpBackendMock = function () {
+      angular.module('httpBackendMock', ['ngMockE2E'])
+        .run(function ($httpBackend) {
+          var authorized = false;
+
+          $httpBackend.whenGET('/api/v1/user-profile').respond(function () {
+            return authorized ? [200, {id: 1, firstName: 'Fred', lastName: 'Jones', username: 'fred@jones.com'}] : [401];
+          });
+
+
+          $httpBackend.whenPOST('/api/v1/login').respond(function (method, url, data) {
+            var req = angular.fromJson(data);
+            if (req.user.password === 'Password') {
+              authorized = true;
+              return  [200 , { authorizationToken: 'NjMwNjM4OTQtMjE0Mi00ZWYzLWEzMDQtYWYyMjkyMzNiOGIy' } ];
+            }
+            else {
+              return  [401,  {message: 'Username or password incorrect'}];
+            }
+          });
+
+          $httpBackend.whenPOST('/api/v1/logout').respond(function () {
+            authorized = false;
+            return [200];
+          });
+          $httpBackend.whenGET(/.*/).passThrough();
+        });
+    };
+    browser.addMockModule('httpBackendMock', httpBackendMock);
   },
   framework:'cucumber',
 
