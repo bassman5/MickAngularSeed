@@ -24,8 +24,7 @@ exports.config = {
   specs: ['e2e/spec/**/*.js'],
 
   // The server under test
-//  baseUrl: 'http://localhost:' + (process.env.HTTP_PORT || '9000'),
-  baseUrl: 'http://mickangularseed.s3-website-us-east-1.amazonaws.com',
+  baseUrl: 'http://localhost:' + (process.env.HTTP_PORT || '9000'),
 
   onPrepare: function() {
     // Set the browser size with this
@@ -48,29 +47,29 @@ exports.config = {
     browser.addMockModule('disableGrowlTTL', disableGrowlTTL);
 
     // Mock backend
-    var httpBackendMock = function () {
-      angular.module('httpBackendMock', ['ngMockE2E'])
-        .run(function ($httpBackend) {
-          var authorized = false;
-
-          $httpBackend.whenGET('/api/v1/user-profile').respond(function () {
-            return authorized ? [200, {id: 1, firstName: 'Fred', lastName: 'Jones', username: 'fred@jones.com'}] : [401];
-          });
-
-
-          $httpBackend.whenPOST('/api/v1/login').respond(function () {
-            authorized = true;
-            return  [200 , { authorizationToken: 'NjMwNjM4OTQtMjE0Mi00ZWYzLWEzMDQtYWYyMjkyMzNiOGIy' } ];
-          });
-
-          $httpBackend.whenPOST('/api/v1/logout').respond(function () {
-            authorized = false;
-            return [200];
-          });
-          $httpBackend.whenGET(/.*/).passThrough();
-        });
-    };
-    browser.addMockModule('httpBackendMock', httpBackendMock);
+//    var httpBackendMock = function () {
+//      angular.module('httpBackendMock', ['ngMockE2E'])
+//        .run(function ($httpBackend) {
+//          var authorized = false;
+//
+//          $httpBackend.whenGET('/api/v1/user-profile').respond(function () {
+//            return authorized ? [200, {id: 1, firstName: 'Fred', lastName: 'Jones', username: 'fred@jones.com'}] : [401];
+//          });
+//
+//
+//          $httpBackend.whenPOST('/api/v1/login').respond(function () {
+//            authorized = true;
+//            return  [200 , { authorizationToken: 'NjMwNjM4OTQtMjE0Mi00ZWYzLWEzMDQtYWYyMjkyMzNiOGIy' } ];
+//          });
+//
+//          $httpBackend.whenPOST('/api/v1/logout').respond(function () {
+//            authorized = false;
+//            return [200];
+//          });
+//          $httpBackend.whenGET(/.*/).passThrough();
+//        });
+//    };
+//    browser.addMockModule('httpBackendMock', httpBackendMock);
   },
 
   framework:'jasmine',

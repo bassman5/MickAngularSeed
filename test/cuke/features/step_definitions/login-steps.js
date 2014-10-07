@@ -10,12 +10,13 @@ module.exports = function() {
 
   this.World = require('../support/world.js').World; // overwrite default World constructor
 
-  this.Given(/^A registered user with credentials "([^"]*)" "([^"]*)"$/, function (user, password, callback) {
+  this.Given(/^A registered user$/, function (callback) {
+//    this.Given(/^A registered user with credentials "([^"]*)" "([^"]*)"$/, function (user, password, callback) {
     this.navigateTo (this.Navbar.login());
 
     expect(this.LoginPage.isLoaded(), 'login-view is present').to.eventually.equal(true);
-    this.LoginPage.typeUsername(user);
-    this.LoginPage.typePassword(password);
+    this.LoginPage.typeUsername('user@email.com');
+    this.LoginPage.typePassword('Password');
     callback();
   });
 

@@ -5,7 +5,7 @@ Feature: Login
   So that I can see my private information
 
   Scenario: Normal Login
-    Given A registered user with credentials "user@email.com" "Password"
+    Given A registered user
     When  I submit my correct authorization details
     Then  I am fully authenticated.
 
@@ -15,7 +15,7 @@ Feature: Login
     Then  I am not longer authenticated.
 
   Scenario: Invalid login credentials
-    Given A registered user with credentials "user@email.com" "Password"
+    Given A registered user
     When  I submit incorrect authorization details
     Then  I am not authenticated.
     And   An error message is displayed
