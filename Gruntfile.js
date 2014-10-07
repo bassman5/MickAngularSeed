@@ -186,13 +186,14 @@ module.exports = function (grunt) {
       test: {
         options: {
           port: Config.test.port,
+          node_env: 'test',
           script: 'test/server/bin/www'
         }
       },
       e2e: {
         options: {
           port: Config.e2e.port,
-
+          node_env: 'e2e',
           script: 'test/server/bin/www'
         }
       }

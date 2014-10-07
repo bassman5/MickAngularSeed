@@ -17,7 +17,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 app.use(favicon());
-app.use(logger('dev'));
+//app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
@@ -28,12 +28,17 @@ app.use('/api/v1', require('./routes/api'));
 
 
 var env = process.env.NODE_ENV || 'development';
-if ('development' === env) {
+if ('test' === app.get('env')) {
   // configure stuff here
+  app.use(express.static(path.join(__dirname, '../..')));
+  app.use(express.static(path.join(__dirname, '../../bower_components')));
+  app.use(express.static(path.join(__dirname, '../../.tmp')));
+  app.use(express.static(path.join(__dirname, '../../app')));
+  app.use(logger('dev'));
 }
 
 // dev mode
-if (app.get('env') === 'development') {
+if ('development' === app.get('env')) {
   // live reload script
   var liveReloadPort = 35729;
   var excludeList = ['.woff', '.flv'];
