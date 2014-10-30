@@ -4,10 +4,10 @@ describe('Service: Api', function () {
 
   var Api, CONST;
 
-  beforeEach(function() {
+  beforeEach(function () {
     module('anApp');
 
-    inject(function($injector) {
+    inject(function ($injector) {
       Api = $injector.get('Api');
       CONST = $injector.get('CONST');
     });

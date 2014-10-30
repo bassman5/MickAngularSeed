@@ -699,7 +699,7 @@ module.exports = function (grunt) {
       },
       dist: {
         options: {
-          configFile: 'test/protractor-cuke-chrome-conf.js', // Default config file
+          configFile: 'test/protractor.conf.js', // Default config file
           args: {
             chromeOnly: true,
 

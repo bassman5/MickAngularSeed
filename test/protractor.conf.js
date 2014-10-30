@@ -21,7 +21,10 @@ exports.config = {
 
   // Spec patterns are relative to the current working directly when
   // protractor is called.
-  specs: ['e2e/spec/**/*.js'],
+//  framework:'jasmine',
+//  specs: ['e2e/spec/**/*.js'],
+  framework:'cucumber',
+  specs: ['cuke/features/*.feature'],
 
   // The server under test
   baseUrl: 'http://localhost:' + (process.env.HTTP_PORT || '9000'),
@@ -78,8 +81,6 @@ exports.config = {
     browser.addMockModule('httpBackendMock', httpBackendMock);
   },
 
-  framework:'jasmine',
-
 //  mochaOpts: {
 //    ui: 'bdd',
 //    reporter: 'spec',
@@ -93,6 +94,7 @@ exports.config = {
   },
   cucumberOpts: {
 //    tags: '@dev',
+//    format: 'json'
     format: 'pretty'
   }
 };
